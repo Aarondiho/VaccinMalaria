@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "VaccinMalaria",
+    "slug": "vaccinmalaria",
+    "scheme": "exp+vaccinmalaria",
+    "version": "1.1.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover"
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#00000000",
+      "translucent": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.vaccinMalaria",
+      "versionCode": 7
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "43a4183a-42e5-4de4-8a0d-e050cfdce0e7"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.vaccinMalaria",
+      "buildNumber": "1"
+    }
+  }
+}
