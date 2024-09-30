@@ -3,7 +3,7 @@
     "name": "VaccinMalaria",
     "slug": "vaccinmalaria",
     "scheme": "exp+vaccinmalaria",
-    "version": "1.1.1",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -21,7 +21,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.vaccinMalaria",
-      "versionCode": 7
+      "versionCode": 8
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -35,7 +35,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "43a4183a-42e5-4de4-8a0d-e050cfdce0e7"
+        "projectId": "b545e5f1-30db-47e8-a966-f55a55abc883"
       }
     },
     "ios": {

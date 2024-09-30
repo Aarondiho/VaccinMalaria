@@ -10,9 +10,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Loader from '../../components/Loading';
 
 const Login = () => {
+
   const ios = Platform.OS == 'ios';
-  const topMargin = ios ? 'mt-6' : ' ';
-  const bottomMargin = ios ? 'mb-6' : 'mb-2';
   var { width, height } = Dimensions.get('window');
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
@@ -32,12 +31,12 @@ const Login = () => {
   const [score1,setScore1] = useState('0');
   const [score2,setScore2] = useState('0');
   const [score3,setScore3] = useState('0');
+  const [score4,setScore4] = useState('0');
 
 
   const [first, setFirst] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [module, setModule] = useState(1);
   
 
   const [showFirst, setShowFirst] = useState(false);
@@ -80,6 +79,7 @@ const Login = () => {
                 const storedScore1 = await AsyncStorage.getItem("score1");
                 const storedScore2 = await AsyncStorage.getItem("score2");
                 const storedScore3 = await AsyncStorage.getItem("score3");
+                const storedScore4 = await AsyncStorage.getItem("score4");
                 
 
         
@@ -101,6 +101,7 @@ const Login = () => {
         setScore1(storedScore1 || '0');
         setScore2(storedScore2 || '0');
         setScore3(storedScore3 || '0');
+        setScore4(storedScore4 || '0');
 
       };
       initializeData();
@@ -181,28 +182,23 @@ const Login = () => {
     }
   }
 
-  const toggleLessons =()=>{
+  const profile = async() =>{
 
-    module ==1?navigation.navigate(ROUTES.LESSONS) 
-    :
-    module ==2?navigation.navigate(ROUTES.LESSONS2) 
-    :
-    navigation.navigate(ROUTES.LESSONS3) 
-  }
+    await AsyncStorage.removeItem('isLoggedIn')
 
-  const toggleQuiz =()=>{
+    navigation.replace(ROUTES.LOGIN)
 
-    module==2?navigation.navigate(ROUTES.QUIZ2) 
-    :
-    module==3?navigation.navigate(ROUTES.QUIZ3) 
-    :
-    navigation.navigate(ROUTES.QUIZ1) 
   }
 
 
   return (<>
-    {!showFirst? <Loader/> : isLoggedIn? (
-        <SafeAreaView className="flex-1">
+    {!showFirst? <Loader/> 
+      : !first?<First/> 
+      : isLoggedIn? (
+        <KeyboardAvoidingView
+        behavior={ios ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+        >
         <LinearGradient 
           colors={['#BD1634', '#291737']}
           start={[0,0]}
@@ -210,8 +206,7 @@ const Login = () => {
          className="flex-1 justify-center items-center">
       
         {/* Header */}
-        <View className="flex-row justify-between items-center p-4 mt-10">
-          
+        <View className="flex-row justify-between items-center p-2 mt-10">
           <Text className="text-lg font-semibold text-white">Vaccin Malaria</Text>
           
         </View>
@@ -220,29 +215,43 @@ const Login = () => {
         
           {/* Profile Info */}
           <View
-          className="items-center p-6  rounded-3xl mt-16"
+          className="items-center py-6  rounded-3xl mt-16"
         >
             <Image
               source={sex=="Masculin"? require('../../../assets/male.jpg') : require('../../../assets/female.png') } // Fix the correct path for the user image
               className="w-24 h-24 rounded-full -mt-20"
             />
             <Text className="font-sans text-white mt-4 text-xl font-semibold">{Name}</Text>
-  
+
+
+      {/* Follow and Message Buttons */}
+              <View className="flex-row justify-between items-center mt-4">
+                <TouchableOpacity className="bg-white px-4 py-2 rounded-full mr-4" onPress={profile}>
+                  <Text className="text-purple-700 font-semibold">Profile</Text>
+                </TouchableOpacity>
+                <TouchableOpacity className="bg-white px-4 py-2 rounded-full">
+                  <Text className="text-purple-700 font-semibold">J'aime</Text>
+                </TouchableOpacity>
+              </View>
             
   
             {/* Stats */}
-            <View className="flex-row mt-4">
+            <View className="flex-row mt-4 mx-2">
               <View className="items-center mx-4">
-                <Text className="font-sans text-white font-bold">{JSON.parse(score1)}%</Text>
-                <Text className="font-sans text-white">Evaluation 1</Text>
+                <Text className="font-sans text-white font-bold ">{JSON.parse(score1)}%</Text>
+                <Text className="font-sans text-white">Note 1</Text>
               </View>
               <View className="items-center mx-4">
-                <Text className="font-sans text-white font-bold">{JSON.parse(score2)}%</Text>
-                <Text className="font-sans text-white">Evaluation 2</Text>
+                <Text className="font-sans text-white font-bold ">{JSON.parse(score2)}%</Text>
+                <Text className="font-sans text-white">Note 2</Text>
               </View>
               <View className="items-center mx-4">
-                <Text className="font-sans text-white font-bold">{JSON.parse(score3)}%</Text>
-                <Text className="font-sans text-white">Evaluation 3</Text>
+                <Text className="font-sans text-white font-bold ">{JSON.parse(score3)}%</Text>
+                <Text className="font-sans text-white">Note 3</Text>
+              </View>
+              <View className="items-center mx-4">
+                <Text className="font-sans text-white font-bold ">{JSON.parse(score3)}%</Text>
+                <Text className="font-sans text-white">Note 4</Text>
               </View>
             </View>
           </View>
@@ -250,29 +259,21 @@ const Login = () => {
           <View className="font-sans w-full border-2 border-white"></View>
   
           {/* Tabs */}
-          <View className="flex-row justify-around mt-6 mb-6">
-            <TouchableOpacity onPress={()=>setModule(1)}>
-              <Text className={module==1?" font-sans text-lg bg-white p-3 rounded-xl font-semibold":" p-2 text-white font-sans text-lg font-semibold"}>Module 1&2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>setModule(2)}>
-              <Text className={module==2?"bg-white p-3 rounded-xl font-sans text-lg font-semibold":" p-2 text-white font-sans text-lg font-semibold"}>Module 3&4</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>setModule(3)}>
-              <Text className={module==3?"bg-white p-3  rounded-xl font-sans text-lg font-semibold":"p-2 text-white font-sans text-lg font-semibold"}>Module 5&6</Text>
-            </TouchableOpacity>
-          </View>
+         
+
+          
+          <Text className=" text-center font-sans text-lg mx-28 my-8 bg-white p-2 rounded-xl font-semibold">Module 1 & 2 </Text>
+            
 
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop:20 }}>
          
-          <TouchableOpacity onPress={toggleLessons}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
+          <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.LESSONS)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
              
-              <Text className="bg-green-600 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Leçon {module}</Text>
+              <Text className="bg-green-600 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Leçon 1</Text>
               <View className="mb-16 mt-4">
               
                 <Image
-                  source={module === 1 ? require('../../../assets/mod2.png') 
-                                      : module === 3 ? require('../../../assets/mod3.png') 
-                                      : require('../../../assets/mod1.png')}
+                  source={require('../../../assets/mod2.png')}
                   style={{width:100,height:100}}
                 />
                 
@@ -280,27 +281,131 @@ const Login = () => {
           </TouchableOpacity>
           
 
-          <TouchableOpacity onPress={toggleQuiz}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
-              <Text className="bg-purple-500 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Evaluation {module}</Text>
+          <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.QUIZ1)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
+              <Text className="bg-purple-500 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Evaluation 1</Text>
               <View className="mb-16 mt-4">
                  
                 
                   <Image
-                    source={module === 1 ? require('../../../assets/evaluation2.png') 
-                                        : module === 3 ? require('../../../assets/evaluation3.png') 
-                                        : require('../../../assets/evaluation1.png')}
-                                        style={{width:100,height:100}}
+                    source={require('../../../assets/evaluation1.png')}
+                              style={{width:100,height:100}}
                   />
                 
               </View>
               </TouchableOpacity>
 
           </View>
+
+          <Text className=" text-center font-sans text-lg mx-28 my-8 bg-white p-2 rounded-xl font-semibold">Module 3 & 4 </Text>
+            
+
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop:20 }}>
+           
+            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.LESSONS2)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
+               
+                <Text className="bg-green-600 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Leçon 2</Text>
+                <View className="mb-16 mt-4">
+                
+                  <Image
+                    source={require('../../../assets/mod1.png')}
+                    style={{width:100,height:100}}
+                  />
+                  
+              </View>
+            </TouchableOpacity>
+            
+  
+            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.QUIZ2)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
+                <Text className="bg-purple-500 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Evaluation 2</Text>
+                <View className="mb-16 mt-4">
+                   
+                  
+                    <Image
+                      source={ require('../../../assets/evaluation2.png')}
+                      style={{width:100,height:100}}
+                    />
+                  
+                </View>
+                </TouchableOpacity>
+  
+            </View>
+
+
+            <Text className=" text-center font-sans text-lg mx-28 my-8 bg-white p-2 rounded-xl font-semibold">Module 5 & 6 </Text>
+            
+
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop:20 }}>
+           
+            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.LESSONS3)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
+               
+                <Text className="bg-green-600 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Leçon 3</Text>
+                <View className="mb-16 mt-4">
+                
+                  <Image
+                    source={ require('../../../assets/mod3.png')}
+                    style={{width:100,height:100}}
+                  />
+                  
+              </View>
+            </TouchableOpacity>
+            
+  
+            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.QUIZ3)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
+                <Text className="bg-purple-500 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Evaluation 3</Text>
+                <View className="mb-16 mt-4">
+                   
+                  
+                    <Image
+                      source={require('../../../assets/evaluation3.png')}
+                              style={{width:100,height:100}}
+                    />
+                  
+                </View>
+                </TouchableOpacity>
+  
+            </View>
+
+            <Text className=" text-center font-sans text-lg mx-28 my-8 bg-white p-2 rounded-xl font-semibold">Module 7 & 8 </Text>
+            
+
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop:20 }}>
+           
+            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.LESSONS4)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
+               
+                <Text className="bg-green-600 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Leçon 4 </Text>
+                <View className="mb-16 mt-4">
+                
+                  <Image
+                    source={require('../../../assets/mod4.jpg')}
+                    style={{width:100,height:100}}
+                  />
+                  
+              </View>
+            </TouchableOpacity>
+            
+  
+            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.QUIZ4)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
+                <Text className="bg-purple-500 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Evaluation 4</Text>
+                <View className="mb-16 mt-4">
+                   
+                  
+                    <Image
+                      source={require('../../../assets/evaluation4.png')}
+                                          style={{width:100,height:100}}
+                    />
+                  
+                </View>
+                </TouchableOpacity>
+  
+            </View>
+  
+
+          <View className ="mb-48"></View>
   
         
         </ScrollView>
       </LinearGradient>
-      </SafeAreaView>
+      </KeyboardAvoidingView>
   
     ) : ( 
 
@@ -319,10 +424,13 @@ const Login = () => {
                   className="mt-12 mx-4 w-24 h-24" />
 
          <View className="mt-2">
-           <Text className="text-white text-3xl font-bold ml-4">Identification</Text>
+           <Text className="text-white text-xl font-bold ml-4">Vaccination contre le paludisme</Text>
          </View>
 
          <View className="mt-10 bg-white p-8  -mb-10" style={{borderRadius:24}} >
+
+         <Text className=" font-sans font-bold text-gray-700 text-lg text-center mb-10">Compléter les informations suivantes</Text>
+
          {errorMessage && (
                    <Text className="font-sans text-xl mb-2 text-red-600 text-center">{errorMessage}</Text>
                  )}
@@ -427,7 +535,7 @@ const Login = () => {
 
            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-8">
          
-              <View   style={{ width: '25%',marginLeft:30}}>
+              <View   style={{ width: '25%',marginLeft:10}}>
             
                 <TouchableOpacity style={styles.checkboxContainer} onPress={()=>toggleTypeOffice('CDS')}>
                     <View style={[styles.checkbox, typeOffice == 'CDS' && styles.checked]}>
@@ -438,17 +546,17 @@ const Login = () => {
                   </TouchableOpacity>
               </View>
 
-              <View  style={{ width: '25%'}} className="mx-2 ">
+              <View  style={{ width: '25%'}} className="mx-2 ml-4">
                 <TouchableOpacity style={styles.checkboxContainer} onPress={()=>toggleTypeOffice('Hôpital de District')}>
                   <View style={[styles.checkbox, typeOffice == 'Hôpital de District' && styles.checked]}>
                     {typeOffice == 'Hôpital de District' && <View style={styles.innerCheckbox} ><IconButton icon='check' size={20} iconColor="#ffffff"  style={{height:20,marginLeft:-8,marginTop:0}}/>
                   </View>}
                   </View>
-                  <Text  className="font-sans text-sm text-text-black text-center"> Hôpital de District</Text>
+                  <Text  className="font-sans text-sm text-text-black text-center "> Hôpital de District</Text>
                 </TouchableOpacity>
               </View>
             
-              <View  style={{ width: '25%'}} className="mx-2 ">
+              <View  style={{ width: '25%'}} className="mx-2 ml-4">
                 <TouchableOpacity style={styles.checkboxContainer} onPress={()=>toggleTypeOffice('Hôpital National')}>
                   <View style={[styles.checkbox, typeOffice == 'Hôpital National'  && styles.checked]}>
                     {typeOffice == 'Hôpital National' && <View style={styles.innerCheckbox} ><IconButton icon='check' size={20} iconColor="#ffffff"  style={{height:20,marginLeft:-8,marginTop:0}}/>
@@ -479,11 +587,11 @@ const Login = () => {
            colors={['#BD1634', '#291737']}
            start={[0,0]}
            end={[1,0]}
-           className="flex-1 rounded-full w-48 p-4 mt-8 mb-14"
+           className="flex-1 rounded-full w-32 p-4 mt-8 mb-14"
            style={{alignSelf:'flex-end'}}
            >
             <TouchableOpacity onPress={handleSignUp}>
-              <Text className="text-white text-center text-lg font-bold" >Continuer</Text>
+              <Text className="text-white text-center text-lg font-bold" >OK</Text>
             </TouchableOpacity>
 
            </LinearGradient>

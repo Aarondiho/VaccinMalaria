@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, Platform } from 'react-native';
-import Swiper from 'react-native-swiper';
+import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, Platform, ImageBackground, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -9,8 +8,7 @@ const { width, height } = Dimensions.get('window');
 const ios = Platform.OS === 'ios';
 
 const First = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const swiperRef = useRef(null);
+  
   const navigation = useNavigation();
 
   const toggleRegister = () => {
@@ -18,46 +16,54 @@ const First = () => {
     navigation.replace(ROUTES.LOGIN);
   };
 
-  const handleIndexChanged = (index) => {
-    setCurrentIndex(index);
-  };
-
-  const handleSwipe = (direction) => {
-    if (currentIndex === 0 && direction === 'left') {
-      // Handle swipe left on the first slide
-      console.log('Swipe left on the first slide');
-    } else if (currentIndex === 2 && direction === 'right') {
-      // Handle swipe right on the last slide
-      console.log('Swipe right on the last slide');
-    }
-  };
+  
 
 
 
   return (
-    <Swiper
-      style={styles.wrapper}
-      loop={false}
-      showsButtons={true}
-      onIndexChanged={handleIndexChanged}
-      ref={swiperRef}
-      onMomentumScrollEnd={(e, state, context) => {
-        const { index } = state;
-        const direction = context?.deltaX > 0 ? 'right' : 'left';
-        handleSwipe(direction);
-      }}
-    >
-    
-      <View key={1} style={styles.slide}>
-        <Image source={ios ? require('../../assets/slide-1.png') : require('../../assets/slide-1.png')} style={styles.image} />
-        <TouchableOpacity
-          style={styles.startButton}
-          onPress={toggleRegister}
-        >
-          <Text style={styles.startButtonText} className="bg-input rounded-xl">Commencer</Text>
-        </TouchableOpacity>
-      </View>
-    </Swiper>
+    <ImageBackground 
+                source={require('../../assets/mod1/Image1.png')}
+                style={{ position :'absolute',top:0,width:width, heigth:height,bottom:-80}}
+                blurRadius={0.6} 
+                className={"w-84 -translate-y-20"}
+                >
+                  <ScrollView showsVerticalScrollIndicator={false}>
+              <View className="bg-black/50 -mb-24">
+
+              <Image source={require('../../assets/mod1/Logo_1.png')}
+                  className="mx-4 mt-32 w-24 h-24" />
+
+              <Text className="font-sans mt-2 text-2xl text-white mx-4">Vaccination contre le paludisme</Text>
+
+                <Text className="font-sans mb-10 text-sm text-white  mt-10 w-84 mx-4 justify-end" style={{fontSize:18}}>
+                  Bienvenue sur l’application dédiée à la formation sur la vaccination contre le paludisme.  
+                </Text>
+
+                <Text className="font-sans mb-10 text-sm text-white  w-84 mx-4 justify-end" style={{fontSize:18}}>
+                  Dans un contexte où la lutte contre le paludisme reste une priorité de santé publique, 
+                  il est essentiel que chaque professionnel de 
+                  santé soit bien formé/ informé des protocoles et des meilleures pratiques liés à la vaccination.  
+                </Text>
+
+                <Text className="font-sans mb-10 text-sm text-white  w-84 mx-4 justify-end" style={{fontSize:18}}>
+                Cette application innovante va vous aider à renforcer vos capacités en vous offrant une formation sur le vaccin contre le paludisme,
+                 tout en vous évaluant afin de vous perfectionner dans la pratique.  
+                </Text>
+
+                <View className="mb-40"></View>
+
+                <TouchableOpacity
+                  style={styles.startButton}
+                  onPress={toggleRegister}
+                >
+                  <Text style={styles.startButtonText} className="bg-input rounded-xl">Commencer</Text>
+                </TouchableOpacity>
+
+                <View className="mb-20"></View>
+
+          </View>
+          </ScrollView>
+    </ImageBackground>
   );
 };
 
@@ -87,7 +93,7 @@ const styles = StyleSheet.create({
   },
   startButton: {
     position: 'absolute',
-    bottom: 70,
+    bottom: 210,
     right: 30,
     width: 150,
     borderRadius: 10,

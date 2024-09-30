@@ -6,18 +6,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ROUTES } from '../../constants';
 import Loader from '../../components/Loading';
 
-const Lessons = () => {
+const Lessons4 = () => {
 
 
   const navigation = useNavigation()
   var { width, height } = Dimensions.get('window');
 
   const [screen1, setScreen1] = useState(false)
-
-  
-  const [showFirst, setShowFirst] = useState(false);
-
-
 
 
   useEffect(() => {
@@ -26,7 +21,7 @@ const Lessons = () => {
        
         const initializeData = async () => {
           
-          const storedScreen1 = await AsyncStorage.getItem("screen1");
+          const storedScreen1 = await AsyncStorage.getItem("screen4");
           
           setScreen1(JSON.parse(storedScreen1 || 1));
           
@@ -39,15 +34,6 @@ const Lessons = () => {
       return unsubscribe;
     }, [navigation]);
 
-
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setShowFirst(true);
-      }, 1000); // 2000ms = 5 seconds
-  
-      return () => clearTimeout(timer); // Cleanup the timer if the component unmounts
-    }, []);
-  
 
 
     const goToNextSlide = () =>{
@@ -64,7 +50,7 @@ const Lessons = () => {
     const goToPreviousSlide = () =>{
 
 
-      AsyncStorage.setItem("screen1", JSON.stringify(screen1 - 1));
+      AsyncStorage.setItem("screen4", JSON.stringify(screen1 - 1));
       setScreen1(screen1 - 1)
 
       navigation.replace(ROUTES.LESSONS)
@@ -425,6 +411,6 @@ const Lessons = () => {
   )
 }
 
-export default Lessons
+export default Lessons4
 
 const styles = StyleSheet.create({})

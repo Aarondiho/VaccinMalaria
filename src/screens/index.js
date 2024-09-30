@@ -8,4 +8,6 @@ export {default as  Lessons2} from './auth/Lessons2';
 export {default as  Quiz2} from './auth/Quiz2';
 export {default as  Lessons3} from './auth/Lessons3';
 export {default as  Quiz3} from './auth/Quiz3';
+export {default as  Lessons4} from './auth/Lessons4';
+export {default as  Quiz4} from './auth/Quiz4';
 

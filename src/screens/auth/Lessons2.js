@@ -362,7 +362,7 @@ const Lessons2 = () => {
         :screen1 == 4?
 
         <View>
-             <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-24 mt-4">
+        <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-24 mt-4">
 
           <TouchableOpacity
               onPress={() =>goToPreviousSlide()}
@@ -378,7 +378,7 @@ const Lessons2 = () => {
             </TouchableOpacity>
            
 
-          </View>
+        </View>
 
         </View>
         : <Loader/>
