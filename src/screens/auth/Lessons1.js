@@ -90,7 +90,7 @@ const Lessons = () => {
                 source={require('../../../assets/mod1/Image1.png')}
                 style={{ position :'absolute',top:0,width:width, heigth:height,bottom:-80}}
                 blurRadius={2} 
-                className={"w-full -translate-y-20"}
+                className={" -translate-y-20"}
                 >
             <ScrollView showsHorizontalScrollIndicator={false} className='bg-black/60'>
                 
@@ -124,7 +124,7 @@ const Lessons = () => {
                               className="mx-4  w-32 h-40 text-center"/>
                     </TouchableOpacity>
 
-                    <Text className="font-sans mb-10 text-sm text-white mt-2 w-56 justify-end" style={{fontSize:16}}>
+                    <Text className="font-sans mb-10 text-sm text-white mt-2 w-48 mx-6 justify-end" style={{fontSize:16}}>
                       Le paludisme, aussi appelé malaria, est une maladie infectieuse causée par un parasite,
                       plasmodium, qui se transmet principalement 
                       par les piqûres de moustiques infectés, notamment le moustique femelle Anophèles.
@@ -154,7 +154,7 @@ const Lessons = () => {
                               className="mx-4  w-32 h-32 text-center"/>
                     </TouchableOpacity>
 
-                    <Text className="font-sans mb-10 text-sm text-white mt-2 w-56 justify-end" style={{fontSize:16}}>
+                    <Text className="font-sans mb-10 text-sm text-white mt-2 w-44 justify-end" style={{fontSize:16}}>
                         Chaque minute, un enfant meurt du paludisme dans le monde. 
                     </Text>
                   
@@ -175,9 +175,9 @@ const Lessons = () => {
 
                   <Text className="font-sans text-2xl text-white mt-4 mx-4"> 1.2 Traitement et prévention du paludisme</Text>
                    
-                   <Text className="font-sans mx-4  text-sm text-white mt-6 w-full justify-start mb-10" style={{fontSize:16}}>Le paludisme est la principale cause de maladie et de décès chez les enfants au Burundi. Pour traiter cette maladie, on utilise principalement des médicaments antipaludiques, comme Artéméther Luméfantrine (AL), qui sont efficaces contre les formes les plus courantes du paludisme. Il est très important de diagnostiquer le paludisme rapidement, de préférence avec des tests rapides, pour commencer le traitement au plus vite.</Text> 
+                   <Text className="font-sans  mx-8  text-sm text-white mt-6 justify-start mb-10" style={{fontSize:16}}>Le paludisme est la principale cause de maladie et de décès chez les enfants au Burundi. Pour traiter cette maladie, on utilise principalement des médicaments antipaludiques, comme Artéméther Luméfantrine (AL), qui sont efficaces contre les formes les plus courantes du paludisme. Il est très important de diagnostiquer le paludisme rapidement, de préférence avec des tests rapides, pour commencer le traitement au plus vite.</Text> 
 
-                 <Text className="font-sans mx-4  text-sm text-white mt-2 w-full justify-start" style={{fontSize:16}}>
+                 <Text className="font-sans mx-8  text-sm text-white mt-2  justify-start" style={{fontSize:16}}>
                  De plus, les mesures de prévention suivantes sont déjà utilisées :
                  </Text>
 
@@ -188,7 +188,7 @@ const Lessons = () => {
                               className="mx-4  w-40 h-32 text-center"/>
                     </TouchableOpacity>
 
-                    <Text className="font-sans mb-10 text-center -ml-16 text-sm text-white mt-2 w-56 justify-end" style={{fontSize:16}}>
+                    <Text className="font-sans mb-10 text-center  text-sm text-white mt-2 w-44 mx-4 justify-end" style={{fontSize:16}}>
                     Dormir sous une moustiquaire imprégnée
                     </Text>
                   
@@ -212,14 +212,14 @@ const Lessons = () => {
                               className="mx-4  w-32 h-32 text-center"/>
                     </TouchableOpacity>
 
-                    <Text className="font-sans mb-10 text-sm text-white mt-2 w-56 justify-end" style={{fontSize:16}}>
+                    <Text className="font-sans mb-10 text-sm text-white mt-2 w-44 mx-4 justify-end" style={{fontSize:16}}>
                      Soins préventifs occasionnels pendant la grossesse 
                     </Text>
                   
                   </View>
 
-                  <Text className="font-sans text-2xl text-white mt-4 mx-4">   1.3 Comment sera déployé le vaccin contre le paludisme ?</Text>
-                  <Text className="font-sans mx-4  text-sm text-white mt-6 w-full justify-start mb-10" style={{fontSize:16}}>
+                  <Text className="font-sans text-2xl text-white mt-4 mx-4 text-center">   1.3 Comment sera déployé le vaccin contre le paludisme ?</Text>
+                  <Text className="font-sans  text-sm text-white mt-6 mx-8 justify-start mb-10" style={{fontSize:16}}>
                   En raison du nombre limité de vaccins contre le paludisme dans le monde, le Ministère de la Sante Publique et de la Lutte contre le Sida (MSPLS) a choisi des districts sanitaires en fonction du risque élevé de cas grave et de décès du paludisme. 
                   </Text>
 
@@ -230,7 +230,7 @@ const Lessons = () => {
                   className="mx-4  w-32 h-36 mt-12 text-center"/>
         </TouchableOpacity>
 
-        <Text className="font-sans mb-10 text-sm text-white mt-2 w-56 justify-end" style={{fontSize:16}}>
+        <Text className="font-sans mb-10 text-sm text-white mt-2 w-48 mx-6 justify-end" style={{fontSize:16}}>
         Ainsi, le vaccin sera disponible dans 25 districts de santé lors de cette première étape : Mabayi, Cibitoke, Bukinanyana, Bubanza, Mpanda, Gihofi, Rutana, Butezi, Kinyinya, Gisuru, Ruyigi, Cankuzo, Murore, Buhiga, Nyabikere, Muyinga, Gashoho, Giteranyi, Buye, Ngozi, Kiremba, Busoni, Mukenke, Kirundo et Vumbi.
         </Text>
       
@@ -260,7 +260,7 @@ const Lessons = () => {
           source={require('../../../assets/mod1/Image1.png')}
           style={{ position :'absolute',top:0,width:width, heigth:height,bottom:-80}}
           blurRadius={2} 
-          className={"w-full -translate-y-20"}
+          className={" -translate-y-20"}
           >
 
           <ScrollView showsHorizontalScrollIndicator={false} className='bg-black/60'>
@@ -282,7 +282,7 @@ const Lessons = () => {
                   <Text className="font-sans text-2xl text-white mx-4">
                     Module 2 : Caractéristiques et conditions de stockage du vaccin
                   </Text>
-                  <Text className="font-sans mx-4  text-sm text-white mt-6 w-full justify-start mb-10" style={{fontSize:16}}>
+                  <Text className="font-sans mx-8  text-sm text-white mt-6  justify-start mb-10" style={{fontSize:16}}>
                     Le vaccin MosquirixTM, également connu sous le nom de RTS,S/AS01, a été conçu pour prévenir le paludisme chez les enfants, 
                     en particulier celui causé par le parasite Plasmodium falciparum, la forme la plus répandue et dangereuse de la maladie. 
                   </Text> 
@@ -296,7 +296,7 @@ const Lessons = () => {
                             className="mx-4  w-32 h-32 text-center mt-8"/>
                   </TouchableOpacity>
 
-                  <Text className="font-sans mb-10 text-sm text-white mt-2 w-56 justify-end" style={{fontSize:16}}>
+                  <Text className="font-sans mb-10 text-sm text-white mt-2 w-48 mx-6 justify-end" style={{fontSize:16}}>
                     Le vaccin est fourni sous forme de deux flacons : un contenant la poudre lyophilisée du vaccin et l'autre contenant un diluant qui pour reconstituer le vaccin.
                     Les deux flacons sont collés ensemble pour diminuer le risque d'erreur lors de la préparation.
                   </Text>
@@ -330,7 +330,7 @@ const Lessons = () => {
                             className="mx-4  w-24 h-72 text-center"/>
                   </TouchableOpacity>
 
-                  <Text className="font-sans mb-10 text-sm text-white mt-2 w-56 justify-end" style={{fontSize:16}}>
+                  <Text className="font-sans mb-10 text-sm text-white mt-2 w-52 mx-8 justify-end" style={{fontSize:16}}>
                   Il est crucial de maintenir le vaccin Mosquirix dans des conditions appropriées pour garantir son efficacité et sa sécurité. Celui-ci doit être stocké au réfrigérateur à une température comprise entre 2 °C et 8 °C. Il est important de ne pas séparer les deux flacons qui sont collés ensemble durant le stockage et le transport. Par ailleurs, le vaccin doit être protégé de la lumière et du gel.
 
  
@@ -359,7 +359,7 @@ const Lessons = () => {
 
                 <Text className="font-sans text-2xl text-white mt-4 mx-4 text-center">Conditionnement du vaccin contre le paludisme</Text>
                 
-                <Text className="font-sans mx-4  text-sm text-white mt-6 w-full justify-start mb-10" style={{fontSize:16}}>
+                <Text className="font-sans mx-8  text-sm text-white mt-6  justify-start mb-10" style={{fontSize:16}}>
                   
                 Le diluant utilisé pour préparer le vaccin contre le paludisme ne doit jamais être utilisé pour préparer d'autres vaccins. 
                 De même, les diluants destinés à d'autres vaccins ne doivent en aucun cas être utilisés pour la préparation du vaccin contre le paludisme.
@@ -384,7 +384,7 @@ const Lessons = () => {
                 }}
                 className=" mx-4 bg-black"
               >
-                <Text style={{ color: '#fff' }}>Précédent (Module 1)</Text>
+                <Text style={{ color: '#fff' }}>Précédent</Text>
                 
               </TouchableOpacity>
 
