@@ -21,7 +21,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.vaccinMalaria",
-      "versionCode": 8
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"

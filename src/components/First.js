@@ -24,7 +24,7 @@ const First = () => {
     <ImageBackground 
                 source={require('../../assets/mod1/Image1.png')}
                 style={{ position :'absolute',top:0,width:width, heigth:height,bottom:-80}}
-                blurRadius={0.6} 
+                blurRadius={2} 
                 className={"w-84 -translate-y-20"}
                 >
                   <ScrollView showsVerticalScrollIndicator={false}>

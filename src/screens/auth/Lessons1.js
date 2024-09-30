@@ -89,7 +89,7 @@ const Lessons = () => {
         <ImageBackground 
                 source={require('../../../assets/mod1/Image1.png')}
                 style={{ position :'absolute',top:0,width:width, heigth:height,bottom:-80}}
-                blurRadius={0.6} 
+                blurRadius={2} 
                 className={"w-full -translate-y-20"}
                 >
             <ScrollView showsHorizontalScrollIndicator={false} className='bg-black/60'>
@@ -259,7 +259,7 @@ const Lessons = () => {
           <ImageBackground 
           source={require('../../../assets/mod1/Image1.png')}
           style={{ position :'absolute',top:0,width:width, heigth:height,bottom:-80}}
-          blurRadius={0.6} 
+          blurRadius={2} 
           className={"w-full -translate-y-20"}
           >
 
