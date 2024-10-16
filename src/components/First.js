@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, Platform, 
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get('window');
 const ios = Platform.OS === 'ios';
@@ -12,7 +13,20 @@ const First = () => {
   const navigation = useNavigation();
 
   const toggleRegister = () => {
-    AsyncStorage.setItem('first', JSON.stringify(1));
+
+    const dataToStore = [
+      ['score1', JSON.stringify(0)],
+      ['score2', JSON.stringify(0)],
+      ['score3', JSON.stringify(0)],
+      ['score4', JSON.stringify(0)],
+      ['score5', JSON.stringify(0)],
+      ['score6', JSON.stringify(0)],
+      ['score7', JSON.stringify(0)],
+      ['score8', JSON.stringify(0)],
+      ['first', JSON.stringify(1)],
+    ];
+    AsyncStorage.multiSet(dataToStore);
+
     navigation.replace(ROUTES.LOGIN);
   };
 
@@ -20,50 +34,57 @@ const First = () => {
 
 
 
+  
   return (
-    <ImageBackground 
-                source={require('../../assets/mod1/Image1.png')}
-                style={{ position :'absolute',top:0,width:width, heigth:height,bottom:-80}}
-                blurRadius={2} 
-                className={"w-84 -translate-y-20"}
-                >
-                  <ScrollView showsVerticalScrollIndicator={false}>
-              <View className="bg-black/50 -mb-24">
+    <LinearGradient
+    colors ={['#92BC1D', '#149BD5','#92BC1D']}
+    start={[0, 1]}
+    end={[1, 0]}
+    style={{flex:1}}
+  >
+              <ScrollView showsVerticalScrollIndicator={false}>
+              <View>
 
-              <Image source={require('../../assets/mod1/Logo_1.png')}
-                  className="mx-4 mt-32 w-24 h-24" />
+              <View className="font-sans mt-12 flex-1 justify-center items-center flex-row">
+                {/* First Image */}
+                <Image 
+                  source={require('../../assets/mod1/Logo_1.png')} 
+                  className="w-16 h-16" 
+                />
 
-              <Text className="font-sans mt-2 text-2xl text-white mx-4">Vaccination contre le paludisme</Text>
+                {/* Vertical Line */}
+                <View className="h-12 w-[5px] bg-gray-400 mx-2" />
 
-                <Text className="font-sans mb-10 text-sm text-white  mt-10 w-84 mx-4 justify-end" style={{fontSize:18}}>
+                {/* Second Image */}
+                <Image 
+                  source={require('../../assets/Gavi_Logo_B.png')} 
+                  className="w-28 h-10" 
+                />
+              </View>
+          <Text className="text-white text-lg font-bold text-center mb-4 mt-4">VACCINATION CONTRE LE PALUDISME</Text>
+        
+        <Image
+          source={require('../../assets/doctor.png')} // Replace with your image URL
+          className=" h-56  mb-5"
+          style={{width:width,}}
+        />
+         <Text className="font-sans mb-5 text-xl text-center text-white  mt-4 w-84 mx-4 ">
                   Bienvenue sur l’application dédiée à la formation sur la vaccination contre le paludisme.  
                 </Text>
+                
+        
+        <View className="mb-48"></View>
 
-                <Text className="font-sans mb-10 text-sm text-white  w-84 mx-4 justify-end" style={{fontSize:18}}>
-                  Dans un contexte où la lutte contre le paludisme reste une priorité de santé publique, 
-                  il est essentiel que chaque professionnel de 
-                  santé soit bien formé/ informé des protocoles et des meilleures pratiques liés à la vaccination.  
-                </Text>
-
-                <Text className="font-sans mb-10 text-sm text-white  w-84 mx-4 justify-end" style={{fontSize:18}}>
-                Cette application innovante va vous aider à renforcer vos capacités en vous offrant une formation sur le vaccin contre le paludisme,
-                 tout en vous évaluant afin de vous perfectionner dans la pratique.  
-                </Text>
-
-                <View className="mb-40"></View>
-
-                <TouchableOpacity
+        <TouchableOpacity
                   style={styles.startButton}
                   onPress={toggleRegister}
                 >
-                  <Text style={styles.startButtonText} className="bg-input rounded-xl">Commencer</Text>
+                  <Text className="bg-white text-xl text-blue-900  p-2 rounded-xl">Commencer</Text>
                 </TouchableOpacity>
-
-                <View className="mb-20"></View>
-
-          </View>
+        </View>
+        <View className="mb-40"></View>
           </ScrollView>
-    </ImageBackground>
+    </LinearGradient>
   );
 };
 
@@ -93,8 +114,8 @@ const styles = StyleSheet.create({
   },
   startButton: {
     position: 'absolute',
-    bottom: 210,
-    right: 30,
+    bottom: 120,
+    right: 10,
     width: 150,
     borderRadius: 10,
     alignItems: 'center',

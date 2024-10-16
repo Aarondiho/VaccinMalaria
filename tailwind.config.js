@@ -14,7 +14,7 @@ module.exports = {
         sans: ['Livvic_400Regular', 'Livvic_500Medium', 'Livvic_700Bold','Livvic_900Black_Italic', 'sans-serif'],
       },
       colors: {
-        "bg-one": "#EEE8D5", //#EBE4D9 #f7e5ca
+        "bg-one": "#EEE8D5", //#EBE4D9  #f7e5ca  #FFF7F7 #EEE8D5 #fffff2
         "bg-agent": "#f7e5ca", //#EBE4D9 #f7e5ca
         "text-black": "#2C1E0E",
         "text-white": "#EBE4D6",

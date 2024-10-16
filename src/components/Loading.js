@@ -1,6 +1,7 @@
 
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useRef } from 'react';
-import { Modal, View, Animated,Image, Dimensions } from 'react-native';
+import { Modal, View, Animated,Image, Dimensions, ImageBackground } from 'react-native';
 
 const Loader = () => {
 
@@ -36,15 +37,33 @@ const Loader = () => {
       animationType="fade"
       visible={true}
     >
-      <View className="font-sans flex-1 justify-center items-center bg-black/40">
-        <View className="font-sans w-11/12 ">
-        <View className="font-sans flex-row justify-center items-center mb-6">
-      
-          <Image source={require('../../assets/splash.png')} className="font-sans " style={{width:width, height:height}} />
+      <LinearGradient
+          colors ={['#92BC1D', '#149BD5','#92BC1D']}
+          start={[0, 1]}
+          end={[1, 0]}
+          style={{ position :'absolute',top:0,width:width, heigth:height,bottom:-80}}
+          blurRadius={2} 
+          className={"w-84 -translate-y-20"}
+        >
+          <View className="font-sans mt-12 flex-1 justify-center items-center flex-row">
+                {/* First Image */}
+                <Image 
+                  source={require('../../assets/mod1/Logo_1.png')} 
+                  className="w-20 h-20" 
+                />
+
+                {/* Vertical Line */}
+                <View className="h-16 w-[5px] bg-gray-400 mx-2" />
+
+                {/* Second Image */}
+                <Image 
+                  source={require('../../assets/Gavi_Logo_B.png')} 
+                  className="w-32 h-12" 
+                />
+              </View>
         
-      </View>
-        </View>   
-      </View>
+        
+      </LinearGradient>
     </Modal>
   );
 };

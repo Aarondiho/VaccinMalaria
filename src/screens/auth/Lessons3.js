@@ -1,4 +1,4 @@
-import { Dimensions, Image, ImageBackground, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Image, ImageBackground, KeyboardAvoidingView, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { IconButton } from 'react-native-paper';
@@ -12,7 +12,12 @@ const Lessons3 = () => {
   const navigation = useNavigation()
   var { width, height } = Dimensions.get('window');
 
-  const [screen1, setScreen1] = useState(false)
+  const [screen3, setScreen3] = useState(false)
+  
+  const [showFirst, setShowFirst] = useState(false);
+  
+
+
 
 
   useEffect(() => {
@@ -21,9 +26,9 @@ const Lessons3 = () => {
        
         const initializeData = async () => {
           
-          const storedScreen1 = await AsyncStorage.getItem("screen3");
+          const storedScreen3 = await AsyncStorage.getItem("screen3");
           
-          setScreen1(JSON.parse(storedScreen1 || 1));
+          setScreen3(JSON.parse(storedScreen3 || 1));
           
         };
     
@@ -35,11 +40,21 @@ const Lessons3 = () => {
     }, [navigation]);
 
 
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setShowFirst(true);
+      }, 1000); // 2000ms = 5 seconds
+  
+      return () => clearTimeout(timer); // Cleanup the timer if the component unmounts
+    }, []);
+  
+
+
     const goToNextSlide = () =>{
 
 
-      AsyncStorage.setItem("screen3", JSON.stringify(screen1 + 1));
-      setScreen1(screen1 + 1)
+      AsyncStorage.setItem("screen3", JSON.stringify(screen3 + 1));
+      setScreen3(screen3 + 1)
 
       navigation.replace(ROUTES.LESSONS3)
 
@@ -49,8 +64,8 @@ const Lessons3 = () => {
     const goToPreviousSlide = () =>{
 
 
-      AsyncStorage.setItem("screen1", JSON.stringify(screen1 - 1));
-      setScreen1(screen1 - 1)
+      AsyncStorage.setItem("screen3", JSON.stringify(screen3 - 1));
+      setScreen3(screen3 - 1)
 
       navigation.replace(ROUTES.LESSONS3)
 
@@ -63,328 +78,315 @@ const Lessons3 = () => {
 
 
   return (
-    <KeyboardAvoidingView
-          
-          style={{ flex: 1 }}
-          >
-
-      {
-      screen1 == 1?
-
-        <ImageBackground 
-                source={require('../../../assets/mod1/Image1.png')}
-                style={{ position :'absolute',top:0,width:width, heigth:height,bottom:-80}}
-                blurRadius={0.6} 
-                className={"w-full -translate-y-20"}
-                >
-                
-                  <Image source={require('../../../assets/mod1/Logo_1.png')}
-                  className="mt-28 mx-4" />
-                  <View>
-                    <Text className="font-sans text-4xl text-white mt-24 mx-4">Modules de formation des prestataires sur le vaccin contre le paludisme
-                    </Text>
-                    <Text className="font-sans text-4xl text-white mt-24 mx-4">  1 & 2
-                      </Text>
-                  </View>
-
-            <TouchableOpacity
-              onPress={() =>goToNextSlide()}
-              style={{
-                position: 'absolute',
-                bottom: 20,
-                right: 20,
-                padding: 10,
-                borderRadius: 5,
-              }}
-              className="bg-black/60"
-            >
-              <Text style={{ color: '#fff' }}>Suivant</Text>
-            </TouchableOpacity> 
-
-          </ImageBackground>
-          
-
-          :screen1 == 2?
-
-         <View >
-          <View className="font-sans flex-row items-center mb-4 mt-10">
-          <Image source={require('../../../assets/mod1/objectif.png')}
-           style= {{width:80,height:80}}
-           className="mx-4"/>
-        <Text className="font-sans p-2 -mt-4  font-bold text-text-white bg-[#8A1651E6] ">
-        OBJECTIFS D‘APPRENTISSAGE
-        </Text>
-          
-        </View>
-
-        <ScrollView showsVerticalScrollIndicator={false} className="bg-bg-one p-3 -mb-10">
-        
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-8">
-          
-            <View  style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 ">
-                <Text className="bg-purple-500 p-2 text-center mx-16 text-white mt-2"  style= {{borderRadius:48}} >1</Text>
-                <Text className="text-center mt-4 mx-2">Comprendre les exigences en matière de stockage du vaccin et de chaîne du froid
-                </Text>
-              </View>
-
-            <View   style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 12 }} className="bg-input mr-3 ">
-              <Text className="bg-red-500  p-2 text-center mx-16 text-white mt-2" style= {{borderRadius:48}} >2</Text>
-              <Text className="text-center mt-4 mx-2">Discuter des caractéristiques du vaccin contre le paludisme (RTS,S/AS01)
-              </Text>
-            </View>
-
-            <View  style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 ">
-              <Text className="bg-green-500 p-2 text-center mx-16 text-white mt-2"  style= {{borderRadius:48}} >3</Text>
-              <Text className="text-center mt-4 mx-2">Comprendre les exigences en matière de stockage du vaccin et de chaîne du froid
-              </Text>
-            </View>
-            <View   style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 12 }} className="bg-input mr-3 ">
-              <Text className="bg-yellow-500  p-2 text-center mx-16 text-white mt-2" style= {{borderRadius:48}} >4</Text>
-              <Text className="text-center mt-4 mx-2">Décrire le calendrier de vaccination recommandé contre le paludisme 
-
-              </Text>
-            </View>
-
-            <View  style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 ">
-              <Text className="bg-purple-500 p-2 text-center mx-16 text-white mt-2"  style= {{borderRadius:48}} >5</Text>
-              <Text className="text-center mt-4 mx-2">Décrire les contre-indications de la vaccination contre le paludisme        
-              </Text>
-            </View>
-
-            <View   style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 12 }} className="bg-input mr-3 ">
-              <Text className="bg-yellow-900  p-2 text-center mx-16 text-white mt-2" style= {{borderRadius:48}} >6</Text>
-              <Text className="text-center mt-4 mx-2">Comprendre la technique d'administration du vaccin contre le paludisme
-
-              </Text>
-            </View>
-
-            <View  style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 ">
-              <Text className="bg-pink-500 p-2 text-center mx-16 text-white mt-2"  style= {{borderRadius:48}} >7</Text>
-              <Text className="text-center mt-4 mx-2">Maitriser l'enregistrement du vaccin contre le paludisme dans les différents outils de collecte des données 
-
-              </Text>
-            </View>
-
-            <View   style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 12 }} className="bg-input mr-3 ">
-              <Text className="bg-green-500  p-2 text-center mx-16 text-white mt-2" style= {{borderRadius:48}} >8</Text>
-              <Text className="text-center mt-4 mx-2">Décrire le calendrier de vaccination recommandé contre le paludisme 
-
-              </Text>
-            </View>
-
-            <View  style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 ">
-              <Text className="bg-green-500 p-2 text-center mx-16 text-white mt-2"  style= {{borderRadius:48}} >9</Text>
-              <Text className="text-center mt-4 mx-2">Communiquer efficacement avec les parents et les communautés     
-              </Text>
-            </View>
-
-            <View   style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 12 }} className="bg-input mr-3 ">
-              <Text className="bg-green-500  p-2 text-center mx-16 text-white mt-2" style= {{borderRadius:48}} >10</Text>
-              <Text className="text-center mt-4 mx-2">Comprendre les occasions manquées de vaccination 
-              </Text>
-            </View>
-
-            <View  style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 ">
-              <Text className="bg-green-500 p-2 text-center mx-16 text-white mt-2"  style= {{borderRadius:48}} >11</Text>
-              <Text className="text-center mt-4 mx-2">Identifier les opportunités d'intégration de la vaccination avec d'autres interventions de santé infantile    
-              </Text>
-            </View>
-
-            <View   style={{ width: '45%', height: 150, marginBottom: 8, borderRadius: 12 }} className="bg-input mr-3 ">
-              <Text className="bg-green-500  p-2 text-center mx-16 text-white mt-2" style= {{borderRadius:48}} >12</Text>
-              <Text className="text-center mt-4 mx-2">Discuter des caractéristiques du vaccin contre le paludisme (RTS,S/AS01)
-  
-
-              </Text>
-            </View>
-            
-          </View>
-
-
-          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-24 mt-4">
-
-          <TouchableOpacity
-              onPress={() =>goToPreviousSlide()}
-              style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-start'
-              }}
-              className="bg-black/60"
-            >
-              <IconButton icon="arrow-left" size={24} iconColor="white"/>
-              
-            </TouchableOpacity>
-
-
-            <TouchableOpacity
-              onPress={() =>goToNextSlide()}
-              style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-end'
-              }}
-              className="bg-black/60"
-            >
-               <IconButton icon="arrow-right" size={24} iconColor="white" />
-              
-            </TouchableOpacity>
-
-            
-           
-
-          </View>
-
-           
-          <View className="mb-48"></View>
-        </ScrollView>
-
+    <SafeAreaView className="flex-1">
+      <View 
        
-        </View>
+        className="flex-1  bg-bg-one justify-center "
+      >
 
-        :screen1 == 3? 
-
-        <View >
-
-      <View className="font-sans flex-row justify-between mb-4 mt-10">
-        <Text   style={{alignSelf:'flex-start',height:20}} /> 
+      <View className=" font-sans mt-10 flex-row justify-between">
         
-        <Text className="font-sans text-center font-bold text-xl text-[#8A1651E6] ">
-              SOMMAIRE
-        </Text>
-        <TouchableOpacity className="font-sans p-1 justify-end">
-              
+        <IconButton icon='arrow-left' size={20} iconColor="green"    style={{alignSelf:'flex-start',height:20}} onPress={() => navigation.goBack()}/> 
+        <Text className="font-sans text-black text-2xl   font-medium">Module 3</Text> 
+
+        <TouchableOpacity className="font-sansjustify-end" onPress={() => {}}>
+        <Text className="font-sans text-sm font-medium  text-green-800 flex-end">
+        {screen3} / 4 </Text>
         </TouchableOpacity>
       </View>
 
-         
-        <ScrollView showsVerticalScrollIndicator={false} className="bg-white p-3 -mb-10" style={{ borderRadius: 24}}>
-        
-          <View style={{ justifyContent: 'space-between' }} className="mb-8 mt-4 ">
-          
-            <View  style={{ width: width*0.9,marginBottom: 8, borderRadius: 10 }} className="bg-[#8A1651E6] mx-2 mt-4 ">
-                <Text className="text-center p-2 mx-2 text-white text-lg"> <Text className="bg-white p-2 text-center text-black"  style= {{borderRadius:48}} > 1 </Text>   Définition du paludisme
-                </Text>
-              </View>
+     
 
-           
-              <View  style={{ width: width*0.9,marginBottom: 8, borderRadius: 10 }} className="bg-[#8A1651E6] mx-2 mt-4 ">
-                <Text className="text-center text-lg p-2 mx-2 text-white"> <Text className="bg-white p-2 text-center text-black"  style= {{borderRadius:48}} > 2 </Text>   Caractéristiques et conditions de stockage du vaccin contre le paludisme RTS,S
-
-              </Text>
-            </View>
-
-            <View  style={{ width: width*0.9,marginBottom: 8, borderRadius: 10 }} className="bg-[#8A1651E6] mx-2 mt-4 ">
-                <Text className="text-center p-2 mx-2 text-white text-lg"> <Text className="bg-white p-2 text-center text-black"  style= {{borderRadius:48}} > 3 </Text>  Calendrier de vaccination contre le paludisme, éligibilité et contre-indications
-
-                </Text>
-              </View>
-
-              <View  style={{ width: width*0.9,marginBottom: 8, borderRadius: 10 }} className="bg-[#8A1651E6] mx-2 mt-4 ">
-              <Text className="text-center p-2 mx-2 text-white text-lg"> <Text className="bg-white p-2 text-center text-black"  style= {{borderRadius:48}} > 4 </Text>  Administration du vaccin contre le paludisme
-
-              </Text>
-            </View>
-
-            <View  style={{ width: width*0.9,marginBottom: 8, borderRadius: 10 }} className="bg-[#8A1651E6] mx-2 mt-4 ">
-                <Text className="text-center p-2 mx-2 text-white text-lg"> <Text className="bg-white p-2 text-center text-black"  style= {{borderRadius:48}} > 5 </Text>  Enregistrement et suivi du vaccin contre le paludisme
-
-                </Text>
-              </View>
-
-              <View  style={{ width: width*0.9,marginBottom: 8, borderRadius: 10 }} className="bg-[#8A1651E6] mx-2 mt-4 ">
-              <Text className="text-center p-2 mx-2 text-white text-lg"> <Text className="bg-white p-2 text-center text-black"  style= {{borderRadius:48}} > 6 </Text>  Surveillance des manifestations postvaccinales indésirables (MAPI)
-
-
-              </Text>
-            </View>
-
-            <View  style={{ width: width*0.9,marginBottom: 8, borderRadius: 10 }} className="bg-[#8A1651E6] mx-2 mt-4 ">
-                <Text className="text-center p-2 mx-2 text-white text-lg"> <Text className="bg-white p-2 text-center text-black"  style= {{borderRadius:48}} > 7 </Text>  Communiquer avec les parents sur le vaccin contre le paludisme
-
-                </Text>
-              </View>
-
-              <View  style={{ width: width*0.9,marginBottom: 8, borderRadius: 10 }} className="bg-[#8A1651E6] mx-2 mt-4 ">
-              <Text className="text-center p-2 mx-2 text-white text-lg"> <Text className="bg-white p-2 text-center text-black"  style= {{borderRadius:48}} > 8 </Text>  Des opportunités manquées de vaccination (OMV)
-              </Text>
-            </View>
-
-          
+       <ScrollView showsVerticalScrollIndicator={false} >
+        <View className="mb-6 w-full mt-4 px-6" >
+ 
             
-          </View>
+      
 
+    {
+        screen3 == 1?
+          
+          <View >
 
-          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-24 mt-4">
-
-          <TouchableOpacity
-              onPress={() =>goToPreviousSlide()}
-              style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-start'
-              }}
-              className="bg-black/60"
-            >
-              <IconButton icon="arrow-left" size={24} iconColor="white"/>
+              <Text className="font-sans text-xl text-blue-800 mt-4 mx-4 text-center">  3.1. Calendrier de vaccination incluant le vaccin contre le paludisme              </Text>
               
+          
+
+            <View className="mb-10" >
+                <TouchableOpacity className="font-sans p-1 justify-center items-center" >
+                <Image source={require('../../../assets/mod2/1.png')}
+                          className="mx-4  mt-4 " 
+                          style={{height:height*0.4, width: width*0.95}} />
+                </TouchableOpacity>
+                <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                      <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-2"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >Le vaccin Mosquirix a été intégré dans le calendrier de vaccination et les enfants le recevront en 4 doses comme indiqué sur le calendrier ci-dessus.
+                </Text>
+                </View>
+              
+            </View>
+
+
+          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between',  }} className="mb-12">
+
+              <TouchableOpacity
+                onPress={() =>navigation.goBack()}
+                style={{
+                  padding: 10,
+                  borderRadius: 5,
+                  alignSelf:'flex-start'
+                }}
+                className=" mx-4 bg-black/80"
+              >
+                <Text style={{ color: '#fff' }}>Retour</Text>
+                
+              </TouchableOpacity>
+
+
+              <TouchableOpacity
+                onPress={()=>goToNextSlide()}
+                style={{
+                  padding: 10,
+                  borderRadius: 5,
+                  alignSelf:'flex-end'
+                }}
+                className=" mx-4 bg-black/80"
+              >
+                <Text style={{ color: '#fff' }}>Suivant</Text>
+                      
+    
             </TouchableOpacity>
 
+
+
+
+            </View>
+
+          
+          <View className="mb-10"></View>
+        </View>
+
+        :screen3 == 2?
+          <>
+            <View className="px-2 mb-10">
+              <TouchableOpacity className="font-sans p-1 justify-center items-center">
+                <Image 
+                  source={require('../../../assets/mod2/2.png')}
+                  style={{ height: height * 0.29, width: width * 0.9, marginBottom: 40, marginTop: 20 }}
+                />
+              </TouchableOpacity>
+
+              <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                <Text 
+                  className="font-sans text-black  text-xl mb-4 mt-2"
+                  numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                  ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                >
+                  En vue d’une bonne efficacité du vaccin antipaludique, il faudra administrer 4 doses aux enfants mais à différents âges. 
+                  La première dose à 6 mois, la deuxième à 7 mois, la troisième à 9 mois et la dernière après 6 à 18 mois correspondant 
+                  à l’âge d’une année et demi (18 mois).
+                </Text>
+              </View>
+            </View>
+
+          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
+
+<TouchableOpacity
+  onPress={() =>goToPreviousSlide()}
+  style={{
+    padding: 10,
+    borderRadius: 5,
+    alignSelf:'flex-start'
+  }}
+  className=" mx-4 bg-black/80"
+>
+  <Text style={{ color: '#fff' }}>Précédent</Text>
+  
+</TouchableOpacity>
+
+
+<TouchableOpacity
+  onPress={()=>goToNextSlide()}
+  style={{
+    padding: 10,
+    borderRadius: 5,
+    alignSelf:'flex-end'
+  }}
+  className=" mx-4 bg-black/80"
+>
+  <Text style={{ color: '#fff' }}>Suivant</Text>
+        
+  
+</TouchableOpacity>
+
+
+</View>
+          
+
+          </>
+        :screen3 == 3?
+            <>
+                  <View className="px-2 mb-2">
+
+                  <Text className="font-sans text-xl text-center text-blue-800 mt-4 mx-4"> 3.2. Que faire si un enfant arrive en retard pour sa vaccination ?</Text>
+                   
+
+                    <TouchableOpacity className="font-sans justify-center items-center" >
+                     
+                     <Image source={require('../../../assets/mod2/3.png')}
+                              className="mx-4 mt-4 w-72 h-52 "/>
+                    </TouchableOpacity>
+
+                    <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                      <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-5"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >
+                      A chaque rendez-vous vaccinal, l’enfant devra recevoir tous les vaccins et autres interventions préventives prévus à cet âge y compris les doses précédentes manquées. 
+ 
+                    </Text>
+
+               
+                  <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                      <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-2"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >
+                   Il faudra, par la même occasion, rappeler aux parents/tuteurs les prochaines doses et les sensibiliser sur les autres méthodes de prévention qui accompagnent la vaccination.
+
+
+                   </Text>
+                   </View>
+                </View>
+            </View>
+            <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
+
+              <TouchableOpacity
+                onPress={() =>goToPreviousSlide()}
+                style={{
+                  padding: 10,
+                  borderRadius: 5,
+                  alignSelf:'flex-start'
+                }}
+                className=" mx-4 bg-black/80"
+              >
+                <Text style={{ color: '#fff' }}>Précédent</Text>
+                
+              </TouchableOpacity>
+
+
+              <TouchableOpacity
+                onPress={()=>goToNextSlide()}
+                style={{
+                  padding: 10,
+                  borderRadius: 5,
+                  alignSelf:'flex-end'
+                }}
+                className=" mx-4 bg-black/80"
+              >
+                <Text style={{ color: '#fff' }}>Suivant</Text>
+                      
+                
+              </TouchableOpacity>
+
+            </View>
+          </>
+        :screen3 == 4?
+          <>
+                 <View className="px-2 mb-2">
+                    
+                  <Text className="font-sans text-xl text-center text-blue-800 mt-4 mx-4">3.3. Contre indication à la vaccination contre le paludisme
+                  </Text>
+                   
+
+                    <TouchableOpacity className="font-sans justify-center items-center" >
+                     
+                     <Image source={require('../../../assets/mod2/4.png')}
+                              className="mx-4 mt-4 w-72 h-52 "/>
+                    </TouchableOpacity>
+
+                    <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                      <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-5"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >
+                      Le vaccin contre le paludisme n’est pas recommandé pour  un enfant qui a présenté une hypersensibilité sévère connue à une dose antérieure du vaccin Mosquirix, du vaccin pentavalent/Hépatite B ou à l’un des composants du vaccin. Il est donc déconseillé de lui administrer les prochaines doses de ce vaccin. 
+
+                    </Text>
+
+               
+                  <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                      <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-2"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >
+                   Cela dit, la malnutrition, la séropositivité ou une infection mineur tel qu’un rhume ne devraient pas être considérées comme contre-indications à la vaccination contre le paludisme.
+
+                   </Text>
+                   </View>
+                </View>
+            </View>
+           
+          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
 
             <TouchableOpacity
-              onPress={() =>goToNextSlide()}
-              style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-end'
-              }}
-              className="bg-black/60"
-            >
-               <IconButton icon="arrow-right" size={24} iconColor="white" />
-              
-            </TouchableOpacity>
+                onPress={() =>goToPreviousSlide()}
+                style={{
+                  padding: 10,
+                  borderRadius: 5,
+                  alignSelf:'flex-start'
+                }}
+                className=" mx-4 bg-black/80"
+              >
+                <Text style={{ color: '#fff' }}>Précédent</Text>
+                
+              </TouchableOpacity>
 
-            
-           
 
-          </View>
+              <TouchableOpacity
+                onPress={() =>navigation.navigate(ROUTES.QUIZ3)}
+                style={{
+                  padding: 10,
+                  borderRadius: 5,
+                  alignSelf:'flex-end'
+                }}
+                className=" mx-4 bg-black/80"
+              >
+                <Text style={{ color: '#fff' }}>Evaluation</Text>
+                      
+                
+              </TouchableOpacity>
 
-           
-          <View className="mb-48"></View>
-        </ScrollView>
+  
+ 
 
-       
-        </View>
+            </View>
 
-        :screen1 == 4?
+          </>
+        
 
-        <View>
-             <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-24 mt-4">
 
-          <TouchableOpacity
-              onPress={() =>goToPreviousSlide()}
-              style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-start'
-              }}
-              className="bg-black/60"
-            >
-              <IconButton icon="arrow-left" size={24} iconColor="white"/>
-              
-            </TouchableOpacity>
-           
-
-          </View>
-
-        </View>
+   
         : <Loader/>
 
         
 
         
       }
-        </KeyboardAvoidingView>
+        
+        </View>
+        </ScrollView>
+      </View>
+      
+    
+    </SafeAreaView>
 
     
   )

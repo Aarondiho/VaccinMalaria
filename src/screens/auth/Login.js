@@ -28,10 +28,16 @@ const Login = () => {
 
   //evaluation info
 
-  const [score1,setScore1] = useState('0');
-  const [score2,setScore2] = useState('0');
-  const [score3,setScore3] = useState('0');
-  const [score4,setScore4] = useState('0');
+  /*const [score1,setScore1] = useState(false);
+  const [score2,setScore2] = useState(false);
+  const [score3,setScore3] = useState(false);
+  const [score4,setScore4] = useState(false);
+  const [score5,setScore5] = useState(false);
+  const [score6,setScore6] = useState(false);
+  const [score7,setScore7] = useState(false);
+  const [score8,setScore8] = useState(false);*/
+  
+  const [averageNote,setAverageNote] = useState(false);
 
 
   const [first, setFirst] = useState(false);
@@ -80,7 +86,10 @@ const Login = () => {
                 const storedScore2 = await AsyncStorage.getItem("score2");
                 const storedScore3 = await AsyncStorage.getItem("score3");
                 const storedScore4 = await AsyncStorage.getItem("score4");
-                
+                const storedScore5 = await AsyncStorage.getItem("score5");
+                const storedScore6 = await AsyncStorage.getItem("score6");
+                const storedScore7 = await AsyncStorage.getItem("score7");
+                const storedScore8 = await AsyncStorage.getItem("score8");
 
         
         setIsLoggedIn(storedIsLoggedIn || '');
@@ -88,23 +97,24 @@ const Login = () => {
 
         //user Info
 
-        setName(storedName || '');
-        setPhone(storedPhone || '');
+        setName(storedName || 'Aaron Ndihokubwayo');
+        setPhone(storedPhone || '61 552 799');
         setSex(storedSex || 'Masculin');
-        setBPS(storedBPS || '');
-        setBDS(storedBDS || '');
+        setBPS(storedBPS || 'Bubanza');
+        setBDS(storedBDS || 'Mpanda');
         setTypeOffice(storedTypeOffice || 'CDS');
-        setPlace(storedPlace || '');
+        setPlace(storedPlace || 'Murengeza');
 
         //score Info
 
-        setScore1(storedScore1 || '0');
-        setScore2(storedScore2 || '0');
-        setScore3(storedScore3 || '0');
-        setScore4(storedScore4 || '0');
+        const total = JSON.parse(JSON.parse(storedScore1))+ JSON.parse(JSON.parse(storedScore2))+ JSON.parse(JSON.parse(storedScore3))+ JSON.parse(JSON.parse(storedScore4))+ JSON.parse(JSON.parse(storedScore5))+ JSON.parse(JSON.parse(storedScore6))+ JSON.parse(JSON.parse(storedScore7))+ JSON.parse(JSON.parse(storedScore8));
+        const avg = total /8;
+        setAverageNote(avg.toFixed(2));
+       
 
       };
       initializeData();
+
     });
     return unsubscribe;
   }, [navigation]);
@@ -199,212 +209,338 @@ const Login = () => {
         behavior={ios ? 'padding' : 'height'}
         style={{ flex: 1 }}
         >
-        <LinearGradient 
-          colors={['#BD1634', '#291737']}
-          start={[0,0]}
-          end={[1,0]}
-         className="flex-1 justify-center items-center">
+       <View className="bg-bg-one font-sans flex-1 justify-center items-center ">
       
-        {/* Header */}
-        <View className="flex-row justify-between items-center p-2 mt-10">
-          <Text className="text-lg font-semibold text-white">Vaccin Malaria</Text>
+      
+         {/* Header */}
+         <View className="flex-row  justify-between rounded-lg items-center  mt-10">
+          <Text className="text-xl font-semibold text-gray-600">Vaccin Malaria</Text>
           
         </View>
+
   
-        <ScrollView className="p-3" showsVerticalScrollIndicator={false}>
+        <ScrollView className="" showsVerticalScrollIndicator={false}>
         
           {/* Profile Info */}
-          <View
-          className="items-center py-6  rounded-3xl mt-16"
-        >
+
+          
+
+          <LinearGradient
+          colors ={[ 'gray','#149BD5','gray']}
+          start={[0, 1]}
+          end={[1, 0]}
+          className="items-center py-6   rounded-3xl mt-16 mb-5 "
+          >
+          
             <Image
               source={sex=="Masculin"? require('../../../assets/male.jpg') : require('../../../assets/female.png') } // Fix the correct path for the user image
-              className="w-24 h-24 rounded-full -mt-20"
+              className="w-24 h-24 rounded-full -mt-20 bg-red-900 "
+              
             />
-            <Text className="font-sans text-white mt-4 text-xl font-semibold">{Name}</Text>
+            <Text className="font-sans mt-4 text-2xl font-semibold text-white">{Name}</Text>
 
 
       {/* Follow and Message Buttons */}
-              <View className="flex-row justify-between items-center mt-4">
-                <TouchableOpacity className="bg-white px-4 py-2 rounded-full mr-4" onPress={profile}>
-                  <Text className="text-purple-700 font-semibold">Profile</Text>
-                </TouchableOpacity>
-                <TouchableOpacity className="bg-white px-4 py-2 rounded-full">
-                  <Text className="text-purple-700 font-semibold">J'aime</Text>
-                </TouchableOpacity>
-              </View>
-            
-  
-            {/* Stats */}
-            <View className="flex-row mt-4 mx-2">
-              <View className="items-center mx-4">
-                <Text className="font-sans text-white font-bold ">{JSON.parse(score1)}%</Text>
-                <Text className="font-sans text-white">Note 1</Text>
-              </View>
-              <View className="items-center mx-4">
-                <Text className="font-sans text-white font-bold ">{JSON.parse(score2)}%</Text>
-                <Text className="font-sans text-white">Note 2</Text>
-              </View>
-              <View className="items-center mx-4">
-                <Text className="font-sans text-white font-bold ">{JSON.parse(score3)}%</Text>
-                <Text className="font-sans text-white">Note 3</Text>
-              </View>
-              <View className="items-center mx-4">
-                <Text className="font-sans text-white font-bold ">{JSON.parse(score3)}%</Text>
-                <Text className="font-sans text-white">Note 4</Text>
-              </View>
-            </View>
-          </View>
-
-          <View className="font-sans w-full border-2 border-white"></View>
-  
-          {/* Tabs */}
-         
-
-          
-          <Text className=" text-center font-sans text-lg mx-28 my-8 bg-white p-2 rounded-xl font-semibold">Module 1 & 2 </Text>
-            
-
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop:20 }}>
-         
-          <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.LESSONS)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
-             
-              <Text className="bg-green-600 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Leçon 1</Text>
-              <View className="mb-16 mt-4">
+            <View className="flex-row justify-between items-center mt-4">
+                
               
-                <Image
-                  source={require('../../../assets/mod2.png')}
-                  style={{width:100,height:100}}
-                />
-                
-            </View>
-          </TouchableOpacity>
-          
-
-          <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.QUIZ1)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
-              <Text className="bg-purple-500 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Evaluation 1</Text>
-              <View className="mb-16 mt-4">
-                 
-                
-                  <Image
-                    source={require('../../../assets/evaluation1.png')}
-                              style={{width:100,height:100}}
-                  />
-                
-              </View>
-              </TouchableOpacity>
-
-          </View>
-
-          <Text className=" text-center font-sans text-lg mx-28 my-8 bg-white p-2 rounded-xl font-semibold">Module 3 & 4 </Text>
-            
-
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop:20 }}>
-           
-            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.LESSONS2)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
-               
-                <Text className="bg-green-600 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Leçon 2</Text>
-                <View className="mb-16 mt-4">
-                
-                  <Image
-                    source={require('../../../assets/mod1.png')}
-                    style={{width:100,height:100}}
-                  />
-                  
-              </View>
-            </TouchableOpacity>
-            
-  
-            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.QUIZ2)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
-                <Text className="bg-purple-500 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Evaluation 2</Text>
-                <View className="mb-16 mt-4">
-                   
-                  
-                    <Image
-                      source={ require('../../../assets/evaluation2.png')}
-                      style={{width:100,height:100}}
-                    />
-                  
-                </View>
+                <TouchableOpacity className=" bg-white px-4 py-2 rounded-full mr-4" onPress={profile}>
+                  <Text className="text-black  font-semibold">Evaluation :  {averageNote}%</Text>
                 </TouchableOpacity>
-  
-            </View>
 
-
-            <Text className=" text-center font-sans text-lg mx-28 my-8 bg-white p-2 rounded-xl font-semibold">Module 5 & 6 </Text>
-            
-
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop:20 }}>
-           
-            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.LESSONS3)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
-               
-                <Text className="bg-green-600 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Leçon 3</Text>
-                <View className="mb-16 mt-4">
                 
-                  <Image
-                    source={ require('../../../assets/mod3.png')}
-                    style={{width:100,height:100}}
-                  />
-                  
-              </View>
-            </TouchableOpacity>
-            
-  
-            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.QUIZ3)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
-                <Text className="bg-purple-500 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Evaluation 3</Text>
-                <View className="mb-16 mt-4">
-                   
-                  
-                    <Image
-                      source={require('../../../assets/evaluation3.png')}
-                              style={{width:100,height:100}}
-                    />
-                  
-                </View>
-                </TouchableOpacity>
-  
-            </View>
-
-            <Text className=" text-center font-sans text-lg mx-28 my-8 bg-white p-2 rounded-xl font-semibold">Module 7 & 8 </Text>
-            
-
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop:20 }}>
-           
-            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.LESSONS4)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
-               
-                <Text className="bg-green-600 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Leçon 4 </Text>
-                <View className="mb-16 mt-4">
                 
-                  <Image
-                    source={require('../../../assets/mod4.jpg')}
-                    style={{width:100,height:100}}
-                  />
-                  
-              </View>
-            </TouchableOpacity>
-            
-  
-            <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.QUIZ4)}  style={{ width: '45%', height: 180, marginBottom: 8, borderRadius: 24 }} className="bg-input mx-2 items-center justify-center ">
-                <Text className="bg-purple-500 p-3 text-center mx-4 text-white mt-2"  style= {{borderRadius:48}} >Evaluation 4</Text>
-                <View className="mb-16 mt-4">
-                   
-                  
-                    <Image
-                      source={require('../../../assets/evaluation4.png')}
-                                          style={{width:100,height:100}}
-                    />
-                  
-                </View>
+                <TouchableOpacity className="bg-white px-4 py-2 rounded-full mr-4" onPress={profile}>
+                  <Text className="text-black font-semibold">Modifier Profile</Text>
                 </TouchableOpacity>
-  
             </View>
-  
-
-          <View className ="mb-48"></View>
+            
   
         
+          </LinearGradient>
+
+          <View className="font-sans w-full border-2 border-grey"></View>
+
+         
+
+
+            <View >
+
+                <View className="font-sans flex-row justify-between  mt-10 ">
+                  <Text   style={{alignSelf:'flex-start',height:20}} /> 
+                  
+                  <Text className="font-sans text-center font-bold text-2xl text-gray-600 mb-4">
+                        MODULES
+                  </Text>
+                  <TouchableOpacity className="font-sans p-1 justify-end">
+                        
+                  </TouchableOpacity>
+                </View>
+
+
+                <View className="p-4 mt-4 rounded-2xl bg-white">
+
+                <View >
+
+                  <TouchableOpacity 
+                      onPress={() => {  
+                        navigation.navigate(ROUTES.LESSONS);
+                      }}
+                      style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                    >
+                      <View className="flex-row items-center p-6 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                        {/* Number Indicator */}
+                        
+                        <Text className="text-blue-900 w-12 h-12 text-center  font-bold p-4 bg-white rounded-full font-semibold">
+                          1
+                        </Text>
+
+                        
+                        {/* Text Container */}
+                        <View style={{ flex: 1, marginLeft: 8 }}>
+                          <Text 
+                            className="text-black font-sans text-semiBold" 
+                            numberOfLines={4} // Limit to a maximum of 2 lines if text is too long
+                            ellipsizeMode="tail" // Adds '...' at the end if text is truncated
+                          >
+                            Définition du paludisme
+                          </Text>
+                          </View>
+                      
+                      </View>
+                    </TouchableOpacity>
+            
+
+                  
+                    <TouchableOpacity 
+                      onPress={() => {  
+                        navigation.navigate(ROUTES.LESSONS2);
+                      }}
+                      style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                    >
+                      <View className="flex-row items-center p-4 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                        {/* Number Indicator */}
+                        <Text className="text-blue-900 w-12 h-12 text-center  font-bold p-4 bg-white rounded-full font-semibold">
+                        
+                          2
+                        </Text>
+
+                        
+                        {/* Text Container */}
+                        <View style={{ flex: 1, marginLeft: 8 }}>
+                          <Text 
+                            className="text-black text-semiBold font-sans "
+                            numberOfLines={4} // Limit to a maximum of 2 lines if text is too long
+                            ellipsizeMode="tail" // Adds '...' at the end if text is truncated
+                          >
+                            Caractéristiques et conditions de stockage du vaccin contre le paludisme RTS,S
+
+                              </Text>
+                              </View>
+                          
+                          </View>
+                    </TouchableOpacity>
+
+
+                    <TouchableOpacity 
+                      onPress={() => {  
+                        navigation.navigate(ROUTES.LESSONS3);
+                      }}
+                      style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                    >
+                      <View className="flex-row items-center p-4 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                        {/* Number Indicator */}
+                        <Text className="text-blue-900 w-12 h-12 text-center  font-bold p-4 bg-white rounded-full font-semibold">
+                        
+                          3
+                        </Text>
+
+                        
+                        {/* Text Container */}
+                        <View style={{ flex: 1, marginLeft: 8 }}>
+                          <Text 
+                            className="text-black text-semiBold font-sans "
+                            numberOfLines={4} // Limit to a maximum of 2 lines if text is too long
+                            ellipsizeMode="tail" // Adds '...' at the end if text is truncated
+                          >
+                            Calendrier de vaccination contre le paludisme, éligibilité et contre-indications
+                              </Text>
+                              </View>
+                          
+                          </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                      onPress={() => {  
+                        navigation.navigate(ROUTES.LESSONS4);
+                      }}
+                      style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                    >
+                      <View className="flex-row items-center p-4 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                        {/* Number Indicator */}
+                        <Text className="text-blue-900 w-12 h-12 text-center  font-bold p-4 bg-white rounded-full font-semibold">
+                        
+                          4
+                        </Text>
+
+                        
+                        {/* Text Container */}
+                        <View style={{ flex: 1, marginLeft: 8 }}>
+                          <Text 
+                            className="text-black text-semiBold font-sans "
+                            numberOfLines={4} // Limit to a maximum of 2 lines if text is too long
+                            ellipsizeMode="tail" // Adds '...' at the end if text is truncated
+                          >
+                            Administration du vaccin contre le paludisme
+
+                              </Text>
+                              </View>
+                          
+                          </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                      onPress={() => {  
+                        navigation.navigate(ROUTES.LESSONS5);
+                      }}
+                      style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                    >
+                      <View className="flex-row items-center p-4 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                        {/* Number Indicator */}
+                        <Text className="text-blue-900 w-12 h-12 text-center  font-bold p-4 bg-white rounded-full font-semibold">
+                        
+                          5
+                        </Text>
+
+                        
+                        {/* Text Container */}
+                        <View style={{ flex: 1, marginLeft: 8 }}>
+                          <Text 
+                            className="text-black text-semiBold font-sans "
+                            numberOfLines={4} // Limit to a maximum of 2 lines if text is too long
+                            ellipsizeMode="tail" // Adds '...' at the end if text is truncated
+                          >
+                            Enregistrement et suivi du vaccin contre le paludisme
+
+                              </Text>
+                              </View>
+                          
+                          </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                      onPress={() => {  
+                        navigation.navigate(ROUTES.LESSONS6);
+                      }}
+                      style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                    >
+                      <View className="flex-row items-center p-4 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                        {/* Number Indicator */}
+                        <Text className="text-blue-900 w-12 h-12 text-center  font-bold p-4 bg-white rounded-full font-semibold">
+                        
+                          6
+                        </Text>
+
+                        
+                        {/* Text Container */}
+                        <View style={{ flex: 1, marginLeft: 8 }}>
+                          <Text 
+                            className="text-black text-semiBold font-sans "
+                            numberOfLines={4} // Limit to a maximum of 2 lines if text is too long
+                            ellipsizeMode="tail" // Adds '...' at the end if text is truncated
+                          >
+                            Surveillance des manifestations postvaccinales indésirables (MAPI)
+
+                              </Text>
+                              </View>
+                          
+                          </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                      onPress={() => {  
+                        navigation.navigate(ROUTES.LESSONS7);
+                      }}
+                      style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                    >
+                      <View className="flex-row items-center p-4 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                        {/* Number Indicator */}
+                        <Text className="text-blue-900 w-12 h-12 text-center  font-bold p-4 bg-white rounded-full font-semibold">
+                        
+                          7
+                        </Text>
+
+                        
+                        {/* Text Container */}
+                        <View style={{ flex: 1, marginLeft: 8 }}>
+                          <Text 
+                            className="text-black text-semiBold font-sans "
+                            numberOfLines={4} // Limit to a maximum of 2 lines if text is too long
+                            ellipsizeMode="tail" // Adds '...' at the end if text is truncated
+                          >
+                            Communiquer avec les parents sur le vaccin contre le paludisme
+                          </Text>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                      onPress={() => {  
+                        navigation.navigate(ROUTES.LESSONS8);
+                      }}
+                      style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                    >
+                      <View className="flex-row items-center p-4 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                        {/* Number Indicator */}
+                        <Text className="text-blue-900 w-12 h-12 text-center  font-bold p-4 bg-white rounded-full font-semibold">
+                        
+                          8
+                        </Text>
+
+                        
+                        {/* Text Container */}
+                        <View style={{ flex: 1, marginLeft: 8 }}>
+                          <Text 
+                            className="text-black text-semiBold font-sans "
+                            numberOfLines={4} // Limit to a maximum of 2 lines if text is too long
+                            ellipsizeMode="tail" // Adds '...' at the end if text is truncated
+                          >
+                            Des opportunités manquées de vaccination (OMV)
+
+                              </Text>
+                              </View>
+                          
+                          </View>
+                    </TouchableOpacity>
+                        
+            
+                  
+                  
+                
+
+                  <View className="font-sans mt-12 flex-1 justify-center items-center flex-row">
+                    {/* First Image */}
+                    <Image 
+                      source={require('../../../assets/mod1/Logo_1.png')} 
+                      className="w-16 h-16" 
+                    />
+
+                    {/* Vertical Line */}
+                    <View className="h-12 w-[5px] bg-gray-400 mx-2" />
+
+                    {/* Second Image */}
+                    <Image 
+                      source={require('../../../assets/Gavi_Logo_A.png')} 
+                      className="w-28 h-10" 
+                    />
+                  </View>
+
+                  </View>
+              
+                <View className="mb-20"></View>
+                </View>
+
+
+            </View> 
+
+         
         </ScrollView>
-      </LinearGradient>
+      </View>
       </KeyboardAvoidingView>
   
     ) : ( 
@@ -413,23 +549,37 @@ const Login = () => {
       behavior={ios ? 'padding' : 'height'}
       style={{ flex: 1 }}
       >
-      <LinearGradient 
-       colors={['#BD1634', '#291737']}
-       start={[0,0]}
-       end={[1,0]}
-        className="flex-1">
+       <LinearGradient
+          colors ={['#92BC1D', '#149BD5','#92BC1D']}
+          start={[0, 1]}
+          end={[1, 0]}
+        >
        <ScrollView contentContainerStyle={{ flexGrow: 1 }} >
 
-       <Image source={require('../../../assets/mod1/Logo_1.png')}
-                  className="mt-12 mx-4 w-24 h-24" />
+       <View className="font-sans flex-1 justify-center mt-16 mb-4 items-center flex-row">
+                {/* First Image */}
+                <Image 
+                  source={require('../../../assets/mod1/Logo_1.png')} 
+                  className="w-16 h-16" 
+                />
 
-         <View className="mt-2">
-           <Text className="text-white text-xl font-bold ml-4">Vaccination contre le paludisme</Text>
+                {/* Vertical Line */}
+                <View className="h-12 w-[5px] bg-gray-600 mx-2" />
+
+                {/* Second Image */}
+                <Image 
+                  source={require('../../../assets/Gavi_Logo_B.png')} 
+                  className="w-24 h-9" 
+                />
+              </View>
+
+         <View >
+           <Text className="text-white text-2xl  mt-1 text-center font-bold ">Vaccination contre le paludisme</Text>
          </View>
 
-         <View className="mt-10 bg-white p-8  -mb-10" style={{borderRadius:24}} >
+         <View className="mt-10 bg-white p-8 mx-2 " style={{borderRadius:40}} >
 
-         <Text className=" font-sans font-bold text-gray-700 text-lg text-center mb-10">Compléter les informations suivantes</Text>
+         <Text className=" font-sans font-bold text-black text-lg text-center mb-10">Compléter les informations suivantes</Text>
 
          {errorMessage && (
                    <Text className="font-sans text-xl mb-2 text-red-600 text-center">{errorMessage}</Text>
@@ -437,7 +587,7 @@ const Login = () => {
 
           <View className="mb-4">
 
-          <Text className="text-gray-700 text-lg">Genre</Text>
+          <Text className=" text-semiBold  text-lg">Genre</Text>
 
             <View className="flex-row items-center border-b border-gray-300 mt-4">
             
@@ -473,10 +623,10 @@ const Login = () => {
       
         <View className="mb-4">
 
-             <Text className="text-gray-700 text-lg">Nom</Text>
+             <Text className="  text-semiBold  text-lg">Nom</Text>
              <View className="flex-row items-center border-b border-gray-300">
                <TextInput
-                 className="flex-1 py-2 text-gray-700"
+                 className="flex-1 py-2 text-black"
                  placeholder="Irakoze Jean Marie"
                  value={Name}
                  onChangeText={setName}
@@ -485,10 +635,10 @@ const Login = () => {
              </View>
            </View>
            <View className="mb-4">
-              <Text className="text-gray-700 text-lg">Téléphone</Text>
+              <Text className="  text-semiBold  text-lg">Téléphone</Text>
               <View className="flex-row items-center border-b border-gray-300">
                 <TextInput
-                  className="flex-1 py-2 text-gray-700"
+                  className="flex-1 py-2 text-black"
                   placeholder="61857469"
                   value={phone}
                   onChangeText={setPhone}
@@ -502,10 +652,10 @@ const Login = () => {
            
            
            <View className="mb-4">
-             <Text className="text-gray-700 text-lg">Bureau Provinciale Sanitaire (BPS)</Text>
+             <Text className="  text-semiBold  text-lg">Bureau Provinciale Sanitaire (BPS)</Text>
              <View className="flex-row items-center border-b border-gray-300">
                <TextInput
-                 className="flex-1 py-2 text-gray-700"
+                 className="flex-1 py-2 text-black"
                  placeholder=" Bubanza"
                  value={BPS}
                  onChangeText={setBPS}
@@ -515,10 +665,10 @@ const Login = () => {
            </View>
 
            <View className="mb-4">
-             <Text className="text-gray-700 text-lg">Bureau de District Sanitaire (BDS)</Text>
+             <Text className=" text-semiBold  text-lg">Bureau de District Sanitaire (BDS)</Text>
              <View className="flex-row items-center border-b border-gray-300">
                <TextInput
-                 className="flex-1 py-2 text-gray-700"
+                 className="flex-1 py-2 text-black"
                  placeholder="Mpanda"
                  value={BDS}
                  onChangeText={setBDS}
@@ -529,7 +679,7 @@ const Login = () => {
 
            <View className="mb-4">
 
-           <Text className="text-gray-700 text-lg">Lieu de Travail</Text>
+           <Text className=" text-semiBold  text-lg">Lieu de Travail</Text>
              <View className="flex-row items-center border-b border-gray-300 mt-4">
                
 
@@ -570,10 +720,10 @@ const Login = () => {
         </View>
         <View className="mb-4">
         
-             <Text className="text-gray-700 text-lg">Nom {typeOffice}</Text>
+             <Text className=" text-semiBold  text-lg">Nom {typeOffice !=='CDS'?"de l ' "+typeOffice :"de "+typeOffice }</Text>
              <View className="flex-row items-center border-b border-gray-300">
                <TextInput
-                 className="flex-1 py-2 text-gray-700"
+                 className="flex-1 py-2 text-black"
                  placeholder="Murengeza"
                  value={place}
                  onChangeText={setPlace}
@@ -583,21 +733,18 @@ const Login = () => {
            </View>
           
 
-           <LinearGradient 
-           colors={['#BD1634', '#291737']}
-           start={[0,0]}
-           end={[1,0]}
-           className="flex-1 rounded-full w-32 p-4 mt-8 mb-14"
-           style={{alignSelf:'flex-end'}}
+            <TouchableOpacity onPress={handleSignUp} 
+              style={{alignSelf:'flex-end'}}
+              className="rounded-full w-24  mt-4 p-2 mb-4 bg-[#149BD5]"
            >
-            <TouchableOpacity onPress={handleSignUp}>
               <Text className="text-white text-center text-lg font-bold" >OK</Text>
             </TouchableOpacity>
 
-           </LinearGradient>
+          
 
          
          </View>
+         <View className="mb-16"></View>
        </ScrollView>
      </LinearGradient>
    </KeyboardAvoidingView>
@@ -807,7 +954,7 @@ const styles = StyleSheet.create({
   innerCheckbox: {
     width: 20,
     height: 20,
-    backgroundColor: '#BD1634',
+    backgroundColor: '#149BD5',
   }
 });
 

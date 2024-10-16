@@ -21,6 +21,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.vaccinMalaria",
+      "permissions": ["ACCESS_NETWORK_STATE"],
       "versionCode": 1
     },
     "web": {
@@ -39,6 +40,9 @@
       }
     },
     "ios": {
+      "infoPlist": {
+        "UIBackgroundModes": ["fetch"]
+      },
       "bundleIdentifier": "com.vaccinMalaria",
       "buildNumber": "1"
     }
