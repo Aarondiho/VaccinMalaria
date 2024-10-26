@@ -176,17 +176,17 @@ const Lessons7 = () => {
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
 
             <TouchableOpacity
-            onPress={() =>goToPreviousSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-start'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Précédent</Text>
-            
-            </TouchableOpacity>
+                onPress={() =>navigation.goBack()}
+                style={{
+                  padding: 10,
+                  borderRadius: 5,
+                  alignSelf:'flex-start'
+                }}
+                className=" mx-4 bg-black/80"
+              >
+                <Text style={{ color: '#fff' }}>Retour</Text>
+                
+              </TouchableOpacity>
 
 
             <TouchableOpacity
@@ -219,9 +219,12 @@ const Lessons7 = () => {
             
 
               <TouchableOpacity className="font-sans p-1 justify-center items-center">
+              <Image source={require('../../../assets/mod4/14.png')}
+                              className="mx-4 mt-4 w-72 h-10 "/>
+                              <Text className="-mt-7 font-bold text-white ">Au cours de la séance de vaccination</Text>
                 <Image 
                   source={require('../../../assets/mod4/2.png')}
-                  style={{ height: height * 0.3, width: width * 0.448, marginBottom: 40, marginTop: 20 }}
+                  style={{ height: height * 0.3, width: width * 0.448, marginBottom: 40, marginTop: 30 }}
                 />
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
@@ -261,9 +264,7 @@ const Lessons7 = () => {
 
 
                    </Text>
-                </View>
-                <View style={{ flex: 1, paddingHorizontal: 4 }}>
-                      <Text 
+                   <Text 
                         className="font-sans text-black  text-xl mb-4 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
@@ -523,8 +524,8 @@ const Lessons7 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
 
-                    1. Écouter avec empathie pour comprendre les préoccupations des parent/ en posant des questions ouvertes.
- 
+                      1. Écouter avec empathie pour comprendre les préoccupations des parents/tuteurs en posant des questions ouvertes.
+
                     </Text>
                  
                 </View>

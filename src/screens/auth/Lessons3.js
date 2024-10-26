@@ -15,6 +15,12 @@ const Lessons3 = () => {
   const [screen3, setScreen3] = useState(false)
   
   const [showFirst, setShowFirst] = useState(false);
+
+  const scheduleData = [
+    
+    { age: 'Paludisme RTS,S', vaccines: ['1', '2', '3', '4'] },
+    
+  ];
   
 
 
@@ -113,19 +119,32 @@ const Lessons3 = () => {
           
 
             <View className="mb-10" >
-                <TouchableOpacity className="font-sans p-1 justify-center items-center" >
-                <Image source={require('../../../assets/mod2/1.png')}
-                          className="mx-4  mt-4 " 
-                          style={{height:height*0.4, width: width*0.95}} />
-                </TouchableOpacity>
-                <View style={{ flex: 1, paddingHorizontal: 4 }}>
-                      <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-2"
-                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      >Le vaccin Mosquirix a été intégré dans le calendrier de vaccination et les enfants le recevront en 4 doses comme indiqué sur le calendrier ci-dessus.
-                </Text>
-                </View>
+            <View className="mt-6 border bg-white border-gray-300 rounded-lg overflow-hidden">
+                    {/* Table Header */}
+                    <View className="flex-row border-b border-gray-300 bg-blue-800">
+                      <Text className="text-white p-2 flex-1 text-center">Âge de l'enfant</Text>
+                      {[ '6 mois', '7 mois',  '9 mois',  '18 mois', ].map((header, index) => (
+                        <Text key={index} className="text-white p-2 w-16 text-center border-l border-white">{header}</Text>
+                      ))}
+                    </View>
+
+                    {/* Table Rows */}
+                    {scheduleData.map((item, rowIndex) => (
+                      <View key={rowIndex} className="flex-row border-b border-gray-300">
+                        <Text className="flex-1 p-2 text-center border-r border-gray-300">{item.age}</Text>
+                        {item.vaccines.map((vaccine, colIndex) => (
+                          <Text key={colIndex} className="w-16 color-blue-900 p-4 text-center border-l border-gray-300">{vaccine || '-'}</Text>
+                        ))}
+                      </View>
+                    ))}
+                  </View>
+
+                  <Text className="font-sans text-black text-xl mt-6 mx-4">
+                    Le vaccin Mosquirix a été intégré dans le calendrier de vaccination et les enfants le recevront en 4 doses comme indiqué sur le calendrier ci-dessus.
+                  </Text>
+
+      
+              
               
             </View>
 
@@ -172,10 +191,10 @@ const Lessons3 = () => {
         :screen3 == 2?
           <>
             <View className="px-2 mb-10">
-              <TouchableOpacity className="font-sans p-1 justify-center items-center">
+              <TouchableOpacity className="font-sans  mt-5 p-1 justify-center items-center">
                 <Image 
                   source={require('../../../assets/mod2/2.png')}
-                  style={{ height: height * 0.29, width: width * 0.9, marginBottom: 40, marginTop: 20 }}
+                 className="w-96 h-48"
                 />
               </TouchableOpacity>
 
@@ -370,9 +389,6 @@ const Lessons3 = () => {
             </View>
 
           </>
-        
-
-
    
         : <Loader/>
 

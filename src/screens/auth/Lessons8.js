@@ -144,18 +144,18 @@ const Lessons8 = () => {
             </View>
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
 
-            <TouchableOpacity
-            onPress={() =>goToPreviousSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-start'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Précédent</Text>
-            
-            </TouchableOpacity>
+          <TouchableOpacity
+                onPress={() =>navigation.goBack()}
+                style={{
+                  padding: 10,
+                  borderRadius: 5,
+                  alignSelf:'flex-start'
+                }}
+                className=" mx-4 bg-black/80"
+              >
+                <Text style={{ color: '#fff' }}>Retour</Text>
+                
+              </TouchableOpacity>
 
 
             <TouchableOpacity
@@ -211,28 +211,28 @@ const Lessons8 = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                        • Elles reçoivent un vaccin différent (par exemple, un contact de vaccination)
+                        • Ils reçoivent un vaccin différent (par exemple, un contact de vaccination)
                         </Text>
                    <Text 
                         className="font-sans text-black  text-xl mb-4 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                        • Elles sont traitées pour une maladie (par exemple, un contact de traitement) 
+                        • Ils sont traitées pour une maladie (par exemple, un contact de traitement) 
                         </Text>
                    <Text 
                         className="font-sans text-black  text-xl mb-4 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                        • Elles reçoivent d’autres services préventifs (par exemple, la surveillance de la croissance, etc.) 
+                        • Ils reçoivent d’autres services préventifs (par exemple, la surveillance de la croissance, etc.) 
                         </Text>
                    <Text 
                         className="font-sans text-black  text-xl mb-4 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                        • Elles accompagnent un membre de leur famille à un rendez-vous 
+                        • Ils accompagnent un membre de leur famille à un rendez-vous 
                         </Text>
                    <Text 
                         className="font-sans text-black  text-xl mb-4 mt-2"
@@ -352,136 +352,6 @@ const Lessons8 = () => {
 
               <TouchableOpacity
                 onPress={() =>navigation.navigate(ROUTES.QUIZ8)}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Evaluation</Text>
-                      
-                
-              </TouchableOpacity>
-
-  
- 
-
-            </View>
-
-          </>
-        
-
-
-        :screen8 == 5?
-          <>
-                 <View className="px-2 mb-2">
-                    
-                  <Text className="font-sans text-2xl text-blue-800 mt-4 mx-4">
-                  
-                    7.2 Conversations avec une personne qui a des doutes ? 
-
-                  </Text>
-
-                  <View style={{ flex: 1, paddingHorizontal: 4 }}>
-                      
-                      
-                  <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-5"
-                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      >
-
-                        Si le parent hésite, utilisez les approches suivantes :
-
-
-                    </Text>
-                </View>
-                   
-
-                    <TouchableOpacity className="font-sans justify-center items-center" >
-                     
-                     <Image source={require('../../../assets/mod4/8.png')}
-                              className="mx-4 mt-4 w-72 h-52 "/>
-
-                    <View style={{ flex: 1, paddingHorizontal: 4 }}>
-                      <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-5"
-                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      >
-
-                    1. Écouter avec empathie pour comprendre les préoccupations des parent/ en posant des questions ouvertes.
- 
-                    </Text>
-                 
-                </View>
-
-                
-                </TouchableOpacity>
-
-                <TouchableOpacity className="font-sans justify-center items-center" >
-                     
-                     <Image source={require('../../../assets/mod4/9.png')}
-                              className="mx-4 mt-4 w-72 h-52 "/>
-
-                    <View style={{ flex: 1, paddingHorizontal: 4 }}>
-                      <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-5"
-                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      >
-
-                        2. S'impliquer personnellement en partageant son expérience et en évoquant ses motivations pour recommander la vaccination.
-
-                    </Text>
-                 
-                </View>
-
-                
-                </TouchableOpacity>
-
-                <TouchableOpacity className="font-sans justify-center items-center" >
-                     
-                     <Image source={require('../../../assets/mod4/10.png')}
-                              className="mx-4 mt-4 w-72 h-52 "/>
-
-                    <View style={{ flex: 1, paddingHorizontal: 4 }}>
-                      <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-5"
-                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      >
-
-                        3. Encourager la vaccination en partageant son expérience personnelle et en expliquant ses motivations.
-
-                    </Text>
-                 
-                </View>
-
-                
-                </TouchableOpacity>
-
-               </View>
-           
-          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
-
-            <TouchableOpacity
-                onPress={() =>goToPreviousSlide()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-start'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Précédent</Text>
-                
-              </TouchableOpacity>
-
-
-              <TouchableOpacity
-                onPress={() =>navigation.navigate(ROUTES.QUIZ1)}
                 style={{
                   padding: 10,
                   borderRadius: 5,

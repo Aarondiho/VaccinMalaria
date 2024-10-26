@@ -2,7 +2,7 @@ import { StyleSheet} from 'react-native';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ROUTES } from '../constants';
-import { Lessons, Lessons2, Lessons3, Lessons5, Lessons6, Lessons7, Lessons8, Login, PrivacyPolicy,Quiz1,Quiz2,Quiz3,Quiz5,Quiz6,Quiz7,Quiz8,TermsAndConditions} from '../screens';
+import { Lessons, Lessons2, Lessons3, Lessons5, Lessons6, Lessons7, Lessons8, Login, Points, PrivacyPolicy,Quiz1,Quiz2,Quiz3,Quiz5,Quiz6,Quiz7,Quiz8,TermsAndConditions} from '../screens';
 import Quiz4 from '../screens/auth/Quiz4';
 import Lessons4 from '../screens/auth/Lessons4';
 
@@ -19,6 +19,7 @@ const AuthNavigator = () => {
       <Stack.Screen name={ROUTES.LOGIN} component={Login} options={{headerShown: false}}/>
       <Stack.Screen name={ROUTES.TERMS} component={TermsAndConditions} options={{headerShown: false}}/>
       <Stack.Screen name={ROUTES.POLICY} component={PrivacyPolicy} options={{headerShown: false}}/>
+      <Stack.Screen name={ROUTES.POINTS} component={Points} options={{headerShown: false}}/>
       <Stack.Screen name={ROUTES.LESSONS} component={Lessons} options={{headerShown: false}}/>
       <Stack.Screen name={ROUTES.QUIZ1} component={Quiz1} options={{headerShown: false}}/>
       <Stack.Screen name={ROUTES.LESSONS2} component={Lessons2} options={{headerShown: false}}/>

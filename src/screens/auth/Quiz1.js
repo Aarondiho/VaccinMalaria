@@ -8,8 +8,8 @@ import { ROUTES } from '../../constants';
 
 const Quiz1 = () => {
     const navigation = useNavigation();
-    const [answers, setAnswers] = useState([null, null, null]); // to store answers
-    const [score, setScore] = useState(0);  // to track score
+    const [answers, setAnswers] = useState([null, null, null, null, null, null]); // to store answers
+        const [score, setScore] = useState(0);  // to track score
     const [quizCompleted, setQuizCompleted] = useState(false);  // to track completion
     const [submitted, setSubmitted] = useState(false);  // to track if answers are submitted
     const [showCorrection, setShowCorrection] = useState(false); // to show correction modal
@@ -17,23 +17,54 @@ const Quiz1 = () => {
     const [remainingTime, setRemainingTime] = useState(0); // track remaining cooldown time
     const [showTimerModal, setShowTimerModal] = useState(false); // state for timer modal
 
-    const questions = [
+    const questions= [
         {
-            question: 'Quelle est la cause du paludisme?',
-            options: ['piqûre d’un moustique male anophèle', 'morsure de chien', 'piqûre d’un moustique femelle anophèle'],
-            correctAnswer: 'piqûre d’un moustique femelle anophèle',
-        },
-        {
-            question: 'Quels sont les symptômes du paludisme ?',
-            options: ['la fièvre, les frissons, les maux de tête, les douleurs musculaires, la fatigue et les vomissements', 'maux de tête, toux sèche et fièvre', 'les yeux rouges, éruption cutanée et mal de gorge'],
-            correctAnswer: 'la fièvre, les frissons, les maux de tête, les douleurs musculaires, la fatigue et les vomissements',
-        },
-        {
-            question: 'Quels sont les moyens de prévention contre le paludisme?',
-            options: ['Prendre des médicaments antipaludiques', 'Dormir sous une moustiquaire imprégnée', 'Pas de prévention'],
-            correctAnswer: 'Dormir sous une moustiquaire imprégnée',
-        }
-    ];
+            question:'Quelle est la cause du paludisme ?',
+
+            options: ['Une bactérie', 'Un virus', 'Un parasite','Un champignon'],
+
+                        correctAnswer:'Un parasite',
+                    },
+                    {
+            question:'Comment le paludisme se transmet-il ?',
+
+                        options: ["Par contact direct avec une personne infectée", "Par l'air", "Par les piqûres de moustiques anophèles femelles infectées","Par l'eau contaminée"],
+                        correctAnswer:"Par les piqûres de moustiques anophèles femelles infectées",
+
+                    },
+                    {
+            question:'Quels sont les symptômes les plus fréquents du paludisme simple?',
+
+            options: ['Fièvre, céphalées, frissons, vomissements', 'Diarrhée, douleurs musculaires, toux', 'Perte de poids, jaunisse, déshydratation','Douleurs thoraciques, éruptions cutanées, hypertension'],
+
+                        correctAnswer:'Fièvre, céphalées, frissons, vomissements',
+                    },
+                
+                    {
+            question:"Quelle mesure n'est pas incluse dans les stratégies de prévention du paludisme ?",
+
+            options: ['Utilisation de moustiquaires imprégnées d’insecticide', 'Utilisation de traitements antibiotiques', 'Vaccination contre le paludisme', 'Pulvérisation intradomiciliaire d’insecticides '],
+
+                        correctAnswer:'Utilisation de traitements antibiotiques',
+                    },
+                    {
+            question:'Quel est le traitement de première ligne recommandé pour les cas confirmés de paludisme au Burundi ?',
+
+            options: ['Paracétamol', 'Aspirine', 'Artéméther-Luméfantrine (AL)','Amoxicilline'],
+            correctAnswer:'Artéméther-Luméfantrine (AL)',
+
+                    },
+                    {
+            question:'Les enfants vaccinés contre le paludisme doivent-ils continuer à utiliser des moustiquaires imprégnées d’insecticide ?',
+
+            options: ['Oui, uniquement pendant la saison des pluies', 'Non, le vaccin offre une protection complète', 'Oui, chaque nuit et pendant toute la nuit','Non, seulement en cas de piqûre de moustique suspectée'],
+
+                        correctAnswer:'Oui, chaque nuit et pendant toute la nuit',
+                    }
+      ];
+
+
+  
 
     useEffect(() => {
         const checkCooldown = async () => {
@@ -98,6 +129,7 @@ const Quiz1 = () => {
         try {
             await AsyncStorage.setItem('Quiz1Answers', JSON.stringify(answersArray));
             await AsyncStorage.setItem('score1', JSON.stringify(finalScore));
+            await AsyncStorage.setItem('changes', JSON.stringify(1));
         } catch (error) {
             console.error('Échec de l\'enregistrement des réponses dans AsyncStorage :', error);
         }
@@ -120,11 +152,11 @@ const Quiz1 = () => {
                             {item.options.map((option, optIndex) => (
                                 <TouchableOpacity
                                     key={optIndex}
-                                    className={`mb-2 p-4 rounded-lg ${answers[index] === option ? 'bg-green-400' : 'bg-gray-100'}`}
+                                    className={`mb-2 p-4 rounded-lg ${answers[index] === option ? 'bg-gray-600' : 'bg-gray-100'}`}
                                     onPress={() => handleAnswer(index, option)}
                                     disabled={submitted || isCooldownActive} // Disable options during cooldown
                                 >
-                                    <Text className={`text-lg ${answers[index] === option ? 'text-black' : 'text-black'}`}>
+                                    <Text className={`text-lg ${answers[index] === option ? 'text-white' : 'text-black'}`}>
                                         {optIndex + 1}. {option}
                                     </Text>
                                 </TouchableOpacity>

@@ -122,15 +122,14 @@ const Lessons5 = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                   Il faudra, par la même occasion, rappeler aux parents/tuteurs les prochaines doses et les sensibiliser sur les autres méthodes de prévention qui accompagnent la vaccination.
-
+                   Dans le cadre d’inclure le vaccin contre le paludisme dans le programme national de vaccination, certains outils de suivi ont été mis à jour à savoir :
 
                    </Text>
                 </View>
 
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-2"
+                        className="font-sans text-black  text-xl mb-2 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
@@ -141,7 +140,7 @@ const Lessons5 = () => {
                 </View>
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-2"
+                        className="font-sans text-black  text-xl mb-2 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
@@ -152,7 +151,7 @@ const Lessons5 = () => {
                 </View>
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-2"
+                        className="font-sans text-black  text-xl mb-2 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
@@ -160,9 +159,9 @@ const Lessons5 = () => {
 
                    </Text>
                 </View>
-                <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                
                       <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-2"
+                        className="font-sans text-black  text-xl mb-2 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
@@ -171,10 +170,9 @@ const Lessons5 = () => {
 
 
                    </Text>
-                </View>
-                <View style={{ flex: 1, paddingHorizontal: 4 }}>
-                      <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-2"
+                
+                  <Text 
+                        className="font-sans text-black  text-xl mb-2 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
@@ -182,12 +180,9 @@ const Lessons5 = () => {
                    -Les formulaires pour le rapportage mensuel
 
 
-
                    </Text>
-                </View>
-                <View style={{ flex: 1, paddingHorizontal: 4 }}>
-                      <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-2"
+                <Text 
+                        className="font-sans text-black  text-xl mb-2 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
@@ -196,24 +191,22 @@ const Lessons5 = () => {
 
 
                    </Text>
-                </View>
 
             </View>
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
 
-            <TouchableOpacity
-            onPress={() =>goToPreviousSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-start'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Précédent</Text>
-            
-            </TouchableOpacity>
-
+          <TouchableOpacity
+                onPress={() =>navigation.goBack()}
+                style={{
+                  padding: 10,
+                  borderRadius: 5,
+                  alignSelf:'flex-start'
+                }}
+                className=" mx-4 bg-black/80"
+              >
+                <Text style={{ color: '#fff' }}>Retour</Text>
+                
+              </TouchableOpacity>
 
             <TouchableOpacity
             onPress={()=>goToNextSlide()}
@@ -246,7 +239,8 @@ const Lessons5 = () => {
               <TouchableOpacity className="font-sans p-1 justify-center items-center">
                 <Image 
                   source={require('../../../assets/mod3/1.png')}
-                  style={{ height: height * 0.5, width: width * 0.7, marginBottom: 40, marginTop: 20 }}
+                  
+                  className="w-80 h-96 rounded-xl"
                 />
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
@@ -265,7 +259,7 @@ const Lessons5 = () => {
               <TouchableOpacity className="font-sans p-1 justify-center items-center">
                 <Image 
                   source={require('../../../assets/mod3/2.png')}
-                  style={{ height: height * 0.75, width: width * 0.9, marginBottom: 40, marginTop: 20 }}
+                  className="w-80 h-96 rounded-xl"
                 />
 
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
@@ -275,7 +269,7 @@ const Lessons5 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
                    
-                   fiche de pointage
+                   registre de pointage
                    </Text>
                    </View>
                 
@@ -284,7 +278,7 @@ const Lessons5 = () => {
               <TouchableOpacity className="font-sans p-1 justify-center items-center">
                 <Image 
                   source={require('../../../assets/mod3/3.png')}
-                  style={{ height: height * 0.5, width: width * 0.9, marginBottom: 40, marginTop: 20 }}
+                  className="w-80 h-96 rounded-xl"
                 />
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
@@ -371,8 +365,7 @@ const Lessons5 = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                   Il faudra, par la même occasion, rappeler aux parents/tuteurs les prochaines doses et les sensibiliser sur les autres méthodes de prévention qui accompagnent la vaccination.
-
+                   Comment devez-vous noter la vaccination effectuée?
 
                    </Text>
                    </View>
@@ -414,7 +407,7 @@ const Lessons5 = () => {
           <>
                  <View className="px-2 mb-2">
                     
-                  <Text className="font-sans text-2xl text-blue-800 mt-4 mx-4">Comment devez-vous noter la vaccination effectuée?
+                  <Text className="font-sans text-center text-2xl text-blue-800 mt-4 mx-4">Comment devez-vous noter la vaccination effectuée?
 
 
                   </Text>
@@ -423,7 +416,7 @@ const Lessons5 = () => {
                     <TouchableOpacity className="font-sans justify-center items-center" >
                      
                      <Image source={require('../../../assets/mod3/6.png')}
-                              className="mx-4 mt-4 w-72 h-64 "/>
+                              className="mx-4 mt-4 w-96 h-64 rounded-xl"/>
                     </TouchableOpacity>
 
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>

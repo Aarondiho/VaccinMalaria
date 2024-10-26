@@ -91,7 +91,7 @@ const Lessons4 = () => {
 
         <TouchableOpacity className="font-sansjustify-end" onPress={() => {}}>
         <Text className="font-sans text-sm font-medium  text-green-800 flex-end">
-        {screen4} / 5 </Text>
+        {screen4} / 8 </Text>
         </TouchableOpacity>
       </View>
 
@@ -114,13 +114,56 @@ const Lessons4 = () => {
               
             </View>
 
-            <View className="mb-10" >
+            <View className="flex-row items-center mt-5 justify-center mb-4 bg-blue-900 h-28 rounded-xl" >
+                  <Text 
+                        className="font-sans text-white text-center p-7 text-xl "
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >
+                    Avant la Vaccination des enfants
+
+                  </Text>
+            </View>
+
+            <View className="mb-3" >
                 <TouchableOpacity className="font-sans p-1 justify-center items-center" >
-                <Image source={require('../../../assets/mod2/5.png')}
-                          className="mx-4  mt-4 " 
-                          style={{height:height*0.32, width: width*0.95}} />
+                <Image source={require('../../../assets/mod2/13.png')}
+                          className="h-10 w-12" 
+                           />
                 </TouchableOpacity>
             </View>
+            <View className="flex-row items-center justify-center mb-4 bg-purple-500 h-28 rounded-xl" >
+                  <Text 
+                        className="font-sans text-white text-center p-7 text-xl "
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >
+                    Lors de la séance de vaccination
+
+
+
+                  </Text>
+            </View>
+
+            <View className="mb-3" >
+                <TouchableOpacity className="font-sans p-1 justify-center items-center" >
+                <Image source={require('../../../assets/mod2/13.png')}
+                          className="h-10 w-12" 
+                           />
+                </TouchableOpacity>
+            </View>
+            <View className="flex-row items-center justify-center mb-10 bg-blue-400 h-28 rounded-xl" >
+                  <Text 
+                        className="font-sans text-white text-center p-7 text-xl "
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >
+                    Après que les enfants aient quitté la séance de vaccination
+
+                  </Text>
+            </View>
+
+            
 
 
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between',  }} className="mb-12">
@@ -173,17 +216,71 @@ const Lessons4 = () => {
               <TouchableOpacity className="font-sans p-1 justify-center items-center">
                 <Image 
                   source={require('../../../assets/mod2/6.png')}
-                  style={{ height: height * 0.4, width: width * 0.95, marginBottom: 40, marginTop: 20 }}
+                  className=" w-80 h-56 mt-6"
                 />
               </TouchableOpacity>
 
               <View style={{ flex: 1, paddingHorizontal: 4 }}>
-              <TouchableOpacity className="font-sans p-1 justify-center items-center">
-                <Image 
-                  source={require('../../../assets/mod2/12.png')}
-                  style={{ height: height * 0.43, width: width * 0.95, marginBottom: 40, marginTop: 20 }}
-                />
-              </TouchableOpacity>
+                      
+                <View className="flex-row items-center mb-4">
+                  <Text className="bg-orange-400 text-white rounded-full w-8 h-8 text-center leading-8 mr-2">1</Text>
+                  <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-4"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >Sortir les deux flacons accolés dans les réfrigérateurs.</Text>
+                </View>
+
+                <View className="flex-row items-center mb-4">
+                  <Text className="bg-blue-500 text-white rounded-full w-8 h-8 text-center leading-8 mr-2">2</Text>
+                  <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-4"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >Vérifier la date de péremption et l'état de la pastille de controle du vaccin (PCV) sur le flacon à anneau vert.</Text>
+                </View>
+
+                <View className="flex-row items-center mb-4">
+                  <Text className="bg-gray-700 text-white rounded-full w-8 h-8 text-center leading-8 mr-2">3</Text>
+                  <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-4"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >Vérifier que le diluant du flacon à anneau vert est clair, incolore ou légèrement brun et sans particules ni décoloration.</Text>
+                </View>
+
+                <View className="flex-row items-center mb-4">
+                  <Text className="bg-yellow-400 text-white rounded-full w-8 h-8 text-center leading-8 mr-2">4</Text>
+                  <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-4"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >Signalons qu'il faudra jeter les deux flacons si la PVC indique une 
+                    exposition à la chaleur, la date de péremption est dépassé, une décoloration ou des particules observées.
+                  </Text>
+                </View>
+
+                <View className="flex-row items-center mb-4">
+                  <Text className="bg-red-700 text-white rounded-full w-8 h-8 text-center leading-8 mr-2">5</Text>
+                  <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-4"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >Retirer le clip en plastique</Text>
+                </View>
+
+                <View className="flex-row items-center mb-4">
+                  <Text className="bg-green-900 text-white rounded-full w-8 h-8 text-center leading-8 mr-2">6</Text>
+                  <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-4"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >
+                    Rassembler le matériel de vaccination et les outils de collecte des données
+                     et de surveillance pour la séance de vaccin.
+
+                  </Text>
+                </View>
               </View>
             </View>
 
@@ -231,13 +328,94 @@ const Lessons4 = () => {
                   </Text>
                    
 
-                    <TouchableOpacity className="font-sans justify-center items-center" >
-                     
-                     <Image source={require('../../../assets/mod2/7.png')}
-                              className="mx-4 mt-4"
-                              style={{ height: height * 0.39, width: width * 0.98, marginBottom: 40, marginTop: 20 }}
-                />
-                    </TouchableOpacity>
+                  <View className="flex-1 px-4 py-5">
+                    <Text className="text-xl font-bold text-center text-purple-900 mb-6">Pastilles de contrôle des vaccins</Text>
+
+                    <View className=" justify-between items-center mb-4">
+                      <Text className="text-white bg-blue-500 text-base font-bold py-2 px-4 text-center rounded-lg">USAGE</Text>
+                    </View>
+
+                    <View className="flex-row justify-between mb-4">
+
+                      <View className="flex-1  p-1 bg-white rounded-l-lg">
+                      <Image source={require('../../../assets/mod2/square1.png')}
+                              className="mx-4 w-28 h-24  "/>
+                    
+                      </View>
+
+                      <View className="flex-1 mr-2 p-3 bg-white rounded-r-lg">
+                        <Text className="text-base font-semibold mb-2">Le carré intérieur est plus clair que le cercle extérieur</Text>
+                        
+                      </View>
+
+                    </View>
+
+                    <View className="flex-1 ml-2 p-3 mb-5 bg-gray-100 rounded-lg">
+                    <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-4"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >  Au début la couleur du carré intérieur de la PCV est d'une teinte plus clair que celle du cercle extérieur. Avec le temps et/ou l'exposition à la chaleur elle se met à s'assombrir.
+                        </Text>
+                   </View>
+
+                    
+
+                    <View className="flex-row justify-center items-center mb-4">
+                      <Text className="text-white bg-gray-800 text-base font-bold py-2 px-6 rounded-lg">POINT DE REJET</Text>
+                    </View>
+
+                    
+
+                    <View className=" justify-between items-center mb-4">
+                      <Text className="text-white bg-red-500 text-base font-bold py-2 px-4 text-center rounded-lg">HORS D'USAGE</Text>
+                    </View>
+
+                    <View className="flex-row justify-between mb-4">
+
+                      <View className="flex-1  p-1 bg-white rounded-l-lg">
+                      <Image source={require('../../../assets/mod2/square22.png')}
+                              className="mx-4 w-28 h-24  "/>
+                    
+                      </View>
+
+                      <View className="flex-1 mr-2 p-3 bg-white rounded-r-lg">
+                      <Text className="text-base font-semibold mb-2">Le carré intérieur est la même couleur que le cercle extérieur</Text>
+                        
+                      </View>
+
+                    </View>
+                    <View className="flex-row justify-between mb-4">
+
+                      <View className="flex-1  p-1 bg-white rounded-l-lg">
+                      <Image source={require('../../../assets/mod2/square33.png')}
+                              className="mx-4 w-28 h-24  "/>
+                    
+                      </View>
+
+                      <View className="flex-1 mr-2 p-3 bg-white rounded-r-lg">
+                      <Text className="text-base font-semibold mb-2">Le carré intérieur est plus sombre que le cercle extérieur</Text>
+                        
+                      </View>
+
+                    </View>
+
+                   
+
+                    <View className="flex-1 ml-2 p-3 mb-5 bg-gray-100 rounded-lg">
+                    <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-4"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >
+                          Une fois qu'un vaccin atteint ou dépasse le point de rejet, le carré intérieur devient la même couleur ou plus sombre que le cercle extérieur.
+                        </Text>
+                        <Text className="text-sm text-red-600  mt-4 font-sans text-xl text-center">Avertir votre superviseur</Text>
+                      
+                   </View>
+
+                   
+                  </View>
 
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
@@ -245,22 +423,21 @@ const Lessons4 = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                      Il est très important de s’assurer de la qualité du vaccin Mosquirix avant de l’administrer à un enfant. La vérification se fait au niveau de la date de péremption et de la pastille de contrôle sur le flacon à anneau vert. Celle du flacon en bon état est présentée sous forme d’un carré à l’intérieur d’un cercle ; et le carré a une teinte plus claire que le cercle. Plus la pastille sera exposée à la lumière/chaleur plus le carré intérieur sera de la même couleur voire même plus sombre que le cercle extérieur, ce qui vous démontrera que ce flacon est hors usage.
-
+                      Il est très important de s’assurer de la qualité du vaccin Mosquirix avant de l’administrer à un enfant. La vérification se fait au niveau de la date de péremption et de la pastille de contrôle sur le flacon à anneau vert. Celle du flacon en bon état est présentée sous forme d’un carré à l’intérieur d’un cercle ; et le carré a une teinte plus claire que le cercle.
+                      
                     </Text>
 
-               
-                  <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                    <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-2"
+                        className="font-sans text-black  text-xl mb-4 mt-5"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                   Il faudra, par la même occasion, rappeler aux parents/tuteurs les prochaines doses et les sensibiliser sur les autres méthodes de prévention qui accompagnent la vaccination.
+                      Plus la pastille sera exposée à la lumière/chaleur plus le carré intérieur sera de la même couleur voire même plus sombre que le cercle extérieur, ce qui vous démontrera que ce flacon est hors usage.
 
-
-                   </Text>
-                   </View>
+                    </Text>
+                    </View>
+                  
                 </View>
             </View>
             <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
@@ -299,16 +476,21 @@ const Lessons4 = () => {
           <>
                  <View className="px-2 mb-2">
                     
-                  <Text className="font-sans text-2xl text-blue-800 mt-4 mx-4">Pendant la séance de vaccination (avec le vaccin contre le paludisme)
+                  <Text className="font-sans text-2xl text-center text-blue-800 mt-4 mx-4">Pendant la séance de vaccination (avec le vaccin contre le paludisme)
 
                   </Text>
-                   
 
-                    <TouchableOpacity className="font-sans justify-center items-center" >
+                  <View className="flex-row items-center mb-4">
+                  <Text className="bg-red-700 text-white rounded-full w-8 h-8 text-center leading-8 mr-2">1</Text>
+                  <TouchableOpacity className="font-sans justify-center items-center" >
                      
                      <Image source={require('../../../assets/mod2/8.png')}
                               className="mx-4 mt-4 w-72 h-52 "/>
                     </TouchableOpacity>
+                </View>
+                   
+
+                    
 
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
@@ -334,22 +516,89 @@ const Lessons4 = () => {
                     </Text>
 
                
-                  <View style={{ flex: 1, paddingHorizontal: 4 }}>
-                      <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-2"
-                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      >
-                   Cela dit, la malnutrition, la séropositivité ou une infection mineur tel qu’un rhume ne devraient pas être considérées comme contre-indications à la vaccination contre le paludisme.
-
-                   </Text>
-                   </View>
+                  
                 </View>
             </View>
            
+            <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
+
+<TouchableOpacity
+  onPress={() =>goToPreviousSlide()}
+  style={{
+    padding: 10,
+    borderRadius: 5,
+    alignSelf:'flex-start'
+  }}
+  className=" mx-4 bg-black/80"
+>
+  <Text style={{ color: '#fff' }}>Précédent</Text>
+  
+</TouchableOpacity>
+
+
+<TouchableOpacity
+  onPress={()=>goToNextSlide()}
+  style={{
+    padding: 10,
+    borderRadius: 5,
+    alignSelf:'flex-end'
+  }}
+  className=" mx-4 bg-black/80"
+>
+  <Text style={{ color: '#fff' }}>Suivant</Text>
+        
+  
+</TouchableOpacity>
+
+</View>
+
+          </>
+        :screen4 == 5?
+        <>
+               <View className="px-2 mb-2 mt-5">
+
+               <View className="flex-row items-center mb-4">
+                  <Text className="bg-red-700 text-white rounded-full w-8 h-8 text-center leading-8 mr-2">2</Text>
+                  <TouchableOpacity className="font-sans justify-center items-center" >
+                   
+                   <Image source={require('../../../assets/mod2/14.png')}
+                            className="mx-4 mt-4 w-72 h-52 "/>
+                  </TouchableOpacity>
+                </View>
+
+                 
+
+                  <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                    <Text 
+                      className="font-sans text-black  text-2xl mb-4 mt-5 text-purple-900"
+                      numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                      ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                    >
+
+                      Préparer le vaccin: 
+
+                  
+
+                  </Text>
+
+                  <Text 
+                      className="font-sans text-black  text-xl mb-4 mt-2"
+                      numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                      ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                    >
+                   
+                   Puiser le contenu du flacon à anneau vert (AS01) et le verser dans le flacon à anneau rouge (RTS,S), en utilisant une seringue de 2 ml. 
+                  Un flacon reconstitué contient 1 ml (2 doses) de vaccin injectable
+
+                  </Text>
+
+             
+                
+              </View>
+          </View>
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
 
-            <TouchableOpacity
+              <TouchableOpacity
                 onPress={() =>goToPreviousSlide()}
                 style={{
                   padding: 10,
@@ -364,7 +613,7 @@ const Lessons4 = () => {
 
 
               <TouchableOpacity
-                onPress={() =>navigation.navigate(ROUTES.QUIZ4)}
+                onPress={()=>goToNextSlide()}
                 style={{
                   padding: 10,
                   borderRadius: 5,
@@ -372,20 +621,248 @@ const Lessons4 = () => {
                 }}
                 className=" mx-4 bg-black/80"
               >
-                <Text style={{ color: '#fff' }}>Evaluation</Text>
+                <Text style={{ color: '#fff' }}>Suivant</Text>
                       
                 
               </TouchableOpacity>
 
-  
- 
+              </View>
+         
+        
+
+        </>
+
+        :screen4 == 6?
+        <>
+              <View className="px-2 mb-2">
+                  
+              <View className="flex-row items-center mb-4">
+                  <Text className="bg-red-700 text-white rounded-full w-8 h-8 text-center leading-8 mr-2">3</Text>
+                  <TouchableOpacity className="font-sans justify-center items-center" >
+                     
+                     <Image source={require('../../../assets/mod2/15.png')}
+                              className="mx-4 mt-4 w-72 h-52 "/>
+                    </TouchableOpacity>
+                </View>
+
+                  <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                    <Text 
+                      className="font-sans text-black  text-base mt-5"
+                      numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                      ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                    >
+
+                  <Text className="text-blue-900">1. Voie d’injection:</Text>  Injection intramusculaire
+
+                  </Text>
+
+                  <Text 
+                      className="font-sans text-black  text-base  mt-2"
+                      numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                      ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                    >
+                  
+                  <Text className="text-blue-900">2. Site d’injection: </Text>  au niveau du deltoïde
+
+
+
+                  </Text>
+
+                  <Text 
+                      className="font-sans text-black  text-base  mt-2"
+                      numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                      ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                    >
+
+                  <Text className="text-blue-900">3. Angle d’injection :</Text> – 90 degrés
+
+
+                  </Text>
+
+                  <Text 
+                      className="font-sans text-black  text-base mb-10 mt-2"
+                      numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                      ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                    >
+                  
+                  <Text className="text-blue-900">4. Vacciner l’enfant avec une dose de :</Text>  0,5 
+
+
+
+
+                  </Text>
+
+            
+                
+              </View>
+          </View>
+        
+          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
+
+        <TouchableOpacity
+        onPress={() =>goToPreviousSlide()}
+        style={{
+        padding: 10,
+        borderRadius: 5,
+        alignSelf:'flex-start'
+        }}
+        className=" mx-4 bg-black/80"
+        >
+        <Text style={{ color: '#fff' }}>Précédent</Text>
+
+        </TouchableOpacity>
+
+
+        <TouchableOpacity
+        onPress={()=>goToNextSlide()}
+        style={{
+        padding: 10,
+        borderRadius: 5,
+        alignSelf:'flex-end'
+        }}
+        className=" mx-4 bg-black/80"
+        >
+        <Text style={{ color: '#fff' }}>Suivant</Text>
+
+
+        </TouchableOpacity>
+
+        </View>
+
+        </>
+
+        :screen4 == 7?
+          <>
+            <View className="px-2 mb-2">
+                
+            <View className="flex-row items-center mb-4">
+                <Text className="bg-red-700 text-white rounded-full w-8 h-8 text-center leading-8 mr-2">4</Text>
+                <TouchableOpacity className="font-sans justify-center items-center" >
+                  
+                  <Image source={require('../../../assets/mod2/16.png')}
+                            className="mx-4 mt-4 w-72 h-52 "/>
+                  </TouchableOpacity>
+              </View>
+
+                <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                  <Text 
+                    className="font-sans text-black  text-xl mt-5"
+                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                  >
+
+                <Text className="text-blue-900">1. </Text> Fixer la date du prochain rendez-vous pour la dose
+
+
+                </Text>
+
+                <Text 
+                    className="font-sans text-black  text-xl  mt-4"
+                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                  >
+                
+                <Text className="text-blue-900">2. </Text>Rappeler au parent de revenir avec l’enfant pour les prochaines doses
+
+
+
+
+                </Text>
+
+                <Text 
+                    className="font-sans text-black  text-xl  mt-4"
+                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                  >
+
+                <Text className="text-blue-900">3.</Text>Donner au parent le CSME mis à jour et expliquer les effets secondaires possibles
+
+
+
+                </Text>
+
+              
+              
+                </View>
+
+                <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                  <Text 
+                    className="font-sans font-bold text-black  text-xl mt-5 text-red-800"
+                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                  >
+
+                N.B : 
+
+
+                </Text>
+
+                <Text 
+                    className="font-sans text-black  text-xl mt-5"
+                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                  >
+
+                <Text className="text-blue-900 underlined">1. </Text>Pendant la séance : Mettre les flacons ouverts dans le porte-vaccins et NE surtout PAS les remettre au réfrigérateur.
+
+
+                </Text>
+
+                <Text 
+                    className="font-sans text-black  text-xl mb-10 mt-4"
+                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                  >
+                
+                <Text className="text-blue-900">2. </Text>Jeter tout flacon ouvert contenant des doses non utilisées 6 heures après l’ouverture ou à la fin de la séance de vaccination.
+
+
+
+
+
+                </Text>
+
+                
+              
+              
+                </View>
+            </View>
+            <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
+
+                <TouchableOpacity
+                    onPress={() =>goToPreviousSlide()}
+                    style={{
+                      padding: 10,
+                      borderRadius: 5,
+                      alignSelf:'flex-start'
+                    }}
+                    className=" mx-4 bg-black/80"
+                  >
+                    <Text style={{ color: '#fff' }}>Précédent</Text>
+                    
+                  </TouchableOpacity>
+
+
+                  <TouchableOpacity
+                    onPress={() =>navigation.navigate(ROUTES.QUIZ4)}
+                    style={{
+                      padding: 10,
+                      borderRadius: 5,
+                      alignSelf:'flex-end'
+                    }}
+                    className=" mx-4 bg-black/80"
+                  >
+                    <Text style={{ color: '#fff' }}>Evaluation</Text>
+                          
+                    
+                  </TouchableOpacity>
+
+
+
 
             </View>
 
           </>
-        
-
-
         
         : <Loader/>
 

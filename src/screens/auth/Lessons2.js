@@ -115,19 +115,19 @@ const Lessons = () => {
         <>
                   
         <View>
-          <Text className="font-sans text-xl text-center text-blue-800 mt-5 mx-4">2.1. Caractéristiques et conditions de stockage du vaccin
+          <Text className="font-sans text-xl text-center text-blue-800 mt-5 mx-4">Caractéristiques et conditions de stockage du vaccin contre le paludisme
           </Text>
           
         </View>
 
         <View className="mb-10" >
             <TouchableOpacity className="font-sans p-1 justify-center mt-4 items-center" >
-            <Image source={require('../../../assets/mod1/1.png')}
-                      className="mx-4  w-32 h-44 mt-4"/>
+            <Image source={require('../../../assets/mod1/14.png')}
+                      className="mx-4  w-72 h-44 mt-4 rounded-xl"/>
             </TouchableOpacity>
             <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-2"
+                        className="font-sans text-black  text-xl mb-4 mt-4"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
@@ -187,7 +187,7 @@ const Lessons = () => {
                         className="font-sans text-black  text-xl mb-4 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      > Le vaccin est fourni sous forme de deux flacons : un contenant la poudre lyophilisée du vaccin et l'autre contenant un diluant qui pour reconstituer le vaccin.
+                      > Le vaccin est fourni sous forme de deux flacons : un contenant la poudre lyophilisée du vaccin et l'autre contenant un diluant pour reconstituer le vaccin.
                     Les deux flacons sont collés ensemble pour diminuer le risque d'erreur lors de la préparation.
                   
           </Text>
@@ -293,13 +293,13 @@ const Lessons = () => {
     :screen2 == 4?
     <>
       <Text className="font-sans text-xl text-blue-800  text-center mt-5 mx-4">
-                  1.2. Conservation du vaccin contre le paludisme
+                  2.1 Conservation du vaccin contre le paludisme
                 </Text>
 
       <View className="px-2 mb-10 mt-4">
         <TouchableOpacity className="font-sans p-1 justify-center items-center" >
           <Image source={require('../../../assets/mod1/11.png')}
-                            className="mx-4  w-16 h-52 text-center"/>
+                            className="mx-4  w-24 h-52 text-center"/>
         </TouchableOpacity>
           
         <View style={{ flex: 1, paddingHorizontal: 4 }}>
@@ -308,7 +308,18 @@ const Lessons = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-          Il est crucial de maintenir le vaccin Mosquirix dans des conditions appropriées pour garantir son efficacité et sa sécurité. Celui-ci doit être stocké au réfrigérateur à une température comprise entre 2 °C et 8 °C. Il est important de ne pas séparer les deux flacons qui sont collés ensemble durant le stockage et le transport. Par ailleurs, le vaccin doit être protégé de la lumière et du gel.
+          Il est crucial de maintenir le vaccin Mosquirix dans des conditions appropriées pour garantir son efficacité et sa sécurité. Celui-ci doit être stocké au réfrigérateur à une température comprise entre 2 °C et 8 °C. 
+          
+ 
+        </Text>
+        </View>
+        <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                      <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-2"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >
+          Il est important de ne pas séparer les deux flacons qui sont collés ensemble durant le stockage et le transport. Par ailleurs, le vaccin doit être protégé de la lumière et du gel.
 
  
         </Text>
@@ -352,7 +363,7 @@ const Lessons = () => {
     <>
 
                 <Text className="font-sans text-xl text-blue-800  text-center mt-5 mx-4">
-                1.3. Comment range-t-on le vaccin dans le réfrigérateur ?
+                2.2 Comment range-t-on le vaccin dans le réfrigérateur ?
                 </Text>
 
         <View className="px-2 mb-10">
@@ -417,13 +428,14 @@ const Lessons = () => {
 
 
 
-                <Text className="font-sans text-xl text-blue-800 mt-4 mx-4 text-center">1.4. Conditionnement du vaccin contre le paludisme</Text>
+                <Text className="font-sans text-xl text-blue-800 mt-4 mx-4 text-center">2.3 Conditionnement du vaccin contre le paludisme</Text>
                 
 
                 <View className="px-2 mb-10">
           
                 <TouchableOpacity className="font-sans p-1 mt-8 justify-center items-center" >
-           
+
+                <Text className="text-3xl text-red-500 mb-5 "> !! ATTENTION</Text>
 
                   <Image source={require('../../../assets/mod1/13.png')}
                             className="mx-4  h-24 mb-10" style={{width:width*0.92}} />
@@ -480,8 +492,6 @@ const Lessons = () => {
 
     </>
     : <Loader/>
-
-        
 
         
 }

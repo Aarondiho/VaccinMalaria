@@ -111,7 +111,7 @@ const Lessons6 = () => {
            
             <View className="px-2 mt-4 mb-10">
 
-              <Text className="font-sans text-xl text-blue-800  mx-4 text-center"> 5.1 Où enregistrer la vaccination contre le paludisme ?
+              <Text className="font-sans text-xl text-blue-800  mx-4 text-center">
               
               6.1 Qu’est-ce qu’une MAPI? 
 
@@ -148,17 +148,17 @@ const Lessons6 = () => {
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
 
             <TouchableOpacity
-            onPress={() =>goToPreviousSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-start'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Précédent</Text>
-            
-            </TouchableOpacity>
+                onPress={() =>navigation.goBack()}
+                style={{
+                  padding: 10,
+                  borderRadius: 5,
+                  alignSelf:'flex-start'
+                }}
+                className=" mx-4 bg-black/80"
+              >
+                <Text style={{ color: '#fff' }}>Retour</Text>
+                
+              </TouchableOpacity>
 
 
             <TouchableOpacity

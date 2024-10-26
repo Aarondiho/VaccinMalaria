@@ -18,13 +18,15 @@ const Login = () => {
 
   //user info
 
-  const [Name, setName] = useState("");
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [BPS, setBPS] = useState("");
   const [BDS, setBDS] = useState("");
   const [sex, setSex] = useState('Masculin');
   const [typeOffice, setTypeOffice] = useState('CDS');
   const [place, setPlace] = useState('');
+  const [changes, setChanges] = useState('');
+  
 
   //evaluation info
 
@@ -73,13 +75,15 @@ const Login = () => {
         await AsyncStorage.setItem("screen2",'1')*/
         
         //user Info 
-        const storedName = await AsyncStorage.getItem("Name");
+        const storedName = await AsyncStorage.getItem("name");
         const storedPhone = await AsyncStorage.getItem("phone");
         const storedSex = await AsyncStorage.getItem("sex");
         const storedBPS = await AsyncStorage.getItem("BPS");
         const storedBDS = await AsyncStorage.getItem("BDS");
         const storedTypeOffice = await AsyncStorage.getItem("typeOffice");
         const storedPlace = await AsyncStorage.getItem("place");
+        
+        const storedChanges = await AsyncStorage.getItem("changes");
 
                 //score
                 const storedScore1 = await AsyncStorage.getItem("score1");
@@ -97,13 +101,14 @@ const Login = () => {
 
         //user Info
 
-        setName(storedName || 'Aaron Ndihokubwayo');
-        setPhone(storedPhone || '61 552 799');
+        setName(storedName || '');
+        setPhone(storedPhone || '');
         setSex(storedSex || 'Masculin');
-        setBPS(storedBPS || 'Bubanza');
-        setBDS(storedBDS || 'Mpanda');
+        setBPS(storedBPS || '');
+        setBDS(storedBDS || '');
         setTypeOffice(storedTypeOffice || 'CDS');
-        setPlace(storedPlace || 'Murengeza');
+        setPlace(storedPlace || '');
+        console.log(storedChanges || '');
 
         //score Info
 
@@ -134,7 +139,7 @@ const Login = () => {
 
   const handleSignUp = async () =>{
 
-    if(Name == ""){
+    if(name == ""){
 
       Alert.alert(" Votre Prénom SVP!");
 
@@ -172,12 +177,13 @@ const Login = () => {
             ['isOnline', JSON.stringify(1)],
             ['isLoggedIn', JSON.stringify(1)],
             ['sex', sex],
-            ['Name', Name],
+            ['name', name],
             ['phone', phone],
             ['BPS', BPS],
             ['BDS', BDS],
             ['typeOffice', typeOffice],
             ['place', place],
+            ['changes', JSON.stringify(1)],
           ];
           AsyncStorage.multiSet(dataToStore);
         navigation.replace(ROUTES.LOGIN);
@@ -200,6 +206,12 @@ const Login = () => {
 
   }
 
+  const points = async() =>{
+
+    navigation.navigate(ROUTES.POINTS)
+
+  }
+
 
   return (<>
     {!showFirst? <Loader/> 
@@ -209,17 +221,25 @@ const Login = () => {
         behavior={ios ? 'padding' : 'height'}
         style={{ flex: 1 }}
         >
-       <View className="bg-bg-one font-sans flex-1 justify-center items-center ">
+       <View className="bg-bg-one font-sans  justify-center   px-4 ">
       
       
          {/* Header */}
-         <View className="flex-row  justify-between rounded-lg items-center  mt-10">
-          <Text className="text-xl font-semibold text-gray-600">Vaccin Malaria</Text>
-          
-        </View>
+        
+
+        <View className=" font-sans mt-10 flex-row justify-between items-center">
+        
+        <IconButton icon='arrow-left' size={20} iconColor="black"    style={{alignSelf:'flex-start',height:20}} onPress={profile}/> 
+        <Text className="text-xl font-semibold text-gray-600">Vaccin Malaria</Text>
+         
+        <TouchableOpacity className="font-sansjustify-end" onPress={() => {}}>
+        <Text className="font-sans text-sm font-medium  text-green-800 flex-end">
+        </Text>
+        </TouchableOpacity>
+      </View>
 
   
-        <ScrollView className="" showsVerticalScrollIndicator={false}>
+        <ScrollView className="px-2 " showsVerticalScrollIndicator={false}>
         
           {/* Profile Info */}
 
@@ -237,20 +257,20 @@ const Login = () => {
               className="w-24 h-24 rounded-full -mt-20 bg-red-900 "
               
             />
-            <Text className="font-sans mt-4 text-2xl font-semibold text-white">{Name}</Text>
+            <Text className="font-sans mt-4 text-2xl font-semibold text-white">{name}</Text>
 
 
       {/* Follow and Message Buttons */}
             <View className="flex-row justify-between items-center mt-4">
                 
               
-                <TouchableOpacity className=" bg-white px-4 py-2 rounded-full mr-4" onPress={profile}>
-                  <Text className="text-black  font-semibold">Evaluation :  {averageNote}%</Text>
+                <TouchableOpacity className=" bg-white px-4 py-2 rounded-full mr-4" onPress={points}>
+                  <Text className="text-black  font-semibold">Points :  {averageNote}%</Text>
                 </TouchableOpacity>
 
                 
                 
-                <TouchableOpacity className="bg-white px-4 py-2 rounded-full mr-4" onPress={profile}>
+                <TouchableOpacity className="bg-white px-4 py-2 rounded-full " onPress={profile}>
                   <Text className="text-black font-semibold">Modifier Profile</Text>
                 </TouchableOpacity>
             </View>
@@ -260,8 +280,6 @@ const Login = () => {
           </LinearGradient>
 
           <View className="font-sans w-full border-2 border-grey"></View>
-
-         
 
 
             <View >
@@ -277,8 +295,7 @@ const Login = () => {
                   </TouchableOpacity>
                 </View>
 
-
-                <View className="p-4 mt-4 rounded-2xl bg-white">
+                <View className="p-4 mt-4 rounded-2xl bg-white mb-20 items-center">
 
                 <View >
 
@@ -513,11 +530,11 @@ const Login = () => {
                   
                 
 
-                  <View className="font-sans mt-12 flex-1 justify-center items-center flex-row">
+                  <View className="flex-row mt-4 font-sans justify-center items-center ">
                     {/* First Image */}
                     <Image 
                       source={require('../../../assets/mod1/Logo_1.png')} 
-                      className="w-16 h-16" 
+                      className="w-20 h-20" 
                     />
 
                     {/* Vertical Line */}
@@ -525,18 +542,20 @@ const Login = () => {
 
                     {/* Second Image */}
                     <Image 
-                      source={require('../../../assets/Gavi_Logo_A.png')} 
-                      className="w-28 h-10" 
+                      source={require('../../../assets/gavi.png')} 
+                      className="w-28 h-16 " 
                     />
                   </View>
 
                   </View>
               
-                <View className="mb-20"></View>
+               
                 </View>
 
 
-            </View> 
+            </View>
+
+            <View className="mb-20"></View> 
 
          
         </ScrollView>
@@ -556,20 +575,20 @@ const Login = () => {
         >
        <ScrollView contentContainerStyle={{ flexGrow: 1 }} >
 
-       <View className="font-sans flex-1 justify-center mt-16 mb-4 items-center flex-row">
+       <View className="font-sans mt-12 mb-2 flex-1 justify-center items-center flex-row">
                 {/* First Image */}
                 <Image 
                   source={require('../../../assets/mod1/Logo_1.png')} 
-                  className="w-16 h-16" 
+                  className="w-20 h-20" 
                 />
 
                 {/* Vertical Line */}
-                <View className="h-12 w-[5px] bg-gray-600 mx-2" />
+                <View className="h-12 w-[5px] bg-gray-400 mx-2" />
 
                 {/* Second Image */}
                 <Image 
-                  source={require('../../../assets/Gavi_Logo_B.png')} 
-                  className="w-24 h-9" 
+                  source={require('../../../assets/gavi.png')} 
+                  className="w-28 h-12 rounded-xl" 
                 />
               </View>
 
@@ -628,7 +647,7 @@ const Login = () => {
                <TextInput
                  className="flex-1 py-2 text-black"
                  placeholder="Irakoze Jean Marie"
-                 value={Name}
+                 value={name}
                  onChangeText={setName}
                />
                <IconButton icon="check" color="#4A0E73" />

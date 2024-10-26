@@ -20,6 +20,7 @@ export default {
     QUIZ8: 'Quiz8',
     POLICY:'PrivacyPolicy',
     TERMS:'TermsAndConditions',
+    POINTS:'Points',
 
 
   };

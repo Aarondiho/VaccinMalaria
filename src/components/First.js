@@ -24,6 +24,8 @@ const First = () => {
       ['score7', JSON.stringify(0)],
       ['score8', JSON.stringify(0)],
       ['first', JSON.stringify(1)],
+      ['id', JSON.stringify(0)],
+      ['changes', JSON.stringify(0)],
     ];
     AsyncStorage.multiSet(dataToStore);
 
@@ -49,7 +51,7 @@ const First = () => {
                 {/* First Image */}
                 <Image 
                   source={require('../../assets/mod1/Logo_1.png')} 
-                  className="w-16 h-16" 
+                  className="w-20 h-20" 
                 />
 
                 {/* Vertical Line */}
@@ -57,11 +59,11 @@ const First = () => {
 
                 {/* Second Image */}
                 <Image 
-                  source={require('../../assets/Gavi_Logo_B.png')} 
-                  className="w-28 h-10" 
+                  source={require('../../assets/gavi.png')} 
+                  className="w-28 h-12 rounded-xl" 
                 />
               </View>
-          <Text className="text-white text-lg font-bold text-center mb-4 mt-4">VACCINATION CONTRE LE PALUDISME</Text>
+          <Text className="text-white text-lg font-bold text-center mb-4 mt-6">VACCINATION CONTRE LE PALUDISME</Text>
         
         <Image
           source={require('../../assets/doctor.png')} // Replace with your image URL
@@ -73,16 +75,16 @@ const First = () => {
                 </Text>
                 
         
-        <View className="mb-48"></View>
+        <View className="mb-10"></View>
 
         <TouchableOpacity
-                  style={styles.startButton}
+                 className="flex-row justify-center items-center text-center"
                   onPress={toggleRegister}
                 >
-                  <Text className="bg-white text-xl text-blue-900  p-2 rounded-xl">Commencer</Text>
+                  <Text className="bg-white text-center w-36 text-lg text-blue-900  p-2 rounded-xl">Commencer</Text>
                 </TouchableOpacity>
         </View>
-        <View className="mb-40"></View>
+        <View className="mb-48"></View>
           </ScrollView>
     </LinearGradient>
   );
@@ -112,14 +114,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 24,
   },
-  startButton: {
-    position: 'absolute',
-    bottom: 120,
-    right: 10,
-    width: 150,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
+ 
   startButtonText: {
     color: 'black',
     fontSize: 20,

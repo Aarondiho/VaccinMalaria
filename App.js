@@ -13,59 +13,6 @@ import NetInfo from '@react-native-community/netinfo';
 // Constants
 const BACKGROUND_FETCH_TASK = 'background-fetch-task';
 
-// Define the background fetch task outside the component
-TaskManager.defineTask(BACKGROUND_FETCH_TASK, async () => {
-  try {
-    console.log('Background fetch initiated');
-    const isConnected = await checkInternetConnection();
-    if (isConnected) {
-      await sendDataToAPI();
-    }
-    return BackgroundFetch.BackgroundFetchResult.NewData;
-  } catch (error) {
-    console.log('Error in background task:', error);
-    return BackgroundFetch.BackgroundFetchResult.Failed;
-  }
-});
-
-// Function to check internet connection
-const checkInternetConnection = async () => {
-  const state = await NetInfo.fetch();
-  return state.isConnected;
-};
-
-// Function to send data to the API
-const sendDataToAPI = async () => {
-  const userInfo = JSON.parse(await AsyncStorage.getItem('userInfo')) || {};
-  const scores = JSON.parse(await AsyncStorage.getItem('scores')) || {};
-
-  const data = {
-    id: userInfo.id,
-    name: userInfo.name,
-    phone: userInfo.phone,
-    sex: userInfo.sex,
-    BPS: userInfo.BPS,
-    BDS: userInfo.BDS,
-    typeOffice: userInfo.typeOffice,
-    place: userInfo.place,
-    score: JSON.stringify([scores]),
-  };
-
-  console.log('Sending data to API:', data);
-
-  try {
-    const response = await fetchRegister(data);
-    console.log('API Response:', response);
-
-    if (response[0].Message === 1) {
-      await AsyncStorage.setItem('id', JSON.stringify(response[0].id));
-      console.log('Data saved successfully:', response[0].id);
-    }
-  } catch (error) {
-    console.error('Failed to send data:', error);
-  }
-};
-
 export default function App() {
   const [fontsLoaded] = useFonts({
     Livvic_400Regular,
@@ -74,65 +21,138 @@ export default function App() {
     Livvic_900Black_Italic,
   });
 
-  const [userInfo, setUserInfo] = useState({});
-  const [scores, setScores] = useState({});
+  
 
   useEffect(() => {
-    initializeData();
     registerBackgroundFetch();
-
-    // Setup a manual trigger for the API call every 15 minutes while app is in the foreground
+    // Setup a manual trigger for the API call every minute while the app is in the foreground
     const intervalId = setInterval(() => {
-      console.log('Foreground data sync initiated');
       checkInternetConnection().then((isConnected) => {
         if (isConnected) {
           sendDataToAPI();
         }
       });
-    }, 10 * 60 * 1000); // 15 minutes interval
+    }, 10 * 1000); // 18 seconds interval
 
     return () => clearInterval(intervalId); // Clean up interval on unmount
   }, []);
 
-  const initializeData = async () => {
+  
+
+  // Define the background fetch task outside the component
+  TaskManager.defineTask(BACKGROUND_FETCH_TASK, async () => {
     try {
-      const keys = ['id', 'name', 'phone', 'sex', 'BPS', 'BDS', 'typeOffice', 'place'];
-      const scoreKeys = ['score1', 'score2', 'score3', 'score4', 'score5', 'score6', 'score7', 'score8'];
-
-      const userValues = await AsyncStorage.multiGet(keys);
-      const scoreValues = await AsyncStorage.multiGet(scoreKeys);
-
-      const userData = userValues.reduce((acc, [key, value]) => {
-        acc[key] = value || '';
-        return acc;
-      }, {});
-      setUserInfo(userData);
-
-      const scoreData = scoreValues.reduce((acc, [key, value]) => {
-        acc[key] = value || '0';
-        return acc;
-      }, {});
-      setScores(scoreData);
-
-      // Store user and score data in AsyncStorage for background access
-      await AsyncStorage.setItem('userInfo', JSON.stringify(userData));
-      await AsyncStorage.setItem('scores', JSON.stringify(scoreData));
+      console.log('Background fetch initiated');
+      const isConnected = await checkInternetConnection();
+      if (isConnected) {
+        await sendDataToAPI();
+      }
+      return BackgroundFetch.BackgroundFetchResult.NewData;
     } catch (error) {
-      console.error('Error initializing data:', error);
+      console.log('Error in background task:', error);
+      return BackgroundFetch.BackgroundFetchResult.Failed;
     }
+  });
+
+  // Function to check internet connection
+  const checkInternetConnection = async () => {
+    const state = await NetInfo.fetch();
+    return state.isConnected;
   };
 
   const registerBackgroundFetch = async () => {
     try {
       await BackgroundFetch.registerTaskAsync(BACKGROUND_FETCH_TASK, {
-        minimumInterval: 60 * 15, // 15 minutes interval
+        minimumInterval: 10, 
         stopOnTerminate: false,
         startOnBoot: true,
       });
-      console.log('Background fetch task registered');
+      
     } catch (error) {
       console.log('Failed to register background fetch task:', error);
     }
+  };
+
+  // Function to send data to the API
+  const sendDataToAPI = async () => {
+
+    //user Info 
+    const storedId = await AsyncStorage.getItem("id");
+    const storedName = await AsyncStorage.getItem("name");
+    const storedPhone = await AsyncStorage.getItem("phone");
+    const storedSex = await AsyncStorage.getItem("sex");
+    const storedBPS = await AsyncStorage.getItem("BPS");
+    const storedBDS = await AsyncStorage.getItem("BDS");
+    const storedTypeOffice = await AsyncStorage.getItem("typeOffice");
+    const storedPlace = await AsyncStorage.getItem("place");
+    const storedChanges = await AsyncStorage.getItem("changes");
+
+
+    //SCORES 
+
+
+
+    const storedScore1 = await AsyncStorage.getItem("score1");
+    const storedScore2 = await AsyncStorage.getItem("score2");
+    const storedScore3 = await AsyncStorage.getItem("score3");
+    const storedScore4 = await AsyncStorage.getItem("score4");
+    const storedScore5 = await AsyncStorage.getItem("score5");
+    const storedScore6 = await AsyncStorage.getItem("score6");
+    const storedScore7 = await AsyncStorage.getItem("score7");
+    const storedScore8 = await AsyncStorage.getItem("score8");
+
+    const data = {
+      id: JSON.parse(storedId),
+      name: storedName,
+      phone: storedPhone,
+      sex: storedSex,
+      BPS: storedBPS,
+      BDS: storedBDS,
+      typeOffice: storedTypeOffice,
+      place: storedPlace,
+      changes: storedChanges,
+      score: JSON.stringify([
+                      JSON.parse(storedScore1),
+                      JSON.parse(storedScore2), 
+                      JSON.parse(storedScore3), 
+                      JSON.parse(storedScore4),
+                      JSON.parse(storedScore5), 
+                      JSON.parse(storedScore6), 
+                      JSON.parse(storedScore7), 
+                      JSON.parse(storedScore8)]
+                    ),
+    };
+
+    console.log('Sending data to API:', JSON.stringify(data));
+
+    if(storedChanges == '1'){
+
+        try {
+          const response = await fetchRegister(data);
+          console.log('API Response:', response);
+
+          if (response[0].Message === 1) {
+            await AsyncStorage.setItem('id', JSON.stringify(response[0].id));
+            await AsyncStorage.setItem('changes', JSON.stringify(0));
+            console.log('Data saved successfully:', response[0].id);
+          }else if(response[0].Message === 2){
+            
+            await AsyncStorage.setItem('changes', JSON.stringify(0));
+            console.log('Data updated successfully');
+
+          }else{
+
+            console.log(response[0].Message);
+
+          }
+        } catch (error) {
+          console.log('Failed to send data:', error);
+        }
+    }else{
+
+      console.log("no changes to send")
+    }
+
   };
 
   return !fontsLoaded ? null : (

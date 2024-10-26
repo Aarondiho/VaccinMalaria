@@ -175,64 +175,6 @@ const Lessons = () => {
         </View>
 
         :screen1 == 2?
-          <>
-            <View className="px-2 mb-10 mt-5">
-              <TouchableOpacity className="font-sans p-1 justify-center items-center" >
-                <Image source={require('../../../assets/mod1/2.png')}
-                            className="mb-10 mx-4 "
-                            style={{width:width*0.6,height:height*0.3}}  />
-              </TouchableOpacity>
-                 
-              <View style={{ flex: 1, paddingHorizontal: 4 }}>
-                      <Text 
-                        className="font-sans text-black  text-xl mb-4 mt-2"
-                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      >  
-                      Les symptômes du paludisme peuvent varier, mais incluent généralement : 
-                      la fièvre, les frissons, les maux de tête, les douleurs musculaires,
-                      la fatigue ainsi que les vomissements.
-              </Text>
-              </View>
-                 
-          </View>
-
-          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
-
-<TouchableOpacity
-  onPress={() =>goToPreviousSlide()}
-  style={{
-    padding: 10,
-    borderRadius: 5,
-    alignSelf:'flex-start'
-  }}
-  className=" mx-4 bg-black/80"
->
-  <Text style={{ color: '#fff' }}>Précédent</Text>
-  
-</TouchableOpacity>
-
-
-<TouchableOpacity
-  onPress={()=>goToNextSlide()}
-  style={{
-    padding: 10,
-    borderRadius: 5,
-    alignSelf:'flex-end'
-  }}
-  className=" mx-4 bg-black/80"
->
-  <Text style={{ color: '#fff' }}>Suivant</Text>
-        
-  
-</TouchableOpacity>
-
-
-</View>
-          
-
-          </>
-        :screen1 == 3?
             <>
                   <View className="px-2 mb-2 mt-5">
                     <TouchableOpacity className="font-sans justify-center items-center" >
@@ -305,9 +247,72 @@ const Lessons = () => {
 
             </View>
           </>
+        :screen1 == 3?
+
+          <>
+            <View className="px-2 mb-10 mt-5">
+
+            <Text className="font-sans text-center text-xl text-blue-800  mx-4 mb-6">  1.2 Symptômes du paludisme </Text>
+              
+              <TouchableOpacity className="font-sans p-1 justify-center items-center" >
+                <Image source={require('../../../assets/mod1/2.png')}
+                            className="mb-10 mx-4 "
+                            style={{width:width*0.6,height:height*0.3}}  />
+              </TouchableOpacity>
+                 
+              <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                      <Text 
+                        className="font-sans text-black  text-xl mb-4 mt-2"
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >  
+                      Les symptômes du paludisme peuvent varier, mais incluent généralement : 
+                      la fièvre, les frissons, les maux de tête, les douleurs musculaires,
+                      la fatigue ainsi que les vomissements.
+              </Text>
+              </View>
+                 
+          </View>
+
+          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
+
+<TouchableOpacity
+  onPress={() =>goToPreviousSlide()}
+  style={{
+    padding: 10,
+    borderRadius: 5,
+    alignSelf:'flex-start'
+  }}
+  className=" mx-4 bg-black/80"
+>
+  <Text style={{ color: '#fff' }}>Précédent</Text>
+  
+</TouchableOpacity>
+
+
+<TouchableOpacity
+  onPress={()=>goToNextSlide()}
+  style={{
+    padding: 10,
+    borderRadius: 5,
+    alignSelf:'flex-end'
+  }}
+  className=" mx-4 bg-black/80"
+>
+  <Text style={{ color: '#fff' }}>Suivant</Text>
+        
+  
+</TouchableOpacity>
+
+
+</View>
+          
+
+          </>
+        
         :screen1 == 4?
           <>
-                  <Text className="font-sans text-xl text-blue-800 mt-5 mx-4 text-center"> 1.2 Traitement et prévention du paludisme</Text>
+                  <Text className="font-sans text-xl text-blue-800 mt-5 mx-4 text-center"> 1.3 Traitement et prévention du paludisme</Text>
                    
                   <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
@@ -371,7 +376,7 @@ const Lessons = () => {
                  </View>
 
                  <View className="px-2 mb-10 mt-4">
-                    <TouchableOpacity className="font-sans justify-center items-center" >
+                    <TouchableOpacity className="font-sans justify-center items-center p-4 bg-gray-100 rounded-xl" >
                       <Image source={require('../../../assets/mod1/5.png')}
                               className="mx-4  w-40 h-32 text-center"/>
                     </TouchableOpacity>
@@ -390,9 +395,9 @@ const Lessons = () => {
           
 
                   <View className="px-2 mb-10 mt-4">
-                    <TouchableOpacity className="font-sans justify-center items-center" >
+                    <TouchableOpacity className="font-sans justify-center items-center p-4 bg-gray-100  rounded-xl" >
                     <Image source={require('../../../assets/mod1/6.png')}
-                              className="w-44 h-32 -ml-10"/>
+                              className="w-48 h-36 -ml-10 "/>
                     </TouchableOpacity>
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
@@ -407,7 +412,7 @@ const Lessons = () => {
                   </View>
 
                   <View className="px-2 mb-10 mt-4">
-                    <TouchableOpacity className="font-sans justify-center items-center" >
+                    <TouchableOpacity className="font-sans justify-center items-center p-4 bg-gray-100 rounded-xl" >
                      <Image source={require('../../../assets/mod1/7.png')}
                               className="mx-4  w-32 h-32 text-center"/>
                     </TouchableOpacity>
@@ -461,22 +466,21 @@ const Lessons = () => {
           </>
         :screen1 == 6?
           <>
-                    <Text className="font-sans text-xl text-blue-800 mt-4 text-center">   1.3 Comment sera déployé le vaccin contre le paludisme ?</Text>
+                    <Text className="font-sans text-xl text-blue-800 mt-4 text-center">   1.4 Comment sera déployé le vaccin contre le paludisme ?</Text>
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
                         className="font-sans text-black  text-xl mb-4 mt-5"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >   
-                      En raison du nombre limité de vaccins contre le paludisme dans le monde, le Ministère de la Sante Publique et de la Lutte contre le Sida (MSPLS) a choisi des districts sanitaires en fonction du risque élevé de cas grave et de décès du paludisme. 
+                      En raison du nombre limité de vaccins contre le paludisme dans le monde, le Ministère de la Santé Publique et de la Lutte contre le Sida (MSPLS) a choisi des districts sanitaires en fonction du risque élevé de cas grave et de décès du paludisme. 
                     </Text>
                     </View>
 
                     <View className="px-2 mb-10 mt-4">
                       <TouchableOpacity className="font-sans justify-center items-center" >
                         <Image source={require('../../../assets/mod1/8.png')}
-                          className="mx-4 mt-4 text-center"
-                          style= {{width:width*0.98,height:height*0.6}} />
+                          className="mx-4 mt-4 text-center w-80 h-80" />
                       </TouchableOpacity>
 
                       <Text className="font-sans text-black text-xl mb-4 mt-4" >
@@ -523,14 +527,8 @@ const Lessons = () => {
             </View>
 
           </>
-        
 
-
-   
         : <Loader/>
-
-        
-
         
       }
         

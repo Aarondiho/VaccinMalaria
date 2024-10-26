@@ -2,6 +2,7 @@
 export {default as Login} from './auth/Login';
 export {default as PrivacyPolicy} from './auth/PrivacyPolicy';
 export {default as  TermsAndConditions} from './auth/TermsAndConditions';
+export {default as  Points} from './auth/Points';
 export {default as  Lessons} from './auth/Lessons1';
 export {default as  Quiz1} from './auth/Quiz1';
 export {default as  Lessons2} from './auth/Lessons2';

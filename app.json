@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "VaccinMalaria",
+    "name": "Vaccin Malaria",
     "slug": "vaccinmalaria",
     "scheme": "exp+vaccinmalaria",
     "version": "1.0.0",
@@ -21,7 +21,10 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.vaccinMalaria",
-      "permissions": ["ACCESS_NETWORK_STATE"],
+      "permissions": [
+        "ACCESS_NETWORK_STATE",
+        "INTERNET"
+      ],
       "versionCode": 1
     },
     "web": {
@@ -41,7 +44,9 @@
     },
     "ios": {
       "infoPlist": {
-        "UIBackgroundModes": ["fetch"]
+        "UIBackgroundModes": [
+          "fetch"
+        ]
       },
       "bundleIdentifier": "com.vaccinMalaria",
       "buildNumber": "1"
