@@ -8,7 +8,7 @@
     
     const Quiz5 = () => {
         const navigation = useNavigation();
-        const [answers, setAnswers] = useState([null, null, null, null, null, null]); // to store answers
+        const [answers, setAnswers] = useState([null, null, null, null, null]); // to store answers
         const [score, setScore] = useState(0);  // to track score
         const [quizCompleted, setQuizCompleted] = useState(false);  // to track completion
         const [submitted, setSubmitted] = useState(false);  // to track if answers are submitted
@@ -16,9 +16,16 @@
         const [isCooldownActive, setIsCooldownActive] = useState(false); // track cooldown state
         const [remainingTime, setRemainingTime] = useState(0); // track remaining cooldown time
         const [showTimerModal, setShowTimerModal] = useState(false); // state for timer modal
+        const [shuffledQuestions, setShuffledQuestions] = useState([]);
+
+        // Shuffle function to randomize array
+  
+        const shuffleArray = (array) => {
+          return array.sort(() => Math.random() - 0.5);
+      };
     
         
-        constquestions= [
+        const questions= [
             {
                 question:'Quels éléments doivent être notés dans le carnet santé mère-enfant après chaque vaccination ?',
                 
@@ -66,7 +73,7 @@
                     if (lastAttemptTime5) {
                         const currentTime = new Date().getTime();
                         const timeDifference = currentTime - parseInt(lastAttemptTime5);
-                        const cooldownDuration = 15 * 60 * 1000; // 15 minutes in milliseconds
+                        const cooldownDuration = 5 * 60 * 1000; // 15 minutes in milliseconds
     
                         if (timeDifference < cooldownDuration) {
                             setIsCooldownActive(true);
@@ -80,6 +87,13 @@
                     console.error('Error checking cooldown:', error);
                 }
             };
+
+            // Shuffle questions and options on load
+            const shuffled = shuffleArray([...questions]);
+            shuffled.forEach(question => {
+                question.options = shuffleArray([...question.options]);
+            });
+            setShuffledQuestions(shuffled);
     
             checkCooldown();
         }, []);
@@ -121,7 +135,7 @@
         const storeAnswers = async (answersArray, finalScore) => {
             try {
                 await AsyncStorage.setItem('Quiz5Answers', JSON.stringify(answersArray));
-                await AsyncStorage.setItem('score6', JSON.stringify(finalScore));
+                await AsyncStorage.setItem('score5', JSON.stringify(finalScore));
                 await AsyncStorage.setItem('changes', JSON.stringify(1));
             } catch (error) {
                 console.error('Échec de l\'enregistrement des réponses dans AsyncStorage :', error);
@@ -135,11 +149,11 @@
                         <TouchableOpacity className="font-sans">
                             <IconButton icon="arrow-left" size={24} iconColor="green" onPress={() => navigation.goBack()} />
                         </TouchableOpacity>
-                        <Text className="font-sans text-2xl font-bold text-black">Questions Module 6</Text>
+                        <Text className="font-sans text-2xl font-bold text-black">Questions Module 5</Text>
                     </View>
     
                     <ScrollView showsVerticalScrollIndicator={false} className="mt-2 px-6">
-                        {questions.map((item, index) => (
+                        {shuffledQuestions.map((item, index) => (
                             <View key={index} className="mb-6">
                                 <Text className="text-blue-800 text-center text-2xl mb-4">{index + 1}. {item.question}</Text>
                                 {item.options.map((option, optIndex) => (
@@ -205,7 +219,7 @@
                         
                                 <Text style={styles.modalTitle} className="text-blue-800">Résultat et Corrections</Text>
                                 <Text style={styles.modalScore} className="text-red-800">Note Obtenue : {score.toFixed(2)}%</Text>
-                                {questions.map((item, index) => (
+                                {shuffledQuestions.map((item, index) => (
                                     <View key={index} style={styles.correctionItem}>
                                         <Text style={styles.questionText} className="font-sans">{index + 1}. {item.question}</Text>
                                         <Text style={answers[index] === item.correctAnswer ? styles.correctAnswer : styles.wrongAnswer} className="font-sans mt-2">
@@ -217,7 +231,7 @@
     
                                         </View>
                                 ))}
-                                <Text className=" font-sans mt-2 mb-2">N.B : Vous pouvez refaire le test après 15 min</Text>
+                                <Text className=" font-sans mt-2 mb-2">N.B : Vous pouvez refaire le test après 5 min</Text>
                                     
                                 <Button title="Fermer" onPress={() => {
                                   setShowCorrection(false);

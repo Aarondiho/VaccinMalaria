@@ -17,7 +17,23 @@ const Lessons6 = () => {
   const [showFirst, setShowFirst] = useState(false);
   
 
-
+  const [buttonEnabled, setButtonEnabled] = useState(false);
+  
+  useEffect(() => {
+    const initializeData = async () => {
+      const storedScreen = await AsyncStorage.getItem("screen6" + screen6);
+      if (!storedScreen) {
+        await AsyncStorage.setItem("screen6" + screen6, JSON.stringify(true));
+        setButtonEnabled(false);
+        setTimeout(() => {
+          setButtonEnabled(true);
+        }, 15000); // 30 seconds delay
+      } else {
+        setButtonEnabled(true);
+      }
+    };
+    initializeData();
+  }, [screen6]);
 
 
   useEffect(() => {
@@ -90,8 +106,8 @@ const Lessons6 = () => {
         <Text className="font-sans text-black text-2xl   font-medium">Module 6</Text> 
 
         <TouchableOpacity className="font-sansjustify-end" onPress={() => {}}>
-        <Text className="font-sans text-sm font-medium  text-green-800 flex-end">
-        {screen6} / 6 </Text>
+        <Text className="font-sans text-sm font-medium mr-2 text-green-800 flex-end">
+        {screen6} / 5 </Text>
         </TouchableOpacity>
       </View>
 
@@ -161,19 +177,14 @@ const Lessons6 = () => {
               </TouchableOpacity>
 
 
-            <TouchableOpacity
-            onPress={()=>goToNextSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-end'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Suivant</Text>
-                    
-            
-            </TouchableOpacity>
+              <TouchableOpacity
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
             </View>
@@ -250,7 +261,7 @@ const Lessons6 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
                    
-                   Un symptôme constaté par un soignant
+                   Un symptôme constaté par un soignant ou une maladie
 
                    </Text>
                 </View>
@@ -276,18 +287,13 @@ const Lessons6 = () => {
 
 
             <TouchableOpacity
-            onPress={()=>goToNextSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-end'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Suivant</Text>
-                    
-            
-            </TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
         </View>
@@ -359,7 +365,7 @@ const Lessons6 = () => {
                      
                     <Text className="font-sans text-xl  text-blue-800 mt-8 mx-4"> 
                     
-                    Peu courants :
+                    Les MAPI peu courantes :
 
  
                      </Text>
@@ -396,17 +402,12 @@ const Lessons6 = () => {
 
 
               <TouchableOpacity
-                onPress={()=>goToNextSlide()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Suivant</Text>
-                      
-                
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
               </TouchableOpacity>
 
             </View>
@@ -486,18 +487,13 @@ const Lessons6 = () => {
 
 
             <TouchableOpacity
-            onPress={()=>goToNextSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-end'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Suivant</Text>
-                    
-            
-            </TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
             </View>
           </>
@@ -548,28 +544,28 @@ const Lessons6 = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                     >
-                        Renseignements sur le client
+                        - Renseignements sur le client
                         </Text>
                     <Text 
                         className="font-sans text-black  text-xl text-center mb-4 mt-5"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                     >
-                        Description des événements de vaccination
+                        - Description des événements de vaccination
                         </Text>
                     <Text 
                         className="font-sans text-black  text-xl text-center mb-4 mt-5"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                     >
-                            Description des événements indésirables
+                            - Description des événements indésirables
                             </Text>
                     <Text 
                         className="font-sans text-black  text-xl text-center mb-4 mt-5"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                     >    
-                    Antécédents médicaux et thérapeutiques pertinents
+                    - Antécédents médicaux et thérapeutiques pertinents
                     </Text>
                     <Text 
                         className="font-sans text-black  text-xl text-center mt-5"
@@ -582,14 +578,14 @@ const Lessons6 = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                     >
-                                Événements associés
+                                - Événements associés
                     </Text>
                     <Text 
                         className="font-sans text-black  text-xl text-center mb-4 mt-5"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                     >
-                            Renseignements du rapporteur
+                            - Renseignements du rapporteur
 
 
                     </Text>
@@ -604,7 +600,7 @@ const Lessons6 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
 
-                    Envoyer le formulaire rempli au BDS.
+                     Envoyer le formulaire rempli au BDS.
 
                     </Text>
                </View> 
@@ -647,22 +643,13 @@ const Lessons6 = () => {
 
 
               <TouchableOpacity
-                onPress={() =>navigation.navigate(ROUTES.QUIZ6)}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Evaluation</Text>
-                      
-                
+                    onPress={() =>navigation.navigate(ROUTES.QUIZ6)}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Evaluation'}</Text>
               </TouchableOpacity>
-
-  
- 
-
             </View>
 
           </>

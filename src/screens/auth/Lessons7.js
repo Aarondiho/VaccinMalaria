@@ -15,6 +15,24 @@ const Lessons7 = () => {
   const [screen7, setScreen7] = useState(false)
   
   const [showFirst, setShowFirst] = useState(false);
+
+  const [buttonEnabled, setButtonEnabled] = useState(false);
+  
+  useEffect(() => {
+    const initializeData = async () => {
+      const storedScreen = await AsyncStorage.getItem("screen7" + screen7);
+      if (!storedScreen) {
+        await AsyncStorage.setItem("screen7" + screen7, JSON.stringify(true));
+        setButtonEnabled(false);
+        setTimeout(() => {
+          setButtonEnabled(true);
+        }, 15000); // 30 seconds delay
+      } else {
+        setButtonEnabled(true);
+      }
+    };
+    initializeData();
+  }, [screen7]);
   
 
 
@@ -90,8 +108,8 @@ const Lessons7 = () => {
         <Text className="font-sans text-black text-2xl   font-medium">Module 7</Text> 
 
         <TouchableOpacity className="font-sansjustify-end" onPress={() => {}}>
-        <Text className="font-sans text-sm font-medium  text-green-800 flex-end">
-        {screen7} / 6 </Text>
+        <Text className="font-sans text-sm font-medium mr-2 text-green-800 flex-end">
+        {screen7} / 5 </Text>
         </TouchableOpacity>
       </View>
 
@@ -125,7 +143,8 @@ const Lessons7 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
                    
-                   Une bonne communication favorise le respect et la confiance entre les prestataires, les parents, les familles et les communautés. Cette communication survient avant, pendant et après les séances de vaccination.
+                   Une bonne communication favorise le respect et la confiance entre les prestataires, les parents, les familles et les communautés.
+                    Cette communication survient avant, pendant et après les séances de vaccination.
 
 
                    </Text>
@@ -163,8 +182,20 @@ const Lessons7 = () => {
                       >
                    
                   
-                    Accorder une attention personnelle
-                    Accueillir chaleureusement et féliciter le parent
+                    - Accorder une attention personnelle
+                    
+
+
+                   </Text>
+
+                   <Text 
+                        className="font-sans text-black  text-xl mb-4 "
+                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                      >
+                   
+                  
+                   - Accueillir chaleureusement et féliciter le parent
 
 
 
@@ -189,19 +220,14 @@ const Lessons7 = () => {
               </TouchableOpacity>
 
 
-            <TouchableOpacity
-            onPress={()=>goToNextSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-end'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Suivant</Text>
-                    
-            
-            </TouchableOpacity>
+              <TouchableOpacity
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
             </View>
@@ -299,18 +325,13 @@ const Lessons7 = () => {
 
 
             <TouchableOpacity
-            onPress={()=>goToNextSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-end'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Suivant</Text>
-                    
-            
-            </TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
         </View>
@@ -326,12 +347,12 @@ const Lessons7 = () => {
                      
                      <Image source={require('../../../assets/mod4/14.png')}
                               className="mx-4 mt-4 w-72 h-10 "/>
-                              <Text className="-mt-7 font-bold text-white ">APRES</Text>
+                              <Text className="-mt-7 font-bold text-white ">Aprés la séance de vaccination</Text>
 
                     <Image source={require('../../../assets/mod4/4.png')}
                               className="mx-4 mt-4 w-80 h-52 "/>
                     <Text className="font-sans text-xl  mt-4 text-center mx-4 mb-10"> 
-                    Reprendre et inviter les parents à faire vacciner les enfants
+                    Reprendre /Résumer et inviter les parents à amener leurs enfants au prochain rendez-vous de vaccination 
 
 
 
@@ -357,17 +378,12 @@ const Lessons7 = () => {
 
 
               <TouchableOpacity
-                onPress={()=>goToNextSlide()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Suivant</Text>
-                      
-                
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
               </TouchableOpacity>
 
             </View>
@@ -436,7 +452,7 @@ const Lessons7 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
 
-                        Organiser la prochaine visite :  communiquer au parent le RDV prochain et le mettre dans le carnet 
+                        Organiser la prochaine visite :  communiquer au parent le RDV prochain et le mettre dans le carnet santé mère-enfant.
 
 
 
@@ -467,18 +483,13 @@ const Lessons7 = () => {
 
 
                 <TouchableOpacity
-                onPress={()=>goToNextSlide()}
-                style={{
-                    padding: 10,
-                    borderRadius: 5,
-                    alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-                >
-                <Text style={{ color: '#fff' }}>Suivant</Text>
-                        
-                
-                </TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
                 </View>
 
@@ -595,16 +606,12 @@ const Lessons7 = () => {
 
               <TouchableOpacity
                 onPress={() =>navigation.navigate(ROUTES.QUIZ7)}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Evaluation</Text>
-                      
                 
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Evaluation'}</Text>
               </TouchableOpacity>
 
   

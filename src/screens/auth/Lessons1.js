@@ -12,10 +12,25 @@ const Lessons = () => {
   const navigation = useNavigation()
   var { width, height } = Dimensions.get('window');
 
-  const [screen1, setScreen1] = useState(false)
+  const [screen1, setScreen1] = useState(false);
+
+  const [buttonEnabled, setButtonEnabled] = useState(false);
   
-  const [showFirst, setShowFirst] = useState(false);
-  
+  useEffect(() => {
+    const initializeData = async () => {
+      const storedScreen = await AsyncStorage.getItem("screen" + screen1);
+      if (!storedScreen) {
+        await AsyncStorage.setItem("screen" + screen1, JSON.stringify(true));
+        setButtonEnabled(false);
+        setTimeout(() => {
+          setButtonEnabled(true);
+        }, 15000); // 30 seconds delay
+      } else {
+        setButtonEnabled(true);
+      }
+    };
+    initializeData();
+  }, [screen1]);
 
 
 
@@ -38,16 +53,6 @@ const Lessons = () => {
     
       return unsubscribe;
     }, [navigation]);
-
-
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setShowFirst(true);
-      }, 1000); // 2000ms = 5 seconds
-  
-      return () => clearTimeout(timer); // Cleanup the timer if the component unmounts
-    }, []);
-  
 
 
     const goToNextSlide = () =>{
@@ -90,8 +95,8 @@ const Lessons = () => {
         <Text className="font-sans text-black text-2xl   font-medium">Module 1</Text> 
 
         <TouchableOpacity className="font-sansjustify-end" onPress={() => {}}>
-        <Text className="font-sans text-sm font-medium  text-green-800 flex-end">
-        {screen1} / 7 </Text>
+        <Text className="font-sans text-sm font-medium  mr-2 text-green-800 flex-end">
+        {screen1} / 6 </Text>
         </TouchableOpacity>
       </View>
 
@@ -126,9 +131,8 @@ const Lessons = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       > 
-                        Le paludisme, aussi appelé malaria, est une maladie infectieuse causée par un parasite,
-                        plasmodium, qui se transmet principalement 
-                        par les piqûres de moustiques infectés, notamment le moustique femelle Anophèles.
+                        Le paludisme, aussi appelé malaria, est une maladie infectieuse causée par un parasite du genre
+                        plasmodium, qui se transmet par les piqûres de  moustiques femelles Anophèles infectés.
                 </Text>
                 </View>
               
@@ -152,18 +156,15 @@ const Lessons = () => {
 
 
               <TouchableOpacity
-                onPress={()=>goToNextSlide()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Suivant</Text>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/80"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-black" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
                       
     
-            </TouchableOpacity>
 
 
 
@@ -208,9 +209,8 @@ const Lessons = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >  
-                      En 2022, environ 14 enfants sur 100 000 sont morts à cause de cette maladie. 
-              94 % des cas de paludisme étaient concentrés en Afrique,
-              et le taux de mortalité était de 56 pour 100 000 habitants
+                      En 2022, environ 14 enfants sur 100 000 sont morts à cause de cette maladie, avec 
+                      94 % des cas de paludisme qui étaient en Afrique. Le taux de mortalité y était de 56 pour 100.000 habitants.
               </Text>
               </View>
             
@@ -232,17 +232,12 @@ const Lessons = () => {
 
 
               <TouchableOpacity
-                onPress={()=>goToNextSlide()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Suivant</Text>
-                      
-                
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className="mx-4 bg-black/80"
+                    disabled={!buttonEnabled}
+                  >
+                    <Text style={{ color: '#fff' }}>{'Suivant'}</Text>
               </TouchableOpacity>
 
             </View>
@@ -276,36 +271,34 @@ const Lessons = () => {
 
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
 
-<TouchableOpacity
-  onPress={() =>goToPreviousSlide()}
-  style={{
-    padding: 10,
-    borderRadius: 5,
-    alignSelf:'flex-start'
-  }}
-  className=" mx-4 bg-black/80"
->
-  <Text style={{ color: '#fff' }}>Précédent</Text>
-  
-</TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>goToPreviousSlide()}
+                style={{
+                  padding: 10,
+                  borderRadius: 5,
+                  alignSelf:'flex-start'
+                }}
+                className=" mx-4 bg-black/80"
+              >
+                <Text style={{ color: '#fff' }}>Précédent</Text>
+                
+              </TouchableOpacity>
 
 
-<TouchableOpacity
-  onPress={()=>goToNextSlide()}
-  style={{
-    padding: 10,
-    borderRadius: 5,
-    alignSelf:'flex-end'
-  }}
-  className=" mx-4 bg-black/80"
->
-  <Text style={{ color: '#fff' }}>Suivant</Text>
+              <TouchableOpacity
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className="mx-4 bg-black/80"
+                    disabled={!buttonEnabled}
+                  >
+                    <Text style={{ color: '#fff' }}>{'Suivant'}</Text>
+              </TouchableOpacity>
         
   
-</TouchableOpacity>
+  
 
 
-</View>
+          </View>
           
 
           </>
@@ -320,13 +313,10 @@ const Lessons = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >  
-                       Le paludisme est la principale cause de maladie et de décès chez les enfants au Burundi.
-                        Pour traiter cette maladie, on utilise principalement des médicaments antipaludiques,
-                         comme Artéméther Luméfantrine (AL),
-                          qui sont efficaces contre les formes les plus courantes
-                           du paludisme. Il est très important de diagnostiquer 
-                           le paludisme rapidement, de préférence avec des tests 
-                           rapides, pour commencer le traitement au plus vite.
+                      Le paludisme est la principale cause morbidité et mortalité chez les enfants au Burundi.
+                      Pour traiter cette maladie, on utilise des combinaisons thérapeutiques à base d'Artéméther(dont Artémisine Luméfantrine au Burundi),
+                       qui sont efficaces contre les formes les plus courantes du paludisme.
+                      Il est très important de diagnostiquer le paludisme rapidement pour commencer le traitement au plus vite (TDR ou Goutte épaisse).
                       </Text> 
                     </View>
 
@@ -347,18 +337,13 @@ const Lessons = () => {
 
 
                 <TouchableOpacity
-                  onPress={()=>goToNextSlide()}
-                  style={{
-                    padding: 10,
-                    borderRadius: 5,
-                    alignSelf:'flex-end'
-                  }}
-                  className=" mx-4 bg-black/80"
-                >
-                  <Text style={{ color: '#fff' }}>Suivant</Text>
-                        
-                  
-                </TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className="mx-4 bg-black/80"
+                    disabled={!buttonEnabled}
+                  >
+                    <Text style={{ color: '#fff' }}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
               </View>
@@ -405,7 +390,7 @@ const Lessons = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >  
-                        Pulvérisation d’insecticides à l'intérieur de la maison 
+                        Pulvérisation intra-domiciliaire (PID) d’insecticide.
                     </Text>
                     </View>
                   
@@ -423,7 +408,7 @@ const Lessons = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >   
-                      Soins préventifs occasionnels pendant la grossesse 
+                      Traitement préventif intermittent pendant la grossesse (TPIg). 
                     </Text>
                     </View>
                   
@@ -446,18 +431,13 @@ const Lessons = () => {
 
 
             <TouchableOpacity
-              onPress={()=>goToNextSlide()}
-              style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-end'
-              }}
-              className=" mx-4 bg-black/80"
-            >
-              <Text style={{ color: '#fff' }}>Suivant</Text>
-                    
-              
-            </TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className="mx-4 bg-black/80"
+                    disabled={!buttonEnabled}
+                  >
+                    <Text style={{ color: '#fff' }}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
 
@@ -473,7 +453,9 @@ const Lessons = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >   
-                      En raison du nombre limité de vaccins contre le paludisme dans le monde, le Ministère de la Santé Publique et de la Lutte contre le Sida (MSPLS) a choisi des districts sanitaires en fonction du risque élevé de cas grave et de décès du paludisme. 
+                      En raison du nombre limité de vaccins contre le paludisme dans le monde,
+                      le Ministère de la Santé Publique et de la Lutte contre le Sida (MSPLS) 
+                      a choisi des districts sanitaires à plus haut risque (incidence, mortalité) de paludisme. 
                     </Text>
                     </View>
 
@@ -484,7 +466,10 @@ const Lessons = () => {
                       </TouchableOpacity>
 
                       <Text className="font-sans text-black text-xl mb-4 mt-4" >
-                        Ainsi, le vaccin sera disponible dans 25 districts de santé lors de cette première étape : Mabayi, Cibitoke, Bukinanyana, Bubanza, Mpanda, Gihofi, Rutana, Butezi, Kinyinya, Gisuru, Ruyigi, Cankuzo, Murore, Buhiga, Nyabikere, Muyinga, Gashoho, Giteranyi, Buye, Ngozi, Kiremba, Busoni, Mukenke, Kirundo et Vumbi.
+                        Ainsi, le vaccin sera déployé dans 25 districts de santé lors de cette première étape :
+                         Mabayi, Cibitoke, Bukinanyana, Bubanza, Mpanda, Gihofi, Rutana, Butezi, Kinyinya, Gisuru,
+                          Ruyigi, Cankuzo, Murore, Buhiga, Nyabikere, Muyinga, Gashoho, Giteranyi, Buye, Ngozi,
+                           Kiremba, Busoni, Mukenke, Kirundo et Vumbi.
                       </Text>
               
               </View>
@@ -509,16 +494,11 @@ const Lessons = () => {
 
               <TouchableOpacity
                 onPress={() =>navigation.navigate(ROUTES.QUIZ1)}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Evaluation</Text>
-                      
-                
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className="mx-4 bg-black/80"
+                    disabled={!buttonEnabled}
+                  >
+                    <Text style={{ color: '#fff' }}>{'Evaluation'}</Text>
               </TouchableOpacity>
 
   

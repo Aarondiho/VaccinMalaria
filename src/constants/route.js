@@ -21,6 +21,5 @@ export default {
     POLICY:'PrivacyPolicy',
     TERMS:'TermsAndConditions',
     POINTS:'Points',
-
-
+    SUMMARY:'Summary'
   };

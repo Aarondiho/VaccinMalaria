@@ -97,7 +97,7 @@ const Points = () => {
 
             <View >
 
-            <Text className="font-sans text-2xl text-blue-800 mt-4 mx-4 text-center"> Pourcentage Obtenue par module</Text>
+            <Text className="font-sans text-2xl text-blue-800 mt-4 mx-4 text-center"> Pourcentage Obtenu par module</Text>
               
           
 

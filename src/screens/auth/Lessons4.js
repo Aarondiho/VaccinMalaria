@@ -15,6 +15,24 @@ const Lessons4 = () => {
   const [screen4, setScreen4] = useState(false)
   
   const [showFirst, setShowFirst] = useState(false);
+
+  const [buttonEnabled, setButtonEnabled] = useState(false);
+  
+  useEffect(() => {
+    const initializeData = async () => {
+      const storedScreen = await AsyncStorage.getItem("screen4" + screen4);
+      if (!storedScreen) {
+        await AsyncStorage.setItem("screen4" + screen4, JSON.stringify(true));
+        setButtonEnabled(false);
+        setTimeout(() => {
+          setButtonEnabled(true);
+        }, 15000); // 30 seconds delay
+      } else {
+        setButtonEnabled(true);
+      }
+    };
+    initializeData();
+  }, [screen4]);
   
 
 
@@ -90,8 +108,8 @@ const Lessons4 = () => {
         <Text className="font-sans text-black text-2xl   font-medium">Module 4</Text> 
 
         <TouchableOpacity className="font-sansjustify-end" onPress={() => {}}>
-        <Text className="font-sans text-sm font-medium  text-green-800 flex-end">
-        {screen4} / 8 </Text>
+        <Text className="font-sans text-sm font-medium mr-2 text-green-800 flex-end">
+        {screen4} / 6 </Text>
         </TouchableOpacity>
       </View>
 
@@ -104,113 +122,12 @@ const Lessons4 = () => {
       
 
     {
-        screen4 == 1?
-          
-          <View >
-
-            <View>
-              
-              <Text className="font-sans text-xl text-blue-800 mt-4 mx-4 text-center"> 4.1 Séances de vaccination: activités critiques </Text>
-              
-            </View>
-
-            <View className="flex-row items-center mt-5 justify-center mb-4 bg-blue-900 h-28 rounded-xl" >
-                  <Text 
-                        className="font-sans text-white text-center p-7 text-xl "
-                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      >
-                    Avant la Vaccination des enfants
-
-                  </Text>
-            </View>
-
-            <View className="mb-3" >
-                <TouchableOpacity className="font-sans p-1 justify-center items-center" >
-                <Image source={require('../../../assets/mod2/13.png')}
-                          className="h-10 w-12" 
-                           />
-                </TouchableOpacity>
-            </View>
-            <View className="flex-row items-center justify-center mb-4 bg-purple-500 h-28 rounded-xl" >
-                  <Text 
-                        className="font-sans text-white text-center p-7 text-xl "
-                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      >
-                    Lors de la séance de vaccination
-
-
-
-                  </Text>
-            </View>
-
-            <View className="mb-3" >
-                <TouchableOpacity className="font-sans p-1 justify-center items-center" >
-                <Image source={require('../../../assets/mod2/13.png')}
-                          className="h-10 w-12" 
-                           />
-                </TouchableOpacity>
-            </View>
-            <View className="flex-row items-center justify-center mb-10 bg-blue-400 h-28 rounded-xl" >
-                  <Text 
-                        className="font-sans text-white text-center p-7 text-xl "
-                        numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                        ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      >
-                    Après que les enfants aient quitté la séance de vaccination
-
-                  </Text>
-            </View>
-
-            
-
-
-          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between',  }} className="mb-12">
-
-              <TouchableOpacity
-                onPress={() =>navigation.goBack()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-start'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Retour</Text>
-                
-              </TouchableOpacity>
-
-
-              <TouchableOpacity
-                onPress={()=>goToNextSlide()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Suivant</Text>
-                      
-    
-            </TouchableOpacity>
-
-
-
-
-            </View>
-
-          
-          <View className="mb-48"></View>
-          </View>
-
-        :screen4 == 2?
+       screen4 == 1?
           <>
             <View className="px-2 mt-4 mb-10">
 
             <Text className="font-sans text-xl text-blue-800 mt-4 mx-4 text-center">
-               Avant la vaccination des enfants
+               4.1 Activités critiques avant une séance de vaccination
             </Text>
 
               <TouchableOpacity className="font-sans p-1 justify-center items-center">
@@ -255,8 +172,8 @@ const Lessons4 = () => {
                         className="font-sans text-black  text-xl mb-4 mt-4"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      >Signalons qu'il faudra jeter les deux flacons si la PVC indique une 
-                    exposition à la chaleur, la date de péremption est dépassé, une décoloration ou des particules observées.
+                      >Jeter les deux flacons si la PVC indique une 
+                    exposition à la chaleur, une date de péremption dépassée, une décoloration ou si des particules sont observées.
                   </Text>
                 </View>
 
@@ -300,26 +217,21 @@ const Lessons4 = () => {
 </TouchableOpacity>
 
 
-<TouchableOpacity
-  onPress={()=>goToNextSlide()}
-  style={{
-    padding: 10,
-    borderRadius: 5,
-    alignSelf:'flex-end'
-  }}
-  className=" mx-4 bg-black/80"
->
-  <Text style={{ color: '#fff' }}>Suivant</Text>
-        
-  
-</TouchableOpacity>
+              <TouchableOpacity
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
 </View>
           
 
           </>
-        :screen4 == 3?
+        :screen4 == 2?
             <>
                   <View className="px-2 mb-2">
 
@@ -380,7 +292,7 @@ const Lessons4 = () => {
                       </View>
 
                       <View className="flex-1 mr-2 p-3 bg-white rounded-r-lg">
-                      <Text className="text-base font-semibold mb-2">Le carré intérieur est la même couleur que le cercle extérieur</Text>
+                      <Text className="text-base font-semibold mb-2">Le carré intérieur a la même couleur que le cercle extérieur</Text>
                         
                       </View>
 
@@ -408,10 +320,9 @@ const Lessons4 = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                          Une fois qu'un vaccin atteint ou dépasse le point de rejet, le carré intérieur devient la même couleur ou plus sombre que le cercle extérieur.
+                          Une fois qu'un vaccin atteint ou dépasse le point de rejet, le carré intérieur devient plus sombre  ou a la même couleur que le cercle extérieur.
                         </Text>
-                        <Text className="text-sm text-red-600  mt-4 font-sans text-xl text-center">Avertir votre superviseur</Text>
-                      
+                        
                    </View>
 
                    
@@ -423,7 +334,7 @@ const Lessons4 = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                      Il est très important de s’assurer de la qualité du vaccin Mosquirix avant de l’administrer à un enfant. La vérification se fait au niveau de la date de péremption et de la pastille de contrôle sur le flacon à anneau vert. Celle du flacon en bon état est présentée sous forme d’un carré à l’intérieur d’un cercle ; et le carré a une teinte plus claire que le cercle.
+                      Il est très important de s’assurer de la qualité du vaccin RTS,S (Mosquirix) avant de l’administrer à un enfant. La vérification se fait au niveau de la date de péremption et de la pastille de contrôle sur le flacon à anneau vert. Celle du flacon en bon état est présentée sous forme d’un carré à l’intérieur d’un cercle ; et le carré a une teinte plus claire que le cercle.
                       
                     </Text>
 
@@ -457,22 +368,17 @@ const Lessons4 = () => {
 
 
               <TouchableOpacity
-                onPress={()=>goToNextSlide()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Suivant</Text>
-                      
-                
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
               </TouchableOpacity>
 
             </View>
           </>
-        :screen4 == 4?
+        :screen4 == 3?
           <>
                  <View className="px-2 mb-2">
                     
@@ -499,7 +405,7 @@ const Lessons4 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
 
-                      1. Accueillir les parents et trouver le nom de l'enfant dans les registres de vaccination
+                      1. Accueillir les parents et identifier le nom de l'enfant dans les registres de vaccination;
                     
 
                     </Text>
@@ -536,24 +442,19 @@ const Lessons4 = () => {
 </TouchableOpacity>
 
 
-<TouchableOpacity
-  onPress={()=>goToNextSlide()}
-  style={{
-    padding: 10,
-    borderRadius: 5,
-    alignSelf:'flex-end'
-  }}
-  className=" mx-4 bg-black/80"
->
-  <Text style={{ color: '#fff' }}>Suivant</Text>
-        
-  
-</TouchableOpacity>
+              <TouchableOpacity
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 </View>
 
           </>
-        :screen4 == 5?
+        :screen4 == 4?
         <>
                <View className="px-2 mb-2 mt-5">
 
@@ -613,17 +514,12 @@ const Lessons4 = () => {
 
 
               <TouchableOpacity
-                onPress={()=>goToNextSlide()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Suivant</Text>
-                      
-                
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
               </TouchableOpacity>
 
               </View>
@@ -632,7 +528,7 @@ const Lessons4 = () => {
 
         </>
 
-        :screen4 == 6?
+        :screen4 == 5?
         <>
               <View className="px-2 mb-2">
                   
@@ -674,7 +570,7 @@ const Lessons4 = () => {
                       ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                     >
 
-                  <Text className="text-blue-900">3. Angle d’injection :</Text> – 90 degrés
+                  <Text className="text-blue-900">3. Angle d’injection :</Text> 90 degrés
 
 
                   </Text>
@@ -685,7 +581,7 @@ const Lessons4 = () => {
                       ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                     >
                   
-                  <Text className="text-blue-900">4. Vacciner l’enfant avec une dose de :</Text>  0,5 
+                  <Text className="text-blue-900">4. Vacciner l’enfant avec une dose de :</Text>  0,5 ml
 
 
 
@@ -714,24 +610,19 @@ const Lessons4 = () => {
 
 
         <TouchableOpacity
-        onPress={()=>goToNextSlide()}
-        style={{
-        padding: 10,
-        borderRadius: 5,
-        alignSelf:'flex-end'
-        }}
-        className=" mx-4 bg-black/80"
-        >
-        <Text style={{ color: '#fff' }}>Suivant</Text>
-
-
-        </TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
         </View>
 
         </>
 
-        :screen4 == 7?
+        :screen4 == 6?
           <>
             <View className="px-2 mb-2">
                 
@@ -845,21 +736,14 @@ const Lessons4 = () => {
 
                   <TouchableOpacity
                     onPress={() =>navigation.navigate(ROUTES.QUIZ4)}
-                    style={{
-                      padding: 10,
-                      borderRadius: 5,
-                      alignSelf:'flex-end'
-                    }}
-                    className=" mx-4 bg-black/80"
-                  >
-                    <Text style={{ color: '#fff' }}>Evaluation</Text>
-                          
                     
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>Evaluation</Text>
                   </TouchableOpacity>
-
-
-
-
+                 
             </View>
 
           </>

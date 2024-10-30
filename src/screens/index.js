@@ -19,4 +19,5 @@ export {default as  Lessons7} from './auth/Lessons7';
 export {default as  Quiz7} from './auth/Quiz7';
 export {default as  Lessons8} from './auth/Lessons8';
 export {default as  Quiz8} from './auth/Quiz8';
+export {default as  Summary} from './auth/Summary';
 

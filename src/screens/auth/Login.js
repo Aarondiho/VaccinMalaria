@@ -141,9 +141,9 @@ const Login = () => {
 
     if(name == ""){
 
-      Alert.alert(" Votre Prénom SVP!");
+      Alert.alert(" Votre Nom & Prénom SVP!");
 
-      setErrorMessage("Votre Prénom SVP!")
+      setErrorMessage("Votre Nom & Prénom SVP!")
       
     }else if(phone == ""){
       
@@ -160,12 +160,17 @@ const Login = () => {
     }else if(BPS == ""){
 
       Alert.alert(" Votre Bureau Provinciale Sanitaire (BPS) SVP!");
-      setErrorMessage("Votre Nom SVP!")
+      setErrorMessage("Votre BPS SVP!")
+      
+    }else if(BDS == ""){
+
+      Alert.alert(" Votre Bureau de District Sanitaire (BDS) SVP!");
+      setErrorMessage("Votre BDS SVP!")
       
     }else if(place == ""){
 
       Alert.alert(" Votre Lieu de Travail SVP!");
-      setErrorMessage("Votre Nom SVP!")
+      setErrorMessage("Votre Lieu de Travail SVP!")
       
     }else{
 
@@ -524,6 +529,35 @@ const Login = () => {
                           
                           </View>
                     </TouchableOpacity>
+
+                    <TouchableOpacity 
+                      onPress={() => {  
+                        navigation.navigate(ROUTES.SUMMARY);
+                      }}
+                      style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                    >
+                      <View className="flex-row items-center p-4 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                        {/* Number Indicator */}
+                        <Text className="text-red-600 w-12 h-12 text-center text-3xl  font-bold p-2 bg-white rounded-full font-semibold">
+                        
+                        !?
+                        </Text>
+
+                        
+                        {/* Text Container */}
+                        <View style={{ flex: 1, marginLeft: 8 }}>
+                          <Text 
+                            className="text-black font-bold text-lg font-sans "
+                            numberOfLines={4} // Limit to a maximum of 2 lines if text is too long
+                            ellipsizeMode="tail" // Adds '...' at the end if text is truncated
+                          >
+                           Que faire dans ces cas ?
+
+                              </Text>
+                              </View>
+                          
+                          </View>
+                    </TouchableOpacity>
                         
             
                   
@@ -642,7 +676,7 @@ const Login = () => {
       
         <View className="mb-4">
 
-             <Text className="  text-semiBold  text-lg">Nom</Text>
+             <Text className="  text-semiBold  text-lg">Nom & Prénom</Text>
              <View className="flex-row items-center border-b border-gray-300">
                <TextInput
                  className="flex-1 py-2 text-black"

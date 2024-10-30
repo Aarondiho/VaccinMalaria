@@ -15,6 +15,24 @@ const Lessons8 = () => {
   const [screen8, setScreen8] = useState(false)
   
   const [showFirst, setShowFirst] = useState(false);
+
+  const [buttonEnabled, setButtonEnabled] = useState(false);
+  
+  useEffect(() => {
+    const initializeData = async () => {
+      const storedScreen = await AsyncStorage.getItem("screen8" + screen8);
+      if (!storedScreen) {
+        await AsyncStorage.setItem("screen8" + screen8, JSON.stringify(true));
+        setButtonEnabled(false);
+        setTimeout(() => {
+          setButtonEnabled(true);
+        }, 15000); // 30 seconds delay
+      } else {
+        setButtonEnabled(true);
+      }
+    };
+    initializeData();
+  }, [screen8]);
   
 
 
@@ -90,8 +108,8 @@ const Lessons8 = () => {
         <Text className="font-sans text-black text-2xl   font-medium">Module 8</Text> 
 
         <TouchableOpacity className="font-sansjustify-end" onPress={() => {}}>
-        <Text className="font-sans text-sm font-medium  text-green-800 flex-end">
-        {screen8} / 4 </Text>
+        <Text className="font-sans text-sm font-medium mr-2 text-green-800 flex-end">
+        {screen8} / 3 </Text>
         </TouchableOpacity>
       </View>
 
@@ -125,7 +143,8 @@ const Lessons8 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
                    
-                   Une occasion manquée de vaccination est toute visite dans un établissement de santé par un enfant éligible à la vaccination qui ne reçoit pas toutes les doses nécessaires.
+                   Une occasion manquée de vaccination est toute visite dans un établissement de santé d'un enfant (ou d'un adulte)
+                   remplissant les conditions requises pour la vaccination qui n'aboutit pas à l'administration de toutes les doses de vaccin auxquelles ce dernier remplit les conditions.
 
 
                    </Text>
@@ -158,19 +177,14 @@ const Lessons8 = () => {
               </TouchableOpacity>
 
 
-            <TouchableOpacity
-            onPress={()=>goToNextSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-end'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Suivant</Text>
-                    
-            
-            </TouchableOpacity>
+              <TouchableOpacity
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
             </View>
@@ -267,18 +281,13 @@ const Lessons8 = () => {
 
 
             <TouchableOpacity
-            onPress={()=>goToNextSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-end'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Suivant</Text>
-                    
-            
-            </TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
         </View>
@@ -312,7 +321,7 @@ const Lessons8 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
                    
-                        Profiter de chaque visite médicale de l’enfant pour « vérifier son statut vaccinal et donner les doses manquantes »
+                       1. Profiter de chaque visite médicale de l’enfant pour « vérifier son statut vaccinal et donner les doses manquantes »
 
                     </Text>
                    <Text 
@@ -320,14 +329,14 @@ const Lessons8 = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                        Fournir d’autres services de santé (vitamine A, surveillance de la croissance, Albendazole…)
+                       2. Fournir d’autres services de santé (vitamine A, surveillance de la croissance, Albendazole…)
                     </Text>
                    <Text 
                         className="font-sans text-black  text-xl mb-4 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                        Rappeler au parent de ramener l'enfant pour les prochaines doses. Préciser que 4 doses du vaccin contre le paludisme assurent la meilleure protection.
+                       3. Rappeler au parent de ramener l'enfant pour les prochaines doses. Préciser que 4 doses du vaccin contre le paludisme assurent la meilleure protection.
                     </Text>
                   
                 </View>
@@ -352,16 +361,11 @@ const Lessons8 = () => {
 
               <TouchableOpacity
                 onPress={() =>navigation.navigate(ROUTES.QUIZ8)}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Evaluation</Text>
-                      
-                
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Evaluation'}</Text>
               </TouchableOpacity>
 
   

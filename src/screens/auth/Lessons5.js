@@ -16,6 +16,23 @@ const Lessons5 = () => {
   
   const [showFirst, setShowFirst] = useState(false);
   
+  const [buttonEnabled, setButtonEnabled] = useState(false);
+  
+  useEffect(() => {
+    const initializeData = async () => {
+      const storedScreen = await AsyncStorage.getItem("screen5" + screen5);
+      if (!storedScreen) {
+        await AsyncStorage.setItem("screen5" + screen5, JSON.stringify(true));
+        setButtonEnabled(false);
+        setTimeout(() => {
+          setButtonEnabled(true);
+        }, 15000); // 30 seconds delay
+      } else {
+        setButtonEnabled(true);
+      }
+    };
+    initializeData();
+  }, [screen5]);
 
 
 
@@ -90,8 +107,8 @@ const Lessons5 = () => {
         <Text className="font-sans text-black text-xl   font-medium">Module 5</Text> 
 
         <TouchableOpacity className="font-sansjustify-end" onPress={() => {}}>
-        <Text className="font-sans text-sm font-medium  text-green-800 flex-end">
-        {screen5} / 6 </Text>
+        <Text className="font-sans text-sm font-medium mr-2 text-green-800 flex-end">
+        {screen5} / 5 </Text>
         </TouchableOpacity>
       </View>
 
@@ -111,7 +128,7 @@ const Lessons5 = () => {
            
             <View className="px-2 mt-4 mb-10">
 
-              <Text className="font-sans text-xl text-blue-800 mt-4 mx-4 text-center"> 5.1 Où enregistrer la vaccination contre le paludisme ?
+              <Text className="font-sans text-xl text-blue-800 mt-4 mx-4 text-center"> 5.1 Où enregistrer la vaccin contre le paludisme ?
               
                 </Text>
              
@@ -144,7 +161,7 @@ const Lessons5 = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                   -Les fiches de pointage
+                   -Les cahiers de pointage
 
 
                    </Text>
@@ -208,19 +225,14 @@ const Lessons5 = () => {
                 
               </TouchableOpacity>
 
-            <TouchableOpacity
-            onPress={()=>goToNextSlide()}
-            style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-end'
-            }}
-            className=" mx-4 bg-black/80"
-            >
-            <Text style={{ color: '#fff' }}>Suivant</Text>
-                    
-            
-            </TouchableOpacity>
+              <TouchableOpacity
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
             </View>
@@ -269,7 +281,7 @@ const Lessons5 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
                    
-                   registre de pointage
+                   Cahier de pointage
                    </Text>
                    </View>
                 
@@ -311,19 +323,14 @@ const Lessons5 = () => {
 </TouchableOpacity>
 
 
-<TouchableOpacity
-  onPress={()=>goToNextSlide()}
-  style={{
-    padding: 10,
-    borderRadius: 5,
-    alignSelf:'flex-end'
-  }}
-  className=" mx-4 bg-black/80"
->
-  <Text style={{ color: '#fff' }}>Suivant</Text>
-        
-  
-</TouchableOpacity>
+              <TouchableOpacity
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
 </View>
@@ -388,17 +395,12 @@ const Lessons5 = () => {
 
 
               <TouchableOpacity
-                onPress={()=>goToNextSlide()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Suivant</Text>
-                      
-                
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
               </TouchableOpacity>
 
             </View>
@@ -426,7 +428,10 @@ const Lessons5 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
 
-                        Trouver un espace approprié sur la page du carnet de santé mère-enfant, précisant les types de vaccins que l'enfant recevra à chaque âge, pour y inclure les lignes Mosquirix1, Mosquirix2, Mosquirix3, Mosquirix4 et noter chaque dose de vaccin administrée à un endroit facilement visible.
+                        Trouver un espace approprié sur la page du carnet de santé mère-enfant, 
+                        précisant les types de vaccins que l'enfant recevra à chaque âge, pour 
+                        y inclure les lignes  RTS,S1, RTS,S2, RTS,S3, RTS,S4 
+                        et noter chaque dose de vaccin administrée à un endroit facilement visible.
 
 
 
@@ -438,7 +443,11 @@ const Lessons5 = () => {
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
                      
-                     Le carnet santé mère-enfant est principalement utilisé pour indiquer la date de naissance de l’enfant (l’âge), informer sur les doses déjà reçues y compris les prochains rendez-vous de vaccination et surtout identifier les enfants qui ne reviennent pas à temps pour se faire vacciner ou qui ont manqué des vaccins.
+                     Le carnet santé mère-enfant est principalement utilisé pour indiquer 
+                     la date de naissance de l’enfant (l’âge), informer sur les doses déjà
+                      reçues ainsi que les prochains rendez-vous de vaccination et surtout identifier 
+                      les enfants qui ne reviennent pas à temps pour se faire vacciner ou qui 
+                      ont manqué des doses de vaccins.
 
                     </Text>
 
@@ -463,17 +472,12 @@ const Lessons5 = () => {
 
 
               <TouchableOpacity
-                on onPress={() =>goToNextSlide()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Suivant</Text>
-                      
-                
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
               </TouchableOpacity>
 
   
@@ -578,17 +582,12 @@ const Lessons5 = () => {
 
 
               <TouchableOpacity
-                onPress={() =>navigation.navigate(ROUTES.QUIZ5)}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Evaluation</Text>
-                      
-                
+                    onPress={() =>navigation.navigate(ROUTES.QUIZ5)}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Evaluation'}</Text>
               </TouchableOpacity>
 
   

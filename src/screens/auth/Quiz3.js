@@ -17,6 +17,13 @@
         const [isCooldownActive, setIsCooldownActive] = useState(false); // track cooldown state
         const [remainingTime, setRemainingTime] = useState(0); // track remaining cooldown time
         const [showTimerModal, setShowTimerModal] = useState(false); // state for timer modal
+        const [shuffledQuestions, setShuffledQuestions] = useState([]);
+
+        // Shuffle function to randomize array
+  
+        const shuffleArray = (array) => {
+          return array.sort(() => Math.random() - 0.5);
+      };
     
         
         const questions= [
@@ -76,7 +83,7 @@
                     if (lastAttemptTime3) {
                         const currentTime = new Date().getTime();
                         const timeDifference = currentTime - parseInt(lastAttemptTime3);
-                        const cooldownDuration = 15 * 60 * 1000; // 15 minutes in milliseconds
+                        const cooldownDuration = 5 * 60 * 1000; // 15 minutes in milliseconds
     
                         if (timeDifference < cooldownDuration) {
                             setIsCooldownActive(true);
@@ -90,6 +97,13 @@
                     console.error('Error checking cooldown:', error);
                 }
             };
+
+            // Shuffle questions and options on load
+                const shuffled = shuffleArray([...questions]);
+                shuffled.forEach(question => {
+                    question.options = shuffleArray([...question.options]);
+                });
+                setShuffledQuestions(shuffled);
     
             checkCooldown();
         }, []);
@@ -150,7 +164,7 @@
                     </View>
     
                     <ScrollView showsVerticalScrollIndicator={false} className="mt-2 px-6">
-                        {questions.map((item, index) => (
+                        {shuffledQuestions.map((item, index) => (
                             <View key={index} className="mb-6">
                                 <Text className="text-blue-800 text-center text-2xl mb-4">{index + 1}. {item.question}</Text>
                                 {item.options.map((option, optIndex) => (
@@ -216,7 +230,7 @@
                         
                                 <Text style={styles.modalTitle} className="text-blue-800">Résultat et Corrections</Text>
                                 <Text style={styles.modalScore} className="text-red-800">Note Obtenue : {score.toFixed(2)}%</Text>
-                                {questions.map((item, index) => (
+                                {shuffledQuestions.map((item, index) => (
                                     <View key={index} style={styles.correctionItem}>
                                         <Text style={styles.questionText} className="font-sans">{index + 1}. {item.question}</Text>
                                         <Text style={answers[index] === item.correctAnswer ? styles.correctAnswer : styles.wrongAnswer} className="font-sans mt-2">
@@ -228,7 +242,7 @@
     
                                         </View>
                                 ))}
-                                <Text className=" font-sans mt-2 mb-2">N.B : Vous pouvez refaire le test après 15 min</Text>
+                                <Text className=" font-sans mt-2 mb-2">N.B : Vous pouvez refaire le test après 5 min</Text>
                                     
                                 <Button title="Fermer" onPress={() => {
                                   setShowCorrection(false);

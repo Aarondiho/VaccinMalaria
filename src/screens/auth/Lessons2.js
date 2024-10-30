@@ -14,8 +14,25 @@ const Lessons = () => {
   var { width, height } = Dimensions.get('window');
 
   const [screen2, setScreen2] = useState(false)
+
+  const [buttonEnabled, setButtonEnabled] = useState(false);
   
-  const [showFirst, setShowFirst] = useState(false);
+  useEffect(() => {
+
+    const initializeData = async () => {
+      const storedScreen = await AsyncStorage.getItem("screen2" + screen2);
+      if (!storedScreen) {
+        await AsyncStorage.setItem("screen2" + screen2, JSON.stringify(true));
+        setButtonEnabled(false);
+        setTimeout(() => {
+          setButtonEnabled(true);
+        }, 15000); // 30 seconds delay
+      } else {
+        setButtonEnabled(true);
+      }
+    };
+    initializeData();
+  }, [screen2]);
   
 
 
@@ -41,13 +58,7 @@ const Lessons = () => {
     }, [navigation]);
 
 
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setShowFirst(true);
-      }, 1000); // 2000ms = 5 seconds
-  
-      return () => clearTimeout(timer); // Cleanup the timer if the component unmounts
-    }, []);
+   
   
 
 
@@ -73,11 +84,6 @@ const Lessons = () => {
 
     }
 
-    
-  
-
-
-
   return (
     <SafeAreaView className="flex-1">
       <View 
@@ -95,8 +101,8 @@ const Lessons = () => {
         <Text className="font-sans text-black text-2xl   font-medium">Module 2</Text> 
 
         <TouchableOpacity className="font-sansjustify-end" onPress={() => {}}>
-        <Text className="font-sans text-sm font-medium  text-green-800 flex-end">
-        {screen2} / 7 </Text>
+        <Text className="font-sans text-sm font-medium  mr-2 text-green-800 flex-end">
+        {screen2} / 6 </Text>
         </TouchableOpacity>
       </View>
 
@@ -131,8 +137,9 @@ const Lessons = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                         Le vaccin MosquirixTM, également connu sous le nom de RTS,S/AS01, a été conçu pour prévenir le paludisme chez les enfants, 
-                      en particulier celui causé par le parasite Plasmodium falciparum, la forme la plus répandue et dangereuse de la maladie. 
+                        Le vaccin RTS,S également connu sous le nom de Mosquirix™,
+                        a été conçu pour prévenir le paludisme dû au Plasmodium falciparum chez les enfants,
+                        la forme la plus répandue et dangereuse de la maladie. 
             </Text>
             </View>
           
@@ -155,17 +162,12 @@ const Lessons = () => {
 
 
           <TouchableOpacity
-            onPress={()=>goToNextSlide()}
-            style={{
-              padding: 10,
-              borderRadius: 5,
-              alignSelf:'flex-end'
-            }}
-            className=" mx-4 bg-black/90"
-          >
-            <Text style={{ color: '#fff' }}>Suivant</Text>
-                  
-            
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
           </TouchableOpacity>
 
 
@@ -187,8 +189,10 @@ const Lessons = () => {
                         className="font-sans text-black  text-xl mb-4 mt-2"
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                      > Le vaccin est fourni sous forme de deux flacons : un contenant la poudre lyophilisée du vaccin et l'autre contenant un diluant pour reconstituer le vaccin.
-                    Les deux flacons sont collés ensemble pour diminuer le risque d'erreur lors de la préparation.
+                      > 
+                      Le vaccin est fourni sous forme de deux flacons : 
+                      un contenant la poudre lyophilisée du vaccin et l'autre contenant un diluant pour reconstituer le vaccin.
+                      Les deux flacons sont collés ensemble pour diminuer le risque d'erreur lors de la préparation.
                   
           </Text>
           </View>
@@ -211,18 +215,13 @@ const Lessons = () => {
 
 
         <TouchableOpacity
-          onPress={()=>goToNextSlide()}
-          style={{
-            padding: 10,
-            borderRadius: 5,
-            alignSelf:'flex-end'
-          }}
-          className=" mx-4 bg-black/90"
-        >
-          <Text style={{ color: '#fff' }}>Suivant</Text>
-                
-          
-        </TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
 
@@ -245,9 +244,9 @@ const Lessons = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-                         MosquirixTM (RTS,S) vient dans une boite de 100 flacons dont 50 flacons de vaccins et 50 flacons de diluants soit 100 doses après reconstitution. 
-                  Chaque flacon permet de préparer deux doses de 0,5 ml. 
-                  Chaque dose est ainsi injectée sous forme intramusculaire chez un enfant âgé de 6 à 18 mois.
+                      Le vaccin RTS,S (Mosquirix™) vient dans une boite de 100 flacons dont 50 flacons de vaccins et 50 flacons de diluants. 
+                      Après reconstitution chaque flacon contient 1 ml de vaccin équivalent à 2 doses. 
+                      Le vaccin est administré an intramusculaire  chez les enfants âgés de 6 à 18 mois.
           
         </Text>
         </View>
@@ -270,18 +269,13 @@ const Lessons = () => {
 
 
       <TouchableOpacity
-        onPress={()=>goToNextSlide()}
-        style={{
-          padding: 10,
-          borderRadius: 5,
-          alignSelf:'flex-end'
-        }}
-        className=" mx-4 bg-black/90"
-      >
-        <Text style={{ color: '#fff' }}>Suivant</Text>
-              
-        
-      </TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 
 
@@ -343,18 +337,13 @@ const Lessons = () => {
 
 
       <TouchableOpacity
-        onPress={()=>goToNextSlide()}
-        style={{
-          padding: 10,
-          borderRadius: 5,
-          alignSelf:'flex-end'
-        }}
-        className=" mx-4 bg-black/90"
-      >
-        <Text style={{ color: '#fff' }}>Suivant</Text>
-              
-        
-      </TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
     </View>
     </>   
@@ -379,10 +368,9 @@ const Lessons = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >
-            Pour bien gérer les vaccins, il est essentiel de ranger ceux qui sont sensible au froid 
+                    Pour bien gérer les vaccins, il est essentiel de ranger ceux qui sont sensible au froid 
                     (PCV13, Rotarix, DTC-HepB-Hib, Td, DTC, VPI et RTS,S/AS01) dans le panier du haut. 
-                    Par contre, les vaccins qui supportent mieux les températures plus chaudes (BCG et le RR), 
-                    doivent être rangés dans le panier du bas.
+                    Par contre, les vaccins lyophilisés (BCG, RR) et VPOb  sont rangés dans le panier du bas.
           </Text>
           </View>
 
@@ -406,18 +394,13 @@ const Lessons = () => {
 
 
 <TouchableOpacity
-  onPress={()=>goToNextSlide()}
-  style={{
-    padding: 10,
-    borderRadius: 5,
-    alignSelf:'flex-end'
-  }}
-  className=" mx-4 bg-black/90"
->
-  <Text style={{ color: '#fff' }}>Suivant</Text>
-        
-  
-</TouchableOpacity>
+                    onPress={goToNextSlide}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
 
 </View>
 
@@ -469,20 +452,14 @@ const Lessons = () => {
                 <Text style={{ color: '#fff' }}>Précédent</Text>
                 
               </TouchableOpacity>
-
-
+            
               <TouchableOpacity
-                onPress={() =>navigation.navigate(ROUTES.QUIZ2)}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-end'
-                }}
-                className=" mx-4 bg-black/90"
-              >
-                <Text style={{ color: '#fff' }}>Evaluation</Text>
-                      
-                
+                    onPress={() =>navigation.navigate(ROUTES.QUIZ2)}
+                    style={{ padding: 10, borderRadius: 5 }}
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                    disabled={!buttonEnabled}
+                  >
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>Evaluation</Text>
               </TouchableOpacity>
 
   
