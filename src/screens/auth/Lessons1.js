@@ -139,32 +139,30 @@ const Lessons = () => {
             </View>
 
 
-          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between',  }} className="mb-12">
+            <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
 
-              <TouchableOpacity
-                onPress={() =>navigation.goBack()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-start'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Retour</Text>
-                
-              </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>navigation.goBack()}
+              style={{
+                padding: 10,
+                borderRadius: 5,
+                alignSelf:'flex-start'
+              }}
+              className=" mx-4 bg-black/90"
+            >
+              <Text style={{ color: '#fff' }}>Retour</Text>
+              
+            </TouchableOpacity>
 
 
-              <TouchableOpacity
-                    onPress={goToNextSlide}
-                    style={{ padding: 10, borderRadius: 5 }}
-                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/80"}
-                    disabled={!buttonEnabled}
-                  >
-                    <Text className={buttonEnabled? "text-black" :"text-white"}>{'Suivant'}</Text>
-              </TouchableOpacity>
-                      
-    
+            <TouchableOpacity
+                      onPress={goToNextSlide}
+                      style={{ padding: 10, borderRadius: 5 }}
+                      className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                      disabled={!buttonEnabled}
+                    >
+                      <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+            </TouchableOpacity>
 
 
 
@@ -234,10 +232,10 @@ const Lessons = () => {
               <TouchableOpacity
                     onPress={goToNextSlide}
                     style={{ padding: 10, borderRadius: 5 }}
-                    className="mx-4 bg-black/80"
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
                     disabled={!buttonEnabled}
                   >
-                    <Text style={{ color: '#fff' }}>{'Suivant'}</Text>
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
               </TouchableOpacity>
 
             </View>
@@ -288,10 +286,10 @@ const Lessons = () => {
               <TouchableOpacity
                     onPress={goToNextSlide}
                     style={{ padding: 10, borderRadius: 5 }}
-                    className="mx-4 bg-black/80"
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
                     disabled={!buttonEnabled}
                   >
-                    <Text style={{ color: '#fff' }}>{'Suivant'}</Text>
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
               </TouchableOpacity>
         
   
@@ -313,7 +311,7 @@ const Lessons = () => {
                         numberOfLines={50} // Optional: limit to a specific number of lines if desired
                         ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
                       >  
-                      Le paludisme est la principale cause morbidité et mortalité chez les enfants au Burundi.
+                      Le paludisme est la principale cause de morbidité et mortalité chez les enfants au Burundi.
                       Pour traiter cette maladie, on utilise des combinaisons thérapeutiques à base d'Artéméther(dont Artémisine Luméfantrine au Burundi),
                        qui sont efficaces contre les formes les plus courantes du paludisme.
                       Il est très important de diagnostiquer le paludisme rapidement pour commencer le traitement au plus vite (TDR ou Goutte épaisse).
@@ -339,10 +337,10 @@ const Lessons = () => {
                 <TouchableOpacity
                     onPress={goToNextSlide}
                     style={{ padding: 10, borderRadius: 5 }}
-                    className="mx-4 bg-black/80"
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
                     disabled={!buttonEnabled}
                   >
-                    <Text style={{ color: '#fff' }}>{'Suivant'}</Text>
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
               </TouchableOpacity>
 
 
@@ -433,10 +431,10 @@ const Lessons = () => {
             <TouchableOpacity
                     onPress={goToNextSlide}
                     style={{ padding: 10, borderRadius: 5 }}
-                    className="mx-4 bg-black/80"
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
                     disabled={!buttonEnabled}
                   >
-                    <Text style={{ color: '#fff' }}>{'Suivant'}</Text>
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
               </TouchableOpacity>
 
 
@@ -491,16 +489,14 @@ const Lessons = () => {
                 
               </TouchableOpacity>
 
-
               <TouchableOpacity
-                onPress={() =>navigation.navigate(ROUTES.QUIZ1)}
+                    onPress={() =>navigation.navigate(ROUTES.QUIZ1)}
                     style={{ padding: 10, borderRadius: 5 }}
-                    className="mx-4 bg-black/80"
+                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
                     disabled={!buttonEnabled}
                   >
-                    <Text style={{ color: '#fff' }}>{'Evaluation'}</Text>
+                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Evaluation'}</Text>
               </TouchableOpacity>
-
   
  
 
