@@ -22,9 +22,11 @@ const Lessons = () => {
       if (!storedScreen) {
         await AsyncStorage.setItem("screen" + screen1, JSON.stringify(true));
         setButtonEnabled(false);
+
         setTimeout(() => {
           setButtonEnabled(true);
         }, 15000); // 30 seconds delay
+        
       } else {
         setButtonEnabled(true);
       }
@@ -53,6 +55,8 @@ const Lessons = () => {
     
       return unsubscribe;
     }, [navigation]);
+
+    
 
 
     const goToNextSlide = () =>{
@@ -249,7 +253,7 @@ const Lessons = () => {
               
               <TouchableOpacity className="font-sans p-1 justify-center items-center" >
                 <Image source={require('../../../assets/mod1/2.png')}
-                            className="mb-10 mx-4 "
+                            className="mb-5 mx-4 "
                             style={{width:width*0.6,height:height*0.3}}  />
               </TouchableOpacity>
                  
@@ -380,7 +384,7 @@ const Lessons = () => {
                   <View className="px-2 mb-10 mt-4">
                     <TouchableOpacity className="font-sans justify-center items-center p-4 bg-gray-100  rounded-xl" >
                     <Image source={require('../../../assets/mod1/6.png')}
-                              className="w-48 h-36 -ml-10 "/>
+                              className="w-36 h-64 -ml-10 "/>
                     </TouchableOpacity>
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
@@ -397,7 +401,7 @@ const Lessons = () => {
                   <View className="px-2 mb-10 mt-4">
                     <TouchableOpacity className="font-sans justify-center items-center p-4 bg-gray-100 rounded-xl" >
                      <Image source={require('../../../assets/mod1/7.png')}
-                              className="mx-4  w-32 h-32 text-center"/>
+                              className="mx-4  w-48 h-32 text-center"/>
                     </TouchableOpacity>
 
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>

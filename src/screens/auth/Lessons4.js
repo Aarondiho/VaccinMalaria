@@ -58,14 +58,6 @@ const Lessons4 = () => {
     }, [navigation]);
 
 
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setShowFirst(true);
-      }, 1000); // 2000ms = 5 seconds
-  
-      return () => clearTimeout(timer); // Cleanup the timer if the component unmounts
-    }, []);
-  
 
 
     const goToNextSlide = () =>{
@@ -80,8 +72,6 @@ const Lessons4 = () => {
     }
 
     const goToPreviousSlide = () =>{
-
-
       AsyncStorage.setItem("screen4", JSON.stringify(screen4 - 1));
       setScreen4(screen4 - 1)
 
@@ -204,7 +194,7 @@ const Lessons4 = () => {
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
 
 <TouchableOpacity
-  onPress={() =>goToPreviousSlide()}
+  onPress={() =>navigation.goBack()}
   style={{
     padding: 10,
     borderRadius: 5,
@@ -212,7 +202,7 @@ const Lessons4 = () => {
   }}
   className=" mx-4 bg-black/80"
 >
-  <Text style={{ color: '#fff' }}>Précédent</Text>
+  <Text style={{ color: '#fff' }}>Retour</Text>
   
 </TouchableOpacity>
 
@@ -354,7 +344,7 @@ const Lessons4 = () => {
             <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
 
               <TouchableOpacity
-                onPress={() =>goToPreviousSlide()}
+                onPress={goToPreviousSlide}
                 style={{
                   padding: 10,
                   borderRadius: 5,

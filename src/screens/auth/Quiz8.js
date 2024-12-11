@@ -116,7 +116,7 @@
         const submitAnswers = () => {
             let newScore = 0;
             answers.forEach((answer, index) => {
-                if (answer === questions[index].correctAnswer) {
+                if (answer === shuffledQuestions[index].correctAnswer) {
                     newScore += 1;
                 }
             });

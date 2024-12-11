@@ -58,16 +58,6 @@ const Lessons7 = () => {
     }, [navigation]);
 
 
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setShowFirst(true);
-      }, 1000); // 2000ms = 5 seconds
-  
-      return () => clearTimeout(timer); // Cleanup the timer if the component unmounts
-    }, []);
-  
-
-
     const goToNextSlide = () =>{
 
 
@@ -249,7 +239,7 @@ const Lessons7 = () => {
                               className="mx-4 mt-4 w-72 h-10 "/>
                               <Text className="-mt-7 font-bold text-white ">Au cours de la séance de vaccination</Text>
                 <Image 
-                  source={require('../../../assets/mod4/2.png')}
+                  source={require('../../../assets/mod4/2.jpg')}
                   style={{ height: height * 0.3, width: width * 0.448, marginBottom: 40, marginTop: 30 }}
                 />
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
@@ -275,7 +265,7 @@ const Lessons7 = () => {
               </TouchableOpacity>
               <TouchableOpacity className="font-sans p-1 justify-center items-center">
                 <Image 
-                  source={require('../../../assets/mod4/3.png')}
+                  source={require('../../../assets/mod4/3.jpg')}
                   style={{ height: height * 0.29, width: width * 0.5, marginBottom: 40}}
                 />
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
@@ -349,7 +339,7 @@ const Lessons7 = () => {
                               className="mx-4 mt-4 w-72 h-10 "/>
                               <Text className="-mt-7 font-bold text-white ">Aprés la séance de vaccination</Text>
 
-                    <Image source={require('../../../assets/mod4/4.png')}
+                    <Image source={require('../../../assets/mod4/4.jpg')}
                               className="mx-4 mt-4 w-80 h-52 "/>
                     <Text className="font-sans text-xl  mt-4 text-center mx-4 mb-10"> 
                     Reprendre /Résumer et inviter les parents à amener leurs enfants au prochain rendez-vous de vaccination 
@@ -421,7 +411,7 @@ const Lessons7 = () => {
 
                     <TouchableOpacity className="font-sans justify-center items-center" >
                      
-                     <Image source={require('../../../assets/mod4/6.png')}
+                     <Image source={require('../../../assets/mod4/6.jpg')}
                               className="mx-4 mt-4 w-48 h-40 "/>
 
                      <View style={{ flex: 1, paddingHorizontal: 4 }}>
@@ -525,8 +515,8 @@ const Lessons7 = () => {
 
                     <TouchableOpacity className="font-sans justify-center items-center" >
                      
-                     <Image source={require('../../../assets/mod4/8.png')}
-                              className="mx-4 mt-4 w-72 h-52 "/>
+                     <Image source={require('../../../assets/mod4/8.jpg')}
+                              className="mx-4 mt-4 w-72 h-52 rounded-2xl"/>
 
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
@@ -546,8 +536,8 @@ const Lessons7 = () => {
 
                 <TouchableOpacity className="font-sans justify-center items-center" >
                      
-                     <Image source={require('../../../assets/mod4/9.png')}
-                              className="mx-4 mt-4 w-72 h-72 "/>
+                     <Image source={require('../../../assets/mod4/9.jpg')}
+                              className="mx-4 mt-4 w-72 h-60 rounded-xl "/>
 
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
@@ -567,8 +557,8 @@ const Lessons7 = () => {
 
                 <TouchableOpacity className="font-sans justify-center items-center" >
                      
-                     <Image source={require('../../../assets/mod4/10.png')}
-                              className="mx-4 mt-4 w-72 h-72 "/>
+                     <Image source={require('../../../assets/mod4/10.jpg')}
+                              className="mx-4 mt-4 w-72 h-72 rounded-xl"/>
 
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 

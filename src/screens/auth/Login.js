@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, ImageBackground, Platform, View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, StyleSheet, ScrollView, SafeAreaView, Alert } from 'react-native';
+import { Dimensions, ImageBackground, Platform, View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, StyleSheet, ScrollView, SafeAreaView, Alert, Linking } from 'react-native';
 import { Link, useNavigation } from '@react-navigation/native';
 import { COLORS, ROUTES } from '../../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -216,6 +216,11 @@ const Login = () => {
     navigation.navigate(ROUTES.POINTS)
 
   }
+
+  const tsappText = () => {
+    let phoneNumber = 'whatsapp://send?phone=+25761552799';
+    Linking.openURL(phoneNumber);
+ };
 
 
   return (<>
@@ -568,7 +573,17 @@ const Login = () => {
                     {/* First Image */}
                     <Image 
                       source={require('../../../assets/mod1/Logo_1.png')} 
-                      className="w-20 h-20" 
+                      className="w-16 h-16" 
+                    />
+
+                    
+                    {/* Vertical Line */}
+                    <View className="h-12 w-[5px] bg-gray-400 mx-2" />
+
+                    {/* Second Image */}
+                    <Image 
+                      source={require('../../../assets/pev.png')} 
+                      className="w-16 h-16 rounded-xl" 
                     />
 
                     {/* Vertical Line */}
@@ -588,6 +603,410 @@ const Login = () => {
 
 
             </View>
+
+            <View >
+
+              <View className="font-sans flex-row justify-between  mt-2">
+                <Text   style={{alignSelf:'flex-start',height:20}} /> 
+                
+                <Text className="font-sans text-center font-bold text-2xl text-gray-600 mb-4">
+                      VIDEO DES MODULES
+                </Text>
+                <TouchableOpacity className="font-sans p-1 justify-end">
+                      
+                </TouchableOpacity>
+              </View>
+
+              <View className="p-4 mt-4 rounded-2xl bg-white mb-20 items-center">
+
+              <View >
+
+                <TouchableOpacity 
+                    onPress={() => {Linking.openURL('https://youtu.be/pAn3XmPzi2c?si=-mk2b-UEE-btdMxp')}}
+                    style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                  >
+                    <View className="justify-center items-center p-6 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                     
+
+                      
+                      {/* Text Container */}
+                      <View style={{ flex: 1, marginLeft: 8 }}>
+                        <Image 
+                          source={require('../../../assets/video/1.png')}
+                          
+                          className="w-72 h-40 mb-2 rounded-xl"
+                        />
+
+                        {/* Play Icon Overlay */}
+                        <View className="flex-1 -mt-32   justify-center items-center">
+                          <IconButton 
+                            icon="play" 
+                            size={48} 
+                            iconColor="#FFF" 
+                            className="bg-black/40 mb-16 "
+                          />
+                        </View>
+                          <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                                  <Text 
+                                    className="font-sans text-black  text-xl mb-2"
+                                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                          >
+                          
+                          Module 1
+
+                          </Text>
+                        </View>
+                      </View>
+                    
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    onPress={() => { Linking.openURL('https://youtu.be/9ZVco97uRX4?si=luuWVNOnOamkGCLy')}}
+                    style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                  >
+                    <View className="justify-center items-center p-6 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                     
+
+                      
+                      {/* Text Container */}
+                      <View style={{ flex: 1, marginLeft: 8 }}>
+                        <Image 
+                          source={require('../../../assets/video/2.png')}
+                          
+                          className="w-72 h-40 mb-2 rounded-xl"
+                        />
+                         {/* Play Icon Overlay */}
+                         <View className="flex-1 -mt-32   justify-center items-center">
+                          <IconButton 
+                            icon="play" 
+                            size={48} 
+                            iconColor="#FFF" 
+                            className="bg-black/40 mb-16 "
+                          />
+                        </View>
+                          <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                                  <Text 
+                                    className="font-sans text-black  text-xl mb-2"
+                                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                          >
+                          
+                          Module 2
+
+                          </Text>
+                        </View>
+                      </View>
+                    
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                     onPress={() => { Linking.openURL('https://youtu.be/RqrSAeLQRI8?si=rdwPoF4_7lVw551c')}}
+                    style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                  >
+                    <View className="justify-center items-center p-6 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                     
+
+                      
+                      {/* Text Container */}
+                      <View style={{ flex: 1, marginLeft: 8 }}>
+                        <Image 
+                          source={require('../../../assets/video/3.png')}
+                          
+                          className="w-72 h-40 mb-2 rounded-xl"
+                        />
+                         {/* Play Icon Overlay */}
+                         <View className="flex-1 -mt-32   justify-center items-center">
+                          <IconButton 
+                            icon="play" 
+                            size={48} 
+                            iconColor="#FFF" 
+                            className="bg-black/40 mb-16 "
+                          />
+                        </View>
+                          <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                                  <Text 
+                                    className="font-sans text-black  text-xl mb-2"
+                                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                          >
+                          
+                          Module 3
+
+                          </Text>
+                        </View>
+                      </View>
+                    
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    onPress={() => { Linking.openURL('https://youtu.be/jDsVhywOW7k?si=nqpodkLnrwOtBgIp')}}
+                    
+                    style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                  >
+                    <View className="justify-center items-center p-6 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                     
+
+                      
+                      {/* Text Container */}
+                      <View style={{ flex: 1, marginLeft: 8 }}>
+                        <Image 
+                          source={require('../../../assets/video/4.png')}
+                          
+                          className="w-72 h-40 mb-2 rounded-xl"
+                        />
+                         {/* Play Icon Overlay */}
+                         <View className="flex-1 -mt-32   justify-center items-center">
+                          <IconButton 
+                            icon="play" 
+                            size={48} 
+                            iconColor="#FFF" 
+                            className="bg-black/40 mb-16 "
+                          />
+                        </View>
+                          <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                                  <Text 
+                                    className="font-sans text-black  text-xl mb-2"
+                                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                          >
+                          
+                          Module 4
+
+                          </Text>
+                        </View>
+                      </View>
+                    
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    onPress={() => { Linking.openURL('https://youtu.be/dVh1Ug2mbg4?si=D--Rjm8VSrJW8fZ1')}}
+                    
+                    style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                  >
+                    <View className="justify-center items-center p-6 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                     
+
+                      
+                      {/* Text Container */}
+                      <View style={{ flex: 1, marginLeft: 8 }}>
+                        <Image 
+                          source={require('../../../assets/video/5.png')}
+                          
+                          className="w-72 h-40 mb-2 rounded-xl"
+                        />
+                         {/* Play Icon Overlay */}
+                         <View className="flex-1 -mt-32   justify-center items-center">
+                          <IconButton 
+                            icon="play" 
+                            size={48} 
+                            iconColor="#FFF" 
+                            className="bg-black/40 mb-16 "
+                          />
+                        </View>
+                          <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                                  <Text 
+                                    className="font-sans text-black  text-xl mb-2"
+                                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                          >
+                          
+                          Module 5
+
+                          </Text>
+                        </View>
+                      </View>
+                    
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    onPress={() => { Linking.openURL('https://youtu.be/8lF2Tir-pVk')}}
+                    style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                  >
+                    <View className="justify-center items-center p-6 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                     
+
+                      
+                      {/* Text Container */}
+                      <View style={{ flex: 1, marginLeft: 8 }}>
+                        <Image 
+                          source={require('../../../assets/video/6.png')}
+                          
+                          className="w-72 h-40 mb-2 rounded-xl"
+                        />
+                         {/* Play Icon Overlay */}
+                         <View className="flex-1 -mt-32   justify-center items-center">
+                          <IconButton 
+                            icon="play" 
+                            size={48} 
+                            iconColor="#FFF" 
+                            className="bg-black/40 mb-16 "
+                          />
+                        </View>
+                          <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                                  <Text 
+                                    className="font-sans text-black  text-xl mb-2"
+                                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                          >
+                          
+                          Module 6
+
+                          </Text>
+                        </View>
+                      </View>
+                    
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    onPress={() => { Linking.openURL('https://youtu.be/ljq50cFnhic?si=0B_520iZd6Z_ZsP5')}}
+                    
+                    style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                  >
+                    <View className="justify-center items-center p-6 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                     
+
+                      
+                      {/* Text Container */}
+                      <View style={{ flex: 1, marginLeft: 8 }}>
+                        <Image 
+                          source={require('../../../assets/video/7.png')}
+                          
+                          className="w-72 h-40 mb-2 rounded-xl"
+                        />
+                         {/* Play Icon Overlay */}
+                         <View className="flex-1 -mt-32   justify-center items-center">
+                          <IconButton 
+                            icon="play" 
+                            size={48} 
+                            iconColor="#FFF" 
+                            className="bg-black/40 mb-16 "
+                          />
+                        </View>
+                          <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                                  <Text 
+                                    className="font-sans text-black  text-xl mb-2"
+                                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                          >
+                          
+                          Module 7
+
+                          </Text>
+                        </View>
+                      </View>
+                    
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    onPress={() => { Linking.openURL('https://youtu.be/nXylqKUKDx8?si=O6c-x-2isZwAi_YF')}}
+                    
+                    style={{ width: width * 0.8 }} // Set the TouchableOpacity width based on screen width
+                  >
+                    <View className="justify-center items-center p-6 mb-4 rounded-xl bg-gray-200 shadow-lg">
+                     
+
+                      
+                      {/* Text Container */}
+                      <View style={{ flex: 1, marginLeft: 8 }}>
+                        <Image 
+                          source={require('../../../assets/video/8.png')}
+                          
+                          className="w-72 h-40 mb-2 rounded-xl"
+                        />
+                         {/* Play Icon Overlay */}
+                         <View className="flex-1 -mt-32   justify-center items-center">
+                          <IconButton 
+                            icon="play" 
+                            size={48} 
+                            iconColor="#FFF" 
+                            className="bg-black/40 mb-16 "
+                          />
+                        </View>
+                          <View style={{ flex: 1, paddingHorizontal: 4 }}>
+                                  <Text 
+                                    className="font-sans text-black  text-xl mb-2"
+                                    numberOfLines={50} // Optional: limit to a specific number of lines if desired
+                                    ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+                          >
+                          
+                          Module 8
+
+                          </Text>
+                        </View>
+                      </View>
+                    
+                    </View>
+                </TouchableOpacity>
+
+
+                
+                
+
+
+                <View className="flex-row mt-4 font-sans justify-center items-center ">
+                   {/* First Image */}
+                   <Image 
+                      source={require('../../../assets/mod1/Logo_1.png')} 
+                      className="w-16 h-16" 
+                    />
+
+                    
+                    {/* Vertical Line */}
+                    <View className="h-12 w-[5px] bg-gray-400 mx-2" />
+
+                    {/* Second Image */}
+                    <Image 
+                      source={require('../../../assets/pev.png')} 
+                      className="w-16 h-16 rounded-xl" 
+                    />
+
+                    {/* Vertical Line */}
+                    <View className="h-12 w-[5px] bg-gray-400 mx-2" />
+
+                    {/* Second Image */}
+                    <Image 
+                      source={require('../../../assets/gavi.png')} 
+                      className="w-28 h-16 " 
+                    />
+                </View>
+
+                </View>
+
+
+              </View>
+
+
+              </View>
+
+              <Text className="font-sans text-xl text-blue-900 text-center mb-4" >Avez-Vous des questions ou des suggestion?</Text> 
+              
+              <TouchableOpacity
+                style={{marginLeft:10}}
+                    onPress={()=> Linking.openURL('https://chat.whatsapp.com/LW7HCG0vsziBCeRPgenUcu')}
+                    activeOpacity={0.7}>
+                <View >
+                <LinearGradient
+                colors ={['green','#92BC1D']}
+                start={[0, 1]}
+                end={[1, 0]}
+                className="items-center p-2  rounded-3xl mt-10  "
+                >
+ 
+                    <Text className="items-center font-sans text-text-white text-center text-xl" >
+                   Rejoindre notre communauté Whatsapp
+                    </Text>
+                   
+                    </LinearGradient>
+                </View>
+                </TouchableOpacity>
 
             <View className="mb-20"></View> 
 

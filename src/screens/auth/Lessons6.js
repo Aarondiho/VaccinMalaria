@@ -56,14 +56,6 @@ const Lessons6 = () => {
     }, [navigation]);
 
 
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setShowFirst(true);
-      }, 1000); // 2000ms = 5 seconds
-  
-      return () => clearTimeout(timer); // Cleanup the timer if the component unmounts
-    }, []);
-  
 
 
     const goToNextSlide = () =>{
@@ -210,9 +202,9 @@ const Lessons6 = () => {
                 </View>
             
 
-              <TouchableOpacity className="font-sans p-1 justify-center items-center">
+              <TouchableOpacity className="font-sans p-1 rounded-2xl bg-white justify-center items-center">
                 <Image 
-                  source={require('../../../assets/mod3/10.png')}
+                  source={require('../../../assets/mod3/10.jpg')}
                   style={{ height: height * 0.22, width: width * 0.5, marginBottom: 40, marginTop: 20 }}
                 />
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
@@ -228,9 +220,9 @@ const Lessons6 = () => {
                    </Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity className="font-sans p-1 justify-center items-center">
+              <TouchableOpacity className="font-sans p-1 rounded-2xl bg-white mt-4 justify-center items-center">
                 <Image 
-                  source={require('../../../assets/mod3/11.png')}
+                  source={require('../../../assets/mod3/11.jpg')}
                   style={{ height: height * 0.25, width: width * 0.38, marginBottom: 40, marginTop: 20 }}
                 />
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
@@ -249,9 +241,9 @@ const Lessons6 = () => {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity className="font-sans p-1 justify-center items-center">
+              <TouchableOpacity className="mt-4 rounded-2xl bg-white font-sans p-1 justify-center items-center">
                 <Image 
-                  source={require('../../../assets/mod3/12.png')}
+                  source={require('../../../assets/mod3/12.jpg')}
                   style={{ height: height * 0.28, width: width * 0.5, marginBottom: 40, marginTop: 20 }}
                 />
                 <View style={{ flex: 1, paddingHorizontal: 4 }}>
@@ -324,7 +316,7 @@ const Lessons6 = () => {
 
                     <TouchableOpacity className="font-sans justify-center items-center" >
                      
-                     <Image source={require('../../../assets/mod3/13.png')}
+                     <Image source={require('../../../assets/mod1/2.png')}
                               className="mx-4 mt-4 "
                               style={{width:width*0.6,height:height*0.3}} 
                     />
@@ -338,7 +330,7 @@ const Lessons6 = () => {
                     <TouchableOpacity className="font-sans justify-center items-center" >
                      
                      <Image source={require('../../../assets/mod3/14.png')}
-                              className="mx-4 mt-4"
+                              className="mx-4 mt-4 "
                               style={{width:width*0.28,height:height*0.3}} 
                     />
                     <Text className="font-sans text-xl  mt-4 mx-4"> 
@@ -349,8 +341,8 @@ const Lessons6 = () => {
                     </TouchableOpacity>
                     <TouchableOpacity className="font-sans justify-center items-center" >
                      
-                     <Image source={require('../../../assets/mod3/15.png')}
-                              className="mx-4 mt-2 w-72 h-52 "/>
+                     <Image source={require('../../../assets/mod3/15.jpg')}
+                              className="mx-4 mt-2 w-48 h-36 rounded-xl "/>
                     <Text className="font-sans text-xl text-center  mt-4 mx-4"> 
                     
                     Douleur et gonflement au point d’injection
@@ -369,8 +361,8 @@ const Lessons6 = () => {
 
  
                      </Text>
-                     <Image source={require('../../../assets/mod3/16.png')}
-                              className="mx-4 mt-4 w-36 h-24 "/>
+                     <Image source={require('../../../assets/mod3/16.jpg')}
+                              className="mx-4 mt-4 w-56 h-36 rounded-2xl "/>
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>
                       <Text 
                         className="font-sans text-black  text-xl text-center mb-4 mt-5"

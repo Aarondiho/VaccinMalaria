@@ -51,16 +51,24 @@ const First = () => {
                 {/* First Image */}
                 <Image 
                   source={require('../../assets/mod1/Logo_1.png')} 
-                  className="w-20 h-20" 
+                  className="w-16 h-16" 
                 />
 
                 {/* Vertical Line */}
                 <View className="h-12 w-[5px] bg-gray-400 mx-2" />
 
-                {/* Second Image */}
+               {/* Second Image */}
                 <Image 
                   source={require('../../assets/gavi.png')} 
                   className="w-28 h-12 rounded-xl" 
+                /> 
+                {/* Vertical Line */}
+                <View className="h-12 w-[5px] bg-gray-400 mx-2" />
+
+                {/* First Image */}
+                <Image 
+                  source={require('../../assets/pev.png')} 
+                  className="w-12 h-12" 
                 />
               </View>
           <Text className="text-white text-lg font-bold text-center mb-4 mt-6">VACCINATION CONTRE LE PALUDISME</Text>

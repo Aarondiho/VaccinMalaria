@@ -65,15 +65,6 @@ const Lessons3 = () => {
     }, [navigation]);
 
 
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setShowFirst(true);
-      }, 1000); // 2000ms = 5 seconds
-  
-      return () => clearTimeout(timer); // Cleanup the timer if the component unmounts
-    }, []);
-  
-
 
     const goToNextSlide = () =>{
 
@@ -116,7 +107,7 @@ const Lessons3 = () => {
 
         <TouchableOpacity className="font-sansjustify-end" onPress={() => {}}>
         <Text className="font-sans text-sm font-medium mr-2  text-green-800 flex-end">
-        {screen3} / 3 </Text>
+        {screen3} / 5 </Text>
         </TouchableOpacity>
       </View>
 
@@ -129,7 +120,92 @@ const Lessons3 = () => {
       
 
     {
-        screen3 == 1?
+      screen3 == 1?
+      <>
+        <View className="px-2 mb-10">
+          <TouchableOpacity className="font-sans  mt-5 p-1 justify-center items-center">
+            <Image 
+              source={require('../../../assets/mod2/2.png')}
+             className="w-80 h-44"
+            />
+          </TouchableOpacity>
+
+          <View style={{ flex: 1, paddingHorizontal: 4 }}>
+            <Text 
+              className="font-sans text-black  text-xl mb-4 mt-2"
+              numberOfLines={50} // Optional: limit to a specific number of lines if desired
+              ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+            >
+              En vue d’une bonne efficacité du vaccin antipaludique, il faudra administrer 4 doses aux enfants mais à différents âges. 
+             
+            </Text>
+
+            <Text 
+              className="font-sans text-black  text-xl mb-4 mt-2"
+              numberOfLines={50} // Optional: limit to a specific number of lines if desired
+              ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+            >
+              - La première dose : <Text className="text-blue-900">à 6 mois. </Text>
+            </Text>
+
+            <Text 
+              className="font-sans text-black  text-xl mb-4 mt-2"
+              numberOfLines={50} // Optional: limit to a specific number of lines if desired
+              ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+            >
+              - La deuxième dose : <Text className="text-blue-900">à 7 mois.</Text>
+            </Text>
+            <Text 
+              className="font-sans text-black  text-xl mb-4 mt-2"
+              numberOfLines={50} // Optional: limit to a specific number of lines if desired
+              ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+            >
+              - la troisième dose : <Text className="text-blue-900">à 9 mois.</Text>
+            </Text>
+
+            <Text 
+              className="font-sans text-black  text-xl mb-4 mt-2"
+              numberOfLines={50} // Optional: limit to a specific number of lines if desired
+              ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
+            >
+              - la quatrième dose : <Text className="text-blue-900"> à 18 mois.</Text>
+            </Text>
+          </View>
+
+        </View>
+
+      <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
+
+        
+      <TouchableOpacity
+              onPress={() =>navigation.goBack()}
+              style={{
+                padding: 10,
+                borderRadius: 5,
+                alignSelf:'flex-start'
+              }}
+              className=" mx-4 bg-black/80"
+            >
+              <Text style={{ color: '#fff' }}>Retour</Text>
+              
+            </TouchableOpacity>
+
+
+        <TouchableOpacity
+                        onPress={goToNextSlide}
+                        style={{ padding: 10, borderRadius: 5 }}
+                        className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
+                        disabled={!buttonEnabled}
+                      >
+                        <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
+              </TouchableOpacity>
+
+
+        </View>
+      
+
+      </>
+        :screen3 == 2?
                   
         <View >
 
@@ -170,18 +246,20 @@ const Lessons3 = () => {
 
         <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between',  }} className="mb-12">
 
+            
+
             <TouchableOpacity
-              onPress={() =>navigation.goBack()}
-              style={{
-                padding: 10,
-                borderRadius: 5,
-                alignSelf:'flex-start'
-              }}
-              className=" mx-4 bg-black/80"
-            >
-              <Text style={{ color: '#fff' }}>Retour</Text>
-              
-            </TouchableOpacity>
+        onPress={() =>goToPreviousSlide()}
+        style={{
+        padding: 10,
+        borderRadius: 5,
+        alignSelf:'flex-start'
+        }}
+        className=" mx-4 bg-black/80"
+        >
+        <Text style={{ color: '#fff' }}>Précédent</Text>
+
+        </TouchableOpacity>
 
 
             <TouchableOpacity
@@ -201,7 +279,7 @@ const Lessons3 = () => {
 
         <View className="mb-10"></View>
         </View>
-        :screen3 == 2?
+        :screen3 == 3?
           
           <View >
 
@@ -221,13 +299,13 @@ const Lessons3 = () => {
 
                       <Text className="font-sans text-black text-xl mt-6 mx-4">
 
-                      ● Les enfants éligibles à la première dose du RTS,S sont tous les enfants âgés de 6 à 11mois (avant la première anniversaire)
+                      ● Au moment de l'introduction, les enfants éligibles à la première dose du RTS,S sont tous les enfants âgés de 6 à 11mois (avant le premier anniversaire)
 
                     
                       </Text>
 
                       <Text className="font-sans text-black text-xl mt-6 mx-4">
-                      ● Les enfants qui seront âgés de 6 mois à l'introduction suivront le calendrier habituel tel que présenté précédemment (diapo précédente)
+                      ● Les enfants qui seront âgés de 6 mois à l'introduction suivront le calendrier habituel tel que mentionné sur la diapositive précédente: 6-7-9-18 mois
 
                       </Text>
 
@@ -238,12 +316,13 @@ const Lessons3 = () => {
                     </TouchableOpacity>
 
                       <Text className="font-sans text-black text-xl mt-6 mx-4">
-                      ● Les autres (7 mois à 11 mois) recevront la première dose à l'introduction, puis la deuxième dose sera administrée 1 mois après l'administration de la première dose et la troisième dose leur sera administrée 1 mois après la deuxième dose 
+                      ● Les autres enfants qui seront âgés de 7 à 11 mois à l'introduction recevront la première dose à l'introduction du vaccin, puis la deuxième dose sera administrée 1 mois après l'administration de la première dose et la troisième dose leur sera administrée 1 mois après l'administration de la deuxième dose 
 
                       </Text>
 
                       <Text className="font-sans text-black text-xl mt-6 mb-10 mx-4">
-                      ● La quatrième dose sera administrée à l'âge de 18 mois
+                      ● La quatrième dose sera administrée à TOUS à l'âge de 18 mois
+
 
 
                       </Text>
@@ -254,18 +333,18 @@ const Lessons3 = () => {
 
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between',  }} className="mb-12">
 
-              <TouchableOpacity
-                onPress={() =>navigation.goBack()}
-                style={{
-                  padding: 10,
-                  borderRadius: 5,
-                  alignSelf:'flex-start'
-                }}
-                className=" mx-4 bg-black/80"
-              >
-                <Text style={{ color: '#fff' }}>Retour</Text>
-                
-              </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>goToPreviousSlide()}
+            style={{
+              padding: 10,
+              borderRadius: 5,
+              alignSelf:'flex-start'
+            }}
+            className=" mx-4 bg-black/80"
+          >
+            <Text style={{ color: '#fff' }}>Précédent</Text>
+            
+          </TouchableOpacity>
 
 
               <TouchableOpacity
@@ -288,90 +367,7 @@ const Lessons3 = () => {
 
         
 
-        :screen3 == 3?
-          <>
-            <View className="px-2 mb-10">
-              <TouchableOpacity className="font-sans  mt-5 p-1 justify-center items-center">
-                <Image 
-                  source={require('../../../assets/mod2/2.png')}
-                 className="w-80 h-44"
-                />
-              </TouchableOpacity>
-
-              <View style={{ flex: 1, paddingHorizontal: 4 }}>
-                <Text 
-                  className="font-sans text-black  text-xl mb-4 mt-2"
-                  numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                  ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                >
-                  En vue d’une bonne efficacité du vaccin antipaludique, il faudra administrer 4 doses aux enfants mais à différents âges. 
-                 
-                </Text>
-
-                <Text 
-                  className="font-sans text-black  text-xl mb-4 mt-2"
-                  numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                  ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                >
-                  - La première dose : <Text className="text-blue-900">à 6 mois. </Text>
-                </Text>
-
-                <Text 
-                  className="font-sans text-black  text-xl mb-4 mt-2"
-                  numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                  ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                >
-                  - La deuxième dose : <Text className="text-blue-900">à 7 mois.</Text>
-                </Text>
-                <Text 
-                  className="font-sans text-black  text-xl mb-4 mt-2"
-                  numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                  ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                >
-                  - la troisième dose : <Text className="text-blue-900">à 9 mois.</Text>
-                </Text>
-
-                <Text 
-                  className="font-sans text-black  text-xl mb-4 mt-2"
-                  numberOfLines={50} // Optional: limit to a specific number of lines if desired
-                  ellipsizeMode="tail" // Adds '...' at the end if the text is truncated
-                >
-                  - la quatrième dose : <Text className="text-blue-900"> à 18 mois.</Text>
-                </Text>
-              </View>
-
-            </View>
-
-          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} className="mb-12">
-
-<TouchableOpacity
-  onPress={() =>goToPreviousSlide()}
-  style={{
-    padding: 10,
-    borderRadius: 5,
-    alignSelf:'flex-start'
-  }}
-  className=" mx-4 bg-black/80"
->
-  <Text style={{ color: '#fff' }}>Précédent</Text>
-  
-</TouchableOpacity>
-
-
-<TouchableOpacity
-                    onPress={goToNextSlide}
-                    style={{ padding: 10, borderRadius: 5 }}
-                    className={buttonEnabled? "mx-4 bg-black/80" :"mx-4 bg-black/40"}
-                    disabled={!buttonEnabled}
-                  >
-                    <Text className={buttonEnabled? "text-white" :"text-white"}>{'Suivant'}</Text>
-          </TouchableOpacity>
-
-
-</View>
-          
-
-          </>
+        
         :screen3 == 4?
             <>
                   <View className="px-2 mb-2">
@@ -381,8 +377,8 @@ const Lessons3 = () => {
 
                     <TouchableOpacity className="font-sans justify-center items-center" >
                      
-                     <Image source={require('../../../assets/mod2/3.png')}
-                              className="mx-4 mt-4 w-72 h-52 "/>
+                     <Image source={require('../../../assets/mod2/3.jpg')}
+                              className="mx-4 mt-4 w-72 h-52  rounded-xl"/>
                     </TouchableOpacity>
 
                     <View style={{ flex: 1, paddingHorizontal: 4 }}>
@@ -455,9 +451,9 @@ const Lessons3 = () => {
                   </Text>
                    
 
-                    <TouchableOpacity className="font-sans justify-center items-center" >
+                    <TouchableOpacity className="font-sans mt-2 bg-white rounded-2xl justify-center items-center" >
                      
-                     <Image source={require('../../../assets/mod2/4.png')}
+                     <Image source={require('../../../assets/mod2/4.jpg')}
                               className="mx-4 mt-4 w-72 h-52 "/>
                     </TouchableOpacity>
 

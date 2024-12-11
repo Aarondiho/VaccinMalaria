@@ -58,6 +58,9 @@ const Lessons = () => {
     }, [navigation]);
 
 
+    
+
+
    
   
 
@@ -232,10 +235,9 @@ const Lessons = () => {
     :screen2 == 3?
     <>
       <View className="px-2 mb-10">
-        <TouchableOpacity className="font-sans p-1 mt-5 justify-center items-center" >
-        <Image source={require('../../../assets/mod1/10.png')}
-                            className="mb-10 mx-4 "
-                            style={{width:width * 0.5,height:height*0.36}}  />
+        <TouchableOpacity className="font-sans rounded-xl bg-white p-1 mt-5 justify-center items-center" >
+        <Image source={require('../../../assets/mod1/10.jpg')}
+                            className="mb-10 mt-4 w-56 h-52" />
         </TouchableOpacity>
           
         <View style={{ flex: 1, paddingHorizontal: 4 }}>
@@ -357,9 +359,9 @@ const Lessons = () => {
 
         <View className="px-2 mb-10">
           
-          <TouchableOpacity className="font-sans p-1 justify-center items-center" >
-            <Image source={require('../../../assets/mod1/12.png')}
-                              className=" mt-5 mb-5 mx-4 w-32 h-36 "/>
+          <TouchableOpacity className="font-sans p-1 justify-center mt-4 bg-white rounded-xl items-center" >
+            <Image source={require('../../../assets/mod1/12.jpg')}
+                              className=" mt-5 mb-5 mx-4 w-36 h-48 "/>
           </TouchableOpacity>
             
           <View style={{ flex: 1, paddingHorizontal: 4 }}>

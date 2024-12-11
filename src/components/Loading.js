@@ -49,7 +49,7 @@ const Loader = () => {
                 {/* First Image */}
                 <Image 
                   source={require('../../assets/mod1/Logo_1.png')} 
-                  className="w-24 h-24" 
+                  className="w-20 h-20" 
                 />
 
                 {/* Vertical Line */}
@@ -58,7 +58,15 @@ const Loader = () => {
                 {/* Second Image */}
                 <Image 
                   source={require('../../assets/gavi.png')} 
-                  className="w-36 h-16 rounded-xl" 
+                  className="w-28 h-16 rounded-xl" 
+                />
+                {/* Vertical Line */}
+                <View className="h-16 w-[5px] bg-gray-400 mx-2" />
+
+                {/* Second Image */}
+                <Image 
+                  source={require('../../assets/pev.png')} 
+                  className="w-16 h-16 rounded-xl" 
                 />
               </View>
         
